@@ -6,32 +6,35 @@ const palette = Palette();
 // Manage the website theme
 let theme = createTheme({
   palette: {
+    mode: 'dark',
     primary: {
-      main: palette.STEEL_BLUE,
+      main: palette.SPACE_VIOLET,
     },
     background: {
-      //default: palette.BLACK,
+      default: palette.BLACK,
     },
     error: {
       main: palette.RED,
     },
+    text: {
+      primary: palette.GHOST_WHITE,
+    },
   },
   typography: {
-    fontFamily: '"Lato", "Helvetica", "Arial", sans-serif',
+    fontFamily: '"Kanit", "Helvetica", "Arial", sans-serif',
     fontSize: 16,
     h1: {
-      fontFamily: '"Lato", "Helvetica", "Arial", sans-serif',
+      fontFamily: '"Kanit", "Helvetica", "Arial", sans-serif',
       fontWeight: 600,
-      fontSize: 60,
-      letterSpacing: '-4%',
-      lineHeight: 1.2,
+      fontSize: 80,
+      lineHeight: 0.9,
     },
     h2: {
-      fontFamily: '"Lato", "Helvetica", "Arial", sans-serif',
-      fontWeight: 600,
-      fontSize: 48,
-      letterSpacing: '-4%',
-      lineHeight: 1.25,
+      fontFamily: '"Kanit", "Helvetica", "Arial", sans-serif',
+      fontWeight: 'bold',
+      fontSize: 64,
+      lineHeight: 0.9,
+      textTransform: 'uppercase',
     },
     h3: {
       fontFamily: '"Lato", "Helvetica", "Arial", sans-serif',
@@ -48,8 +51,7 @@ let theme = createTheme({
     // p 24px || p large
     body1: {
       fontFamily: '"Outfit", "Helvetica", "Arial", sans-serif',
-      fontSize: 24,
-      lineHeight: 4 / 3,
+      fontSize: 0,
     },
     // p 20px  || p medium
     body2: {
@@ -159,7 +161,7 @@ let theme = createTheme({
   },
 });
 
-theme.typography.h1[theme.breakpoints.down('sm')] = {
+/* theme.typography.h1[theme.breakpoints.down('sm')] = {
   fontSize: 32,
 };
 
@@ -169,8 +171,8 @@ theme.typography.h2[theme.breakpoints.down('sm')] = {
 
 theme.typography.h3[theme.breakpoints.down('sm')] = {
   fontSize: 20,
-};
+}; */
 
-//theme = responsiveFontSizes(theme);
+theme = responsiveFontSizes(theme);
 
 export default theme;

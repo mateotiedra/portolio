@@ -5,13 +5,52 @@ import { Box, Typography } from '@mui/material';
 import Loading from '../Loading/Loading';
 
 import HomeLogic from './HomeLogic';
-import './Home.css';
 
 function TitleSection() {
+  const titleTextStyles = {
+    fontSize: '60vw',
+    textTransform: 'uppercase',
+    fontWeight: 'bold',
+    position: 'absolute',
+    width: 0,
+    height: 0,
+    display: 'flex',
+    justifyContent: 'flex-start',
+    transform: 'rotate(0.25turn)',
+  };
+
   return (
-    <Box>
-      <Typography variant='h2'>Tiedra</Typography>
-      <Typography variant='h2'>Mateo</Typography>
+    <Box
+      sx={{
+        height: '100vh',
+        width: '100vw',
+        display: 'flex',
+        justifyContent: 'space-between',
+        //overflow: 'hidden',
+      }}
+    >
+      <Box sx={{ position: 'relative', top: '-3vw' }}>
+        <Typography
+          variant='h1'
+          sx={{
+            ...titleTextStyles,
+            alignItems: 'flex-end',
+          }}
+        >
+          Mateo
+        </Typography>
+      </Box>
+      <Box sx={{ position: 'relative', top: '84vw' }}>
+        <Typography
+          variant='h1'
+          sx={{
+            ...titleTextStyles,
+            alignItems: 'flex-start',
+          }}
+        >
+          Tiedra
+        </Typography>
+      </Box>
     </Box>
   );
 }

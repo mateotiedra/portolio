@@ -7,51 +7,22 @@ import Loading from '../Loading/Loading';
 import HomeLogic from './HomeLogic';
 
 function TitleSection() {
-  const titleTextStyles = {
-    fontSize: '60vw',
-    textTransform: 'uppercase',
-    fontWeight: 'bold',
-    position: 'absolute',
-    width: 0,
-    height: 0,
-    display: 'flex',
-    justifyContent: 'flex-start',
-    transform: 'rotate(0.25turn)',
-  };
+  const titleTextClassName = 'absolute h-0 w-0 leading-[0px] flex justify-start text-[60vw] uppercase font-bold rotate-90 top-0 left-0'
 
   return (
-    <Box
-      sx={{
-        height: '100vh',
-        width: '100vw',
-        display: 'flex',
-        justifyContent: 'space-between',
-        //overflow: 'hidden',
-      }}
-    >
-      <Box sx={{ position: 'relative', top: '-3vw' }}>
-        <Typography
-          variant='h1'
-          sx={{
-            ...titleTextStyles,
-            alignItems: 'flex-end',
-          }}
-        >
+    <div
+      className='flex justify-between h-[100vh] w-[100vw]'>
+      <div className='relative top-[-3vw] left-[22vw]'>
+        <h1 className={titleTextClassName + ' items-end'}>
           Mateo
-        </Typography>
-      </Box>
-      <Box sx={{ position: 'relative', top: '84vw' }}>
-        <Typography
-          variant='h1'
-          sx={{
-            ...titleTextStyles,
-            alignItems: 'flex-start',
-          }}
-        >
+        </h1>
+      </div>
+      <div className='relative top-[84vw] right-[18vw]'>
+        <h1 className={titleTextClassName} >
           Tiedra
-        </Typography>
-      </Box>
-    </Box>
+        </h1>
+      </div>
+    </div >
   );
 }
 

@@ -16,7 +16,7 @@ function TitleSection() {
           <h1 className={titleTextClassName + ' items-end'}>
             Mateo
           </h1>
-          <div className='absolute translate-x-[-65%] top-[187vw]'>
+          <div className='absolute translate-x-[-65%]' style={{ top: 'max(187vw, 90vh)' }}>
             <RiArrowDownDoubleFill className='animate-bounce w-[13vw] h-[13vw]' />
           </div>
         </div>

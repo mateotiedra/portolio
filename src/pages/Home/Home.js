@@ -62,7 +62,7 @@ function AboutMe() {
         Developer, at least at the beginning
       </h2>
       <p>I love to imagine and create things. I love to think about ideas and share them. I love to develop solutions and fight to make them work.</p>
-      <p>That’s why I’ve been a self-taught developer for more than 10 years, and why I am currently studying computer science at EPFL. Programming has always been a great tool to be able to bring ideas to life.</p>
+      <p>That’s why I’ve been a self-taught developer for more than 10 years, and why I am currently studying computer science at EPFL. For me programming has always been the greatest tool to be able to bring ideas to life.</p>
     </div>
   );
 }

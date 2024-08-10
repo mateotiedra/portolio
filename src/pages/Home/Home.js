@@ -17,14 +17,14 @@ function TitleSection() {
 
     setStickyJump(false);
     setIndicatorOpacity(1 - (stickyElemRect.top - containerElemRect.top) / (containerElemRect.height - stickyElemRect.height));
-  })
+  }, [setStickyJump, setIndicatorOpacity, downIndicatorRef])
 
   useEffect(() => {
     window.addEventListener("scroll", onScroll);
     return () => {
       window.removeEventListener("scroll", onScroll);
     }
-  }, [])
+  }, [onScroll])
   //console.log(indicatorOpacity);
 
   return (

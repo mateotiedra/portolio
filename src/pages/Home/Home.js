@@ -2,6 +2,8 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import sharkImage from '../../assets/images/landing-shark-white.png'
 import { RiArrowDownDoubleFill } from "react-icons/ri";
+import NoisyContainer from '../../components/NoisyContainer/NoisyContainer';
+
 
 function TitleSection() {
   const downIndicatorRef = useRef(null);
@@ -28,25 +30,27 @@ function TitleSection() {
   //console.log(indicatorOpacity);
 
   return (
-    <div className='relative flex justify-between w-[100vw] h-[265vw]'>
-      <div className='absolute flex justify-center w-[100%] pt-[24vw] z-50'>
-        <img className='relative rotate-180 w-[90vw]' src={sharkImage} alt='White hammer shark' />
-      </div>
-      <div className='absolute flex justify-between h-[100vh] w-[100%] px-[10vw]'>
-        <div className='relative top-[-3vw] left-[20vw]'>
-          <h1 className={titleTextClassName + ' items-end'}>
-            Mateo
-          </h1>
+    <div className='overflow-hidden'>
+      <div className='relative flex justify-between w-[100vw] h-[265vw] '>
+        <div className='absolute flex justify-center w-[100%] pt-[24vw] z-50'>
+          <img className='relative rotate-180 w-[90vw]' src={sharkImage} alt='White hammer shark' />
+        </div>
+        <div className='absolute flex justify-between h-[100vh] w-[100%] px-[10vw] overflow'>
+          <div className='relative top-[-3vw] left-[20vw]'>
+            <h1 className={titleTextClassName + ' items-end'}>
+              Mateo
+            </h1>
 
-        </div>
-        <div className='relative top-[76vw] right-[16vw]'>
-          <h1 className={titleTextClassName}>
-            Tiedra
-          </h1>
+          </div>
+          <div className='relative top-[76vw] right-[16vw]'>
+            <h1 className={titleTextClassName}>
+              Tiedra
+            </h1>
+          </div>
         </div>
       </div>
-      <div ref={downIndicatorRef} className='absolute left-[21vw] bottom-0 h-[84vw]'>
-        <div className='sticky top-[90vh]' style={{ opacity: indicatorOpacity }}>
+      <div ref={downIndicatorRef} className='absolute left-[21vw] top-[180vw] h-[84vw] flex flex-col justify-end'>
+        <div className='sticky bottom-[2vh]' style={{ opacity: indicatorOpacity }}>
           <RiArrowDownDoubleFill className={'w-[13vw] h-[13vw]'} style={{ animation: stickyJump ? ' bounce 1.5s infinite' : '' }} />
         </div>
       </div>
@@ -69,10 +73,10 @@ function AboutMe() {
 
 function Home() {
   return (
-    <>
+    <NoisyContainer>
       <TitleSection />
       <AboutMe />
-    </>
+    </NoisyContainer>
   );
 }
 

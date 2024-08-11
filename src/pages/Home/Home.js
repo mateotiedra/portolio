@@ -3,12 +3,14 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import sharkImage from '../../assets/images/landing-shark-white.png'
 import { RiArrowDownDoubleFill } from "react-icons/ri";
 import NoisyContainer from '../../components/NoisyContainer/NoisyContainer';
+import GlitchyTextContainer from '../../components/GlitchyTextContainer/GlitchyTextContainer';
+import ScrollSpeedTracker from '../../components/GlitchyTextContainer/ScrollSpeedTracker';
 
 
-function TitleSection() {
+function TitleSection({ glitchyTextDensity }) {
   const downIndicatorRef = useRef(null);
-  const titleTextClassName = 'absolute h-0 w-0 leading-[0px] flex justify-start text-[55vw] uppercase font-bold rotate-90 top-0 left-0'
 
+  // Sticky indicator
   const [indicatorOpacity, setIndicatorOpacity] = useState(1)
   const [stickyJump, setStickyJump] = useState(true)
   const onScroll = useCallback(() => {
@@ -27,25 +29,25 @@ function TitleSection() {
       window.removeEventListener("scroll", onScroll);
     }
   }, [onScroll])
-  //console.log(indicatorOpacity);
+
+  const titleTextClassName = 'absolute h-0 w-0 leading-[0px] flex justify-start text-[55vw] uppercase font-bold rotate-90 top-0 left-0'
 
   return (
     <div className='overflow-hidden'>
-      <div className='relative flex justify-between w-[100vw] h-[265vw] '>
+      <div className='relative flex justify-between w-[100vw] h-[270vw] '>
         <div className='absolute flex justify-center w-[100%] pt-[24vw] z-50'>
           <img className='relative rotate-180 w-[90vw]' src={sharkImage} alt='White hammer shark' />
         </div>
         <div className='absolute flex justify-between h-[100vh] w-[100%] px-[10vw] overflow'>
           <div className='relative top-[-3vw] left-[20vw]'>
-            <h1 className={titleTextClassName + ' items-end'}>
+            <GlitchyTextContainer variant='h1' density={glitchyTextDensity + 0.04} className={titleTextClassName}>
               Mateo
-            </h1>
-
+            </GlitchyTextContainer>
           </div>
-          <div className='relative top-[76vw] right-[16vw]'>
-            <h1 className={titleTextClassName}>
+          <div className='relative top-[80vw] right-[16vw]'>
+            <GlitchyTextContainer variant='h1' density={glitchyTextDensity + 0.04} className={titleTextClassName}>
               Tiedra
-            </h1>
+            </GlitchyTextContainer>
           </div>
         </div>
       </div>
@@ -58,24 +60,46 @@ function TitleSection() {
   );
 }
 
-function AboutMe() {
+function AboutMe({ glitchyTextDensity }) {
   return (
     <div className='p-section-container'>
-      <h4>About me</h4>
-      <h2>
+      <GlitchyTextContainer density={glitchyTextDensity}>
+        <h4>About me</h4>
+      </GlitchyTextContainer>
+      <GlitchyTextContainer variant='h2' density={glitchyTextDensity / 1.2 + 0.1}>
         Developer, at least at the beginning
-      </h2>
-      <p>I love to imagine and create things. I love to think about ideas and share them. I love to develop solutions and fight to make them work.</p>
-      <p>That’s why I’ve been a self-taught developer for more than 10 years, and why I am currently studying computer science at EPFL. For me programming has always been the greatest tool to be able to bring ideas to life.</p>
+      </GlitchyTextContainer>
+      <GlitchyTextContainer density={glitchyTextDensity}>
+        I love to imagine and create things. I love to think about ideas and share them. I love to develop solutions and fight to make them work.
+      </GlitchyTextContainer>
+      <GlitchyTextContainer density={glitchyTextDensity}>
+        That’s why I’ve been a self-taught developer for more than 10 years, and why I am currently studying computer science at EPFL. For me programming has always been the greatest tool to be able to bring ideas to life.
+      </GlitchyTextContainer>
+
     </div>
   );
 }
 
 function Home() {
+  // Glitchy text density
+  const canUpdateDensity = useRef(true)
+  const [glitchyTextDensity, setGlitchyTextDensity] = useState(0)
+  const updateGlitchyTextDensity = useCallback((scrollSpeed) => {
+    if (canUpdateDensity.current && scrollSpeed > 100) {
+      setGlitchyTextDensity(Math.max(Math.min((scrollSpeed) / 10000, 1), 0));
+
+      canUpdateDensity.current = false;
+      setTimeout(() => {
+        canUpdateDensity.current = true;
+        setGlitchyTextDensity(0);
+      }, 300)
+    }
+  }, [setGlitchyTextDensity, canUpdateDensity])
   return (
     <NoisyContainer>
-      <TitleSection />
-      <AboutMe />
+      <ScrollSpeedTracker onChange={updateGlitchyTextDensity} />
+      <TitleSection glitchyTextDensity={glitchyTextDensity} />
+      <AboutMe glitchyTextDensity={glitchyTextDensity} />
     </NoisyContainer>
   );
 }

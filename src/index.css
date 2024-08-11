@@ -6,16 +6,19 @@
 
 @layer base {
   h1 {
-    @apply font-kanit font-black text-h1 leading-heading;
+    @apply text-heading font-kanit font-black text-h1 leading-heading;
   }
   h2 {
-    @apply font-kanit font-bold text-4xl leading-heading uppercase pb-2;
+    @apply text-heading font-kanit font-bold text-4xl leading-heading uppercase pb-2;
   }
   h4 {
-    @apply font-breeserif text-lg leading-heading text-base pb-1;
+    @apply text-heading font-breeserif text-lg leading-heading text-base pb-1;
   }
   p {
-      @apply font-kanit text-base leading-base pb-1;
+    @apply font-kanit text-base leading-base pb-1;
+  }
+  body {
+    @apply bg-black;
   }
 }
 

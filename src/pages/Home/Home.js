@@ -51,7 +51,7 @@ function TitleSection() {
       </div>
       <div ref={downIndicatorRef} className='absolute left-[21vw] top-[180vw] h-[84vw] flex flex-col justify-end'>
         <div className='sticky bottom-[2vh]' style={{ opacity: indicatorOpacity }}>
-          <RiArrowDownDoubleFill className={'w-[13vw] h-[13vw]'} style={{ animation: stickyJump ? ' bounce 1.5s infinite' : '' }} />
+          <RiArrowDownDoubleFill className={'w-[13vw] h-[13vw] text-white'} style={{ animation: stickyJump ? ' bounce 1.5s infinite' : '' }} />
         </div>
       </div>
     </div>

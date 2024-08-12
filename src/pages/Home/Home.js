@@ -62,7 +62,7 @@ function TitleSection({ glitchyTextDensity }) {
 
 function AboutMe({ glitchyTextDensity }) {
   return (
-    <div className='p-section-container'>
+    <div className='section-container'>
       <GlitchyTextContainer density={glitchyTextDensity}>
         <h4>About me</h4>
       </GlitchyTextContainer>
@@ -75,8 +75,22 @@ function AboutMe({ glitchyTextDensity }) {
       <GlitchyTextContainer density={glitchyTextDensity}>
         That’s why I’ve been a self-taught developer for more than 10 years, and why I am currently studying computer science at EPFL. For me programming has always been the greatest tool to be able to bring ideas to life.
       </GlitchyTextContainer>
-
     </div>
+
+  );
+}
+
+function SelectedProject({ glitchyTextDensity }) {
+  return (
+    <div className='section-container'>
+      <GlitchyTextContainer variant='h4' density={glitchyTextDensity}>
+        Selected
+      </GlitchyTextContainer>
+      <GlitchyTextContainer variant='h2' density={glitchyTextDensity / 1.2 + 0.1}>
+        Project
+      </GlitchyTextContainer>
+    </div>
+
   );
 }
 
@@ -100,6 +114,7 @@ function Home() {
       <ScrollSpeedTracker onChange={updateGlitchyTextDensity} />
       <TitleSection glitchyTextDensity={glitchyTextDensity} />
       <AboutMe glitchyTextDensity={glitchyTextDensity} />
+      <SelectedProject glitchyTextDensity={glitchyTextDensity} />
     </NoisyContainer>
   );
 }

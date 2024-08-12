@@ -9,10 +9,10 @@
     @apply text-heading font-kanit font-black text-h1 leading-heading;
   }
   h2 {
-    @apply text-heading font-kanit font-bold text-4xl leading-heading uppercase pb-2;
+    @apply text-heading font-kanit font-bold text-5xl leading-heading uppercase pb-2;
   }
   h4 {
-    @apply text-heading font-breeserif text-lg leading-heading text-base pb-1;
+    @apply text-heading font-breeserif  leading-heading text-base text-2xl pb-1;
   }
   p {
     @apply font-kanit text-base leading-base pb-1;
@@ -20,6 +20,11 @@
   body {
     @apply bg-black;
   }
+
+}
+
+.section-container {
+  @apply mx-auto px-8 max-w-5xl mb-20;
 }
 
 body {

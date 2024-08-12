@@ -20,7 +20,7 @@ module.exports = {
         breeserif: ['Bree Serif', 'serif'],
       },
       fontSize: {
-        base: '16px', // Default font size
+        base: '18px', // Default font size
         h1: '2.25rem', // Equivalent to text-4xl
         h2: '1.875rem', // Equivalent to text-3xl
         h3: '1.5rem', // Equivalent to text-2xl
@@ -37,9 +37,7 @@ module.exports = {
         heading: 'white'
       },
       color: colors,
-      padding: {
-        'section-container': '2rem'
-      }
+
     },
   },
   plugins: [],

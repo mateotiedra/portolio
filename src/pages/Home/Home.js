@@ -59,7 +59,7 @@ function TitleSection({ glitchyTextDensity }) {
           </div>
         </div>
       </div>
-      <div className='none sm:flex flex-col justify-center items-center h-[80vh] mb-[10vh] mx-auto] max-w-[1375px] mx-auto'>
+      <div className='hidden sm:flex flex-col justify-center items-center h-[80vh] mb-[10vh] mx-auto] max-w-[1375px] mx-auto'>
         <div className='absolute flex justify-center w-[23%] left-[45%] -translate-x-1/2 z-50'>
           <img className='relative hori -rotate-90' src={whiteSharkImage} alt='White hammer shark' />
         </div>

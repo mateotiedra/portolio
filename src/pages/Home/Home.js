@@ -132,7 +132,6 @@ function Home() {
     <NoisyContainer>
       <ScrollSpeedTracker onChange={updateGlitchyTextDensity} />
       <TitleSection glitchyTextDensity={glitchyTextDensity} />
-      <AboutMe glitchyTextDensity={glitchyTextDensity} />
       <SelectedProject glitchyTextDensity={glitchyTextDensity} />
     </NoisyContainer >
   );

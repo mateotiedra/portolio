@@ -15,7 +15,7 @@ function GlitchyTextContainer({ children, variant, density = 0.4, ...props }) {
                     {char}
                 </span>
                 <span
-                    className='absolute translate-x-[-50%] translate-y-[-55%] left-1/2 top-1/2 font-pacifico lowercase text-fuchsia-500 transition-colors'
+                    className='absolute translate-x-[-50%] translate-y-[-55%] left-1/2 top-1/2 font-pacifico lowercase text-gray-400 transition-colors'
                     style={{ opacity: idToChange.includes(id) ? 1 : 0, color: idToChange.includes(id) ? undefined : 'white' }}>
                     {char}
                 </span>

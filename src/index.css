@@ -24,7 +24,7 @@
 }
 
 .section-container {
-  @apply mx-auto px-8 max-w-5xl mb-20;
+  @apply mx-auto px-8 max-w-5xl pb-20;
 }
 
 body {

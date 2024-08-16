@@ -24,10 +24,18 @@
     @apply font-kanit text-base leading-base pb-1;
   }
 
+
+}
+:root {
+  --primary-color: white;
+}
+
+.styled-link>a {
+  @apply font-bold underline text-primary
 }
 
 .section-container {
-  @apply mx-auto px-8 max-w-5xl pb-20;
+  @apply mx-auto px-8 max-w-7xl pb-20;
 }
 
 body {

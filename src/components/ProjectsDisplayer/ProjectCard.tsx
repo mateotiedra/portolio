@@ -18,8 +18,8 @@ function ProjectCard({
     description
 }: ProjectCardProps) {
 
-    return <div className='w-[600px]'>
-        <div className='flex flex-row items-start gap-6 '>
+    return <div className='max-w-[600px]'>
+        <div className='flex flex-col sm:flex-row  items-start gap-6 '>
             <div className='basis-2/3'>
                 <GlitchyTextContainer color={color} variant='h4' density={glitchyTextDensity}>
                     {subtitle}
@@ -28,16 +28,16 @@ function ProjectCard({
                     {title}
                 </GlitchyTextContainer>
 
-                {description}
+                {React.cloneElement(description, { style: { ['--primary-color']: color }, className: 'styled-link' })}
                 <div className='flex flex-row flex-wrap justify-start py-3 gap-2'>
                     {techTags}
                 </div>
             </div>
-            <div className='rounded-md overflow-hidden basis-1/3'>
+            <div className='rounded-xl overflow-hidden basis-1/3 mx-10 sm:mx-0'>
                 <img src={preview} />
             </div>
         </div>
-        <div className='flex flex-row justify-between w-full mt-6' >
+        <div className='flex flex-row flex-wrap justify-between w-full mt-6 gap-4' >
             {Object.entries(lilTags || {}).map(([key, value]) =>
                 <div>
                     <h4 className='text-base leading-3 pb-1'>{key}</h4>

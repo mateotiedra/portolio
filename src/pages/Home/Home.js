@@ -38,7 +38,7 @@ function TitleSection({ glitchyTextDensity }) {
   return (
     <>
       <div className='overflow-hidden sm:hidden'>
-        <div className='relative flex justify-between w-[100vw] h-[270vw] '>
+        <div className='relative flex justify-between w-[100vw] h-[280vw] '>
           <div className='absolute flex justify-center w-[100%] pt-[24vw] z-50'>
             <img className='relative rotate-180 w-[90vw]' src={whiteSharkImage} alt='White hammer shark' />
           </div>

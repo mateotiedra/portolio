@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import whiteSharkImage from '../../assets/images/landing-shark-white.png'
 import { RiArrowDownDoubleFill } from "react-icons/ri";
 import NoisyContainer from '../../components/NoisyContainer/NoisyContainer';
-import GlitchyTextContainer from '../../components/GlitchyTextContainer/GlitchyTextContainer';
+import GlitchyTextContainer from '../../components/GlitchyTextContainer';
 import ScrollSpeedTracker from '../../components/GlitchyTextContainer/ScrollSpeedTracker';
 
 

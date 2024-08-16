@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getRandomNumbers } from "../../helpers";
 
-function GlitchyTextContainer({ children, variant, density = 0.4, ...props }) {
+function GlitchyTextContainer({ children, variant = '', density = 0.4, color = '', ...props }) {
     const [letters, setLetters] = useState([])
 
     useEffect(() => {
@@ -10,13 +10,16 @@ function GlitchyTextContainer({ children, variant, density = 0.4, ...props }) {
         const idToChange = getRandomNumbers(Math.round(density * chars.length), chars.length - 1)
         // Map through the characters and wrap the target index in a styled span
         setLetters(chars.map((char, id) => {
+            if (children?.props?.className) console.log(children?.props?.className)
             return <span key={id} className="relative">
-                <span style={{ opacity: idToChange.includes(id) ? 0 : 1 }}>
+                <span
+                    className={' ' + children?.props?.className}
+                    style={{ opacity: idToChange.includes(id) ? 0 : 1 }}>
                     {char}
                 </span>
                 <span
-                    className='absolute translate-x-[-50%] translate-y-[-55%] left-1/2 top-1/2 font-pacifico lowercase text-gray-400 transition-colors'
-                    style={{ opacity: idToChange.includes(id) ? 1 : 0, color: idToChange.includes(id) ? undefined : 'white' }}>
+                    className={'absolute translate-x-[-50%] translate-y-[-55%] left-1/2 top-1/2 font-pacifico lowercase transition-colors text-gray-400 flex justify-center items-center ' + children?.props?.className}
+                    style={{ opacity: idToChange.includes(id) ? 1 : 0, color: idToChange.includes(id) ? color : 'white', }}>
                     {char}
                 </span>
             </span>
@@ -25,7 +28,7 @@ function GlitchyTextContainer({ children, variant, density = 0.4, ...props }) {
     }, [children, density])
 
 
-    switch (variant || children.type) {
+    switch (variant.length > 0 ? variant : children.type) {
         case 'h1':
             return <h1 {...props}>{letters}</h1>
         case 'h2':

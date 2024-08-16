@@ -5,6 +5,8 @@ import { RiArrowDownDoubleFill } from "react-icons/ri";
 import NoisyContainer from '../../components/NoisyContainer/NoisyContainer';
 import GlitchyTextContainer from '../../components/GlitchyTextContainer';
 import ScrollSpeedTracker from '../../components/GlitchyTextContainer/ScrollSpeedTracker';
+import ProjectsDisplayer from '../../components/ProjectsDisplayer/index.tsx';
+import { projects } from '../projects.tsx';
 
 
 function TitleSection({ glitchyTextDensity }) {
@@ -132,7 +134,7 @@ function Home() {
     <NoisyContainer>
       <ScrollSpeedTracker onChange={updateGlitchyTextDensity} />
       <TitleSection glitchyTextDensity={glitchyTextDensity} />
-      <SelectedProject glitchyTextDensity={glitchyTextDensity} />
+      <ProjectsDisplayer projects={projects} glitchyTextDensity={glitchyTextDensity} />
     </NoisyContainer >
   );
 }

@@ -9,16 +9,19 @@
     @apply text-heading font-kanit font-black text-h1 leading-heading;
   }
   h2 {
-    @apply text-heading font-kanit font-bold text-5xl leading-heading uppercase pb-2;
+    @apply text-heading font-kanit font-bold text-5xl leading-heading uppercase pb-4;
   }
   h4 {
-    @apply text-heading font-breeserif  leading-heading text-base text-2xl pb-1;
+    @apply text-heading font-breeserif  leading-heading text-base text-2xl pb-2;
   }
   p {
-    @apply font-kanit text-base leading-base pb-1;
+    
   }
   body {
     @apply bg-black;
+  }
+  html{
+    @apply font-kanit text-base leading-base pb-1;
   }
 
 }

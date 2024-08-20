@@ -17,7 +17,7 @@ function TechChip({
 
     return <a className='cursore-pointer' target='_blank' href={url}>
         <div className='flex flex-row gap-2 rounded-xl items-center justify-center px-2 py-1 border-[1px]'>
-            <span className='uppercase text-xs'>{name}</span>
+            <span className='uppercase text-2xs'>{name}</span>
             {icon}
         </div>
     </a>
@@ -32,4 +32,4 @@ export const StaffChip = () => <TechChip name='Gestion staff' icon={<IoAccessibi
 export const PlanningChip = () => <TechChip name='Planification' icon={<IoCalendar size={15} color='#A8C686' />} />
 export const AccountingChip = () => <TechChip name='Comptabilité' icon={<IoReceipt size={15} color='#ffe74c' />} />
 export const GoogleCloudChip = () => <TechChip name='Google Cloud' icon={<SiGooglecloud size={15} color='#1a73e8' />} url='https://cloud.google.com/storage/' />
-export const NodejsChip = () => <TechChip name='Node.js' icon={<SiNodedotjs size={15} color='rgb(44 104 44)' />} url='https://cloud.google.com/storage/' />
+export const NodejsChip = () => <TechChip name='Node.js' icon={<SiNodedotjs size={15} color='rgb(44 104 44)' />} url='https://nodejs.org/' />

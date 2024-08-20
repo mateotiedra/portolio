@@ -27,6 +27,7 @@ module.exports = {
         h4: '1.25rem', // Equivalent to text-xl
         h5: '1.125rem', // Equivalent to text-lg
         h6: '1rem', // Equivalent to text-base
+        '2xs': '0.6rem',
       },
       lineHeight: {
         heading: '1', // Default line height

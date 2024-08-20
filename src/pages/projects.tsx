@@ -58,10 +58,10 @@ export const projects: ProjectProps[] = [
     {
         title: 'Morii',
         id: 'morii',
-        subtitle: 'BeReal personnalisé',
+        subtitle: 'Un photodump partagé',
         lilTags: {
             'Développement': 'En cours',
-            'Testé': '2 fois',
+            'Testé en conditions réelles': '2 fois',
             'Photos partagées': '200',
         },
         link: 'https://morii.lumm.love/',
@@ -69,8 +69,7 @@ export const projects: ProjectProps[] = [
         color: 'white',
         techTags: [<GoogleCloudChip />, <ReactChip />, <NodejsChip />],
         description: <p>
-            Le but principal de ce projet était de remplacer les fameux <span style={{ fontStyle: 'italic' }}>Envoyez vos photos sur le groupe</span> et
-            les <span style={{ fontStyle: 'italic' }}>Bon je retrouve plus la photo</span>. <br />
+            Le but principal de ce projet était de remplacer les fameux <span style={{ fontStyle: 'italic' }}>Envoyez vos photos sur le groupe</span><br />
             <a href='https://morii.lumm.love/' target='_blank' rel="noreferrer">Morii</a> est
             une plateforme de partage de photos qui permet de se souvenir des bons moments grâce à des photos triées, qui ne perdent pas en qualité.
         </p>

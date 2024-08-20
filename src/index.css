@@ -12,7 +12,7 @@
     @apply text-heading font-kanit font-bold text-5xl leading-heading uppercase pb-4;
   }
   h4 {
-    @apply text-heading font-breeserif  leading-heading text-base text-2xl pb-2;
+    @apply text-heading font-breeserif leading-heading text-base text-2xl pb-2;
   }
   p {
     
@@ -36,6 +36,10 @@
 
 .section-container {
   @apply mx-auto px-8 max-w-7xl pb-20;
+}
+
+.centering {
+  @apply flex justify-center items-center;
 }
 
 body {

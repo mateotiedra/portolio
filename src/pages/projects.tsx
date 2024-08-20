@@ -1,6 +1,6 @@
 import React from "react";
 import okaloHomeBoomerang from '../assets/projects/okalo/home-boomerang.gif';
-import { ExpressChip, MuiChip, ReactChip } from '../components/TechChip.tsx';
+import TechChip, { AccountingChip, ExpressChip, GoogleCloudChip, MuiChip, NodejsChip, PlanningChip, ReactChip, StaffChip } from '../components/TechChip.tsx';
 
 export type ProjectProps = {
     title: string;
@@ -25,12 +25,12 @@ export const projects: ProjectProps[] = [
             'Livres vendus': '200',
             'Livres en vente': '5000'
         },
-        techTags: [<ReactChip />, <ExpressChip />, <MuiChip />],
+        techTags: [<ReactChip />, <NodejsChip />, <MuiChip />],
         link: 'https://www.okalo.ch/',
         preview: okaloHomeBoomerang,
         color: '#0496FF',
         description: <p>
-            Utilisé dans plus d'une dizaine de collèges genevois, <a href='https://www.okalo.ch/' target='_blank'>Okalo</a> facilite
+            Utilisé dans plus d'une dizaine de collèges genevois, <a href='https://www.okalo.ch/' target='_blank' rel="noreferrer">Okalo</a> facilite
             l'achat et la vente de livres d'occasion pour les étudiants, leur permettant ainsi de faire des économies et de donner une seconde vie à leurs bouquins inutilisés.
         </p>
     },
@@ -47,11 +47,32 @@ export const projects: ProjectProps[] = [
         link: 'https://www.lumm.love/',
         preview: okaloHomeBoomerang,
         color: 'rgb(205, 24, 27)',
+        techTags: [<StaffChip />, <PlanningChip />, <AccountingChip />],
         description: <p>
-            Troisième soirée organisée par <a href='https://www.lumm.love/' target='_blank'>LÜMM</a>, une association que nous avons officielement fondée début 2024 avec Kake, Loulou, Noa, Hamousz, Kerem & Tonio.
+            Troisième édition de la <a href='https://www.lumm.love/' target='_blank' rel="noreferrer">LÜMM</a>, une association que nous avons officielement fondée début 2024 avec Kake, Loulou, Noa, Hamousz, Kerem & Tonio.
             <br />
-            Avec la participation du bar <a href='https://satellite.bar/' target='_blank'>Satellite</a> et <a href='https://artepoly.agepoly.ch/' target='_blank'>ArtePoly</a> de l'EPFL.
-            Soutenue par la brasserie <a href='https://lanebuleuse.ch/' target='_blank'>La Nébuleuse</a> et <a href='https://www.eltonymate.com/' target='_blank'>El Tony Mate</a>
+            Avec la participation du bar <a href='https://satellite.bar/' target='_blank' rel="noreferrer">Satellite</a> et <a href='https://artepoly.agepoly.ch/' target='_blank' rel="noreferrer">ArtePoly</a> de l'EPFL.
+            Soutenue par la brasserie <a href='https://lanebuleuse.ch/' target='_blank' rel="noreferrer">La Nébuleuse</a> et <a href='https://www.eltonymate.com/' target='_blank' rel="noreferrer">El Tony Mate</a>
+        </p>
+    },
+    {
+        title: 'Morii',
+        id: 'morii',
+        subtitle: 'BeReal personnalisé',
+        lilTags: {
+            'Développement': 'En cours',
+            'Testé': '2 fois',
+            'Photos partagées': '200',
+        },
+        link: 'https://morii.lumm.love/',
+        preview: okaloHomeBoomerang,
+        color: 'white',
+        techTags: [<GoogleCloudChip />, <ReactChip />, <NodejsChip />],
+        description: <p>
+            Le but principal de ce projet était de remplacer les fameux <span style={{ fontStyle: 'italic' }}>Envoyez vos photos sur le groupe</span> et
+            les <span style={{ fontStyle: 'italic' }}>Bon je retrouve plus la photo</span>. <br />
+            <a href='https://morii.lumm.love/' target='_blank' rel="noreferrer">Morii</a> est
+            une plateforme de partage de photos qui permet de se souvenir des bons moments grâce à des photos triées, qui ne perdent pas en qualité.
         </p>
     },
 ];

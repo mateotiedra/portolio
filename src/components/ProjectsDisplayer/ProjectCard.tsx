@@ -18,8 +18,8 @@ function ProjectCard({
     description
 }: ProjectCardProps) {
 
-    return <div className='max-w-[600px]'>
-        <div className='flex flex-col sm:flex-row  items-start gap-6 '>
+    return <div className='max-w-[600px] flex flex-col justify-between'>
+        <div className='flex flex-col sm:flex-row items-start gap-6 '>
             <div className='basis-2/3'>
                 <GlitchyTextContainer color={color} variant='h4' density={glitchyTextDensity}>
                     {subtitle}
@@ -28,18 +28,18 @@ function ProjectCard({
                     {title}
                 </GlitchyTextContainer>
 
-                {React.cloneElement(description, { style: { ['--primary-color']: color }, className: 'styled-link' })}
+                {React.cloneElement(description, { style: { '--primary-color': color }, className: 'styled-link' })}
                 <div className='flex flex-row flex-wrap justify-start py-3 gap-2'>
                     {techTags}
                 </div>
             </div>
             <div className='rounded-xl overflow-hidden basis-1/3 mx-10 sm:mx-0'>
-                <img src={preview} />
+                <img src={preview} alt='project preview' />
             </div>
         </div>
-        <div className='flex flex-row flex-wrap justify-between w-full mt-6 gap-4' >
+        <div className='flex flex-row flex-wrap justify-between mt-6 gap-y-4 relative w-full' >
             {Object.entries(lilTags || {}).map(([key, value]) =>
-                <div>
+                <div className='shrink w-[50%] sm:w-fit'>
                     <h4 className='text-base leading-3 pb-1'>{key}</h4>
                     <GlitchyTextContainer className='text-2xl leading-2 font-normal pb-0' density={glitchyTextDensity} color={color}>
                         <h2 >{value}</h2>

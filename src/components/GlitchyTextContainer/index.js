@@ -25,7 +25,7 @@ function GlitchyTextContainer({ children, variant = '', density = 0.4, color = '
             </span>
         }
         ))
-    }, [children, density])
+    }, [children, density, color])
 
 
     switch (variant.length > 0 ? variant : children.type) {

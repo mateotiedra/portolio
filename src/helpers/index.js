@@ -1,3 +1,5 @@
+import React from "react";
+
 const Months = {
   '01': 'janvier',
   '02': 'février',
@@ -102,4 +104,9 @@ export function getRandomNumbers(n, x) {
   }
 
   return randomNumbers;
+}
+
+export function importAllImageFromFolder(dir) {
+  const r = require.context(dir, false, /\.(png|jpe?g|svg)$/)
+  return r.keys().map(r);
 }

@@ -11,6 +11,9 @@
   h2 {
     @apply text-heading font-kanit font-bold text-5xl leading-heading uppercase pb-4;
   }
+  h3 {
+    @apply text-heading font-kanit font-bold text-3xl leading-heading uppercase pb-2;
+  }
   h4 {
     @apply text-heading font-breeserif leading-heading text-base text-2xl pb-2;
   }

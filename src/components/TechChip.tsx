@@ -1,6 +1,6 @@
 import React from 'react'
-import { SiExpress, SiMui, SiReact, SiGooglecloud, SiNodedotjs } from "react-icons/si";
-import { IoAccessibility, IoCalendar, IoReceipt } from "react-icons/io5";
+import { SiExpress, SiMui, SiReact, SiGooglecloud, SiNodedotjs, SiLua } from "react-icons/si";
+import { IoAccessibility, IoCalendar, IoReceipt, IoHeart } from "react-icons/io5";
 
 type TechChipProps = {
     name: string,
@@ -33,3 +33,5 @@ export const PlanningChip = () => <TechChip name='Planification' icon={<IoCalend
 export const AccountingChip = () => <TechChip name='Comptabilité' icon={<IoReceipt size={15} color='#ffe74c' />} />
 export const GoogleCloudChip = () => <TechChip name='Google Cloud' icon={<SiGooglecloud size={15} color='#1a73e8' />} url='https://cloud.google.com/storage/' />
 export const NodejsChip = () => <TechChip name='Node.js' icon={<SiNodedotjs size={15} color='rgb(44 104 44)' />} url='https://nodejs.org/' />
+export const LuaChip = () => <TechChip name='Lua' icon={<SiLua size={15} color='#000080' />} url='https://www.lua.org/' />
+export const Love2DChip = () => <TechChip name='Love2D' icon={<IoHeart size={15} color='#B1E3FA' />} url='https://love2d.org/' />

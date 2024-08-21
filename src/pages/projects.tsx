@@ -3,8 +3,9 @@ import OkaloPreview1 from '../assets/images/okalo/preview-1.gif';
 import LummcPreview1 from '../assets/images/lummc/preview-1.gif';
 import MoriiPreview1 from '../assets/images/morii/preview-1.gif';
 import MoriiPreview2 from '../assets/images/morii/preview-2.gif';
-import { AccountingChip, GoogleCloudChip, MuiChip, NodejsChip, PlanningChip, ReactChip, StaffChip } from '../components/TechChip.tsx';
-import { importAllImageFromFolder } from "../helpers/index.js";
+import DasherPreview1 from '../assets/images/dasher/preview-1.gif';
+
+import { AccountingChip, GoogleCloudChip, Love2DChip, LuaChip, MuiChip, NodejsChip, PlanningChip, ReactChip, StaffChip } from '../components/TechChip.tsx';
 
 export type ProjectProps = {
     title: string;
@@ -83,5 +84,21 @@ export const projects: ProjectProps[] = [
             une plateforme de partage de photos qui permet de se souvenir des bons moments grâce à des photos triées et sans perte de qualité.
         </p>,
         status: 'en pause',
+    },
+    {
+        title: 'Dasher',
+        id: 'dasher',
+        subtitle: 'Jeu mobile',
+        lilTags: {
+            'Plateforme': 'Android',
+            'Téléchargement': '60',
+        },
+        preview: [DasherPreview1],
+        color: '#d0b0e7',
+        techTags: [<LuaChip />, <Love2DChip />],
+        description: <p>
+            Jeu mobile addictif développé pendant le covid. J'ai été en contact avec un représentant de <a href='https://lionstudios.cc/' target='_blank' rel="noreferrer">LionStudios</a> qui s'était montré intéressé par la publication du jeu. Cependant, après une phase de test, les retours des joueurs n'ont pas été suffisamment positifs, et le projet n'a pas été poursuivi.
+        </p>,
+        status: 'échec  ',
     },
 ];

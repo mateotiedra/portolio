@@ -15,7 +15,7 @@ function TechChip({
     url,
 }: TechChipProps) {
 
-    return <a className='cursore-pointer' target='_blank' href={url}>
+    return <a className='cursore-pointer' target='_blank' rel="noreferrer" href={url}>
         <div className='flex flex-row gap-2 rounded-xl items-center justify-center px-2 py-1 border-[1px]'>
             <span className='uppercase text-2xs'>{name}</span>
             {icon}

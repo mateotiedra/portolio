@@ -38,7 +38,7 @@ function ProjectCard({
                 </div>
             </div>
             <div className='rounded-xl overflow-hidden basis-auto sm:basis-1/3 mx-10 sm:mx-0'>
-                <a href={link} target='_blank'>
+                <a href={link} target='_blank' rel="noreferrer">
                     <img src={preview?.[0]} alt='project preview' />
                 </a>
             </div>
@@ -58,7 +58,7 @@ function ProjectCard({
                 <p>Statut : <span className='capitalize text-white'>{status}</span></p>
                 <div className='flex flex-row gap-2 items-center'>
                     {instaUrl && <a href={instaUrl}><RiInstagramFill color='white' size={28} /></a>}
-                    {link && <a href={link} target='_blank'><div className='p-[2px] bg-white color-black rounded-sm'><RiExternalLinkFill color='black' size={20} /></div></a>}
+                    {link && <a href={link} target='_blank' rel="noreferrer"><div className='p-[2px] bg-white color-black rounded-sm'><RiExternalLinkFill color='black' size={20} /></div></a>}
                 </div>
             </div>
         </div>

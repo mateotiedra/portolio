@@ -1,5 +1,3 @@
-import React from "react";
-
 const Months = {
   '01': 'janvier',
   '02': 'février',

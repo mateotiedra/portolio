@@ -19,6 +19,7 @@ export type ProjectProps = {
     color: string;
     status: string;
     instaUrl?: string;
+    since?: string;
 }
 
 export const projects: ProjectProps[] = [
@@ -42,6 +43,7 @@ export const projects: ProjectProps[] = [
         </p>,
         status: 'actif',
         instaUrl: 'https://www.instagram.com/okalo.ch/',
+        since: '2022'
     },
     {
         title: 'LÜMM C',
@@ -65,6 +67,7 @@ export const projects: ProjectProps[] = [
         </p>,
         status: 'terminé',
         instaUrl: 'https://www.instagram.com/lumm.love/',
+        since: 'mai 2024'
     },
     {
         title: 'Morii',
@@ -84,6 +87,7 @@ export const projects: ProjectProps[] = [
             une plateforme de partage de photos qui permet de se souvenir des bons moments grâce à des photos triées et sans perte de qualité.
         </p>,
         status: 'en pause',
+        since: 'mai 2024'
     },
     {
         title: 'Dasher',
@@ -100,5 +104,6 @@ export const projects: ProjectProps[] = [
             Jeu mobile addictif développé pendant le covid. J'ai été en contact avec un représentant de <a href='https://lionstudios.cc/' target='_blank' rel="noreferrer">LionStudios</a> qui s'était montré intéressé par la publication du jeu. Cependant, après une phase de test, les retours des joueurs n'ont pas été suffisamment positifs, et le projet n'a pas été poursuivi.
         </p>,
         status: 'échec  ',
+        since: '2020'
     },
 ];

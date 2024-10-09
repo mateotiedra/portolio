@@ -18,23 +18,21 @@
     @apply text-heading font-breeserif leading-heading text-base text-2xl pb-2;
   }
   p {
-    
+    white-space: nowrap;
   }
   body {
     @apply bg-black;
   }
-  html{
+  html {
     @apply font-kanit text-base leading-base pb-1;
   }
-
-
 }
 :root {
   --primary-color: white;
 }
 
-.styled-link>a {
-  @apply font-bold underline text-primary
+.styled-link > a {
+  @apply font-bold underline text-primary;
 }
 
 .section-container {

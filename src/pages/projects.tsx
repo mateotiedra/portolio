@@ -1,11 +1,6 @@
 import React from "react";
-import OkaloPreview1 from '../assets/images/okalo/preview-1.gif';
-import LummcPreview1 from '../assets/images/lummc/preview-1.gif';
-import MoriiPreview1 from '../assets/images/morii/preview-1.gif';
-import MoriiPreview2 from '../assets/images/morii/preview-2.gif';
-import DasherPreview1 from '../assets/images/dasher/preview-1.gif';
 
-import { AccountingChip, GoogleCloudChip, Love2DChip, LuaChip, MuiChip, NodejsChip, PlanningChip, ReactChip, StaffChip } from '../components/TechChip.tsx';
+import { AccountingChip, GoogleAdminChip, GoogleCloudChip, Love2DChip, LuaChip, MuiChip, NodejsChip, PlanningChip, ReactChip, StaffChip, TailwindChip } from '../components/TechChip.tsx';
 
 export type ProjectProps = {
     title: string;
@@ -24,18 +19,36 @@ export type ProjectProps = {
 
 export const projects: ProjectProps[] = [
     {
+        title: 'Artiphys',
+        id: 'artiphys-website',
+        subtitle: 'Webmaster à',
+        lilTags: {
+            'Events': '4',
+            'Membres du comité': '29',
+
+        },
+        techTags: [<ReactChip />, <TailwindChip />, <GoogleAdminChip />],
+        link: 'https://artiphys.ch/',
+        preview: ['videos/artiphys.mp4'],
+        color: '#f9a5ee',
+        description: <p>
+            Membre du comité de l'association <a href='https://www.artiphys.ch/' target='_blank' rel="noreferrer">Artiphys</a> pour cette éditon 2025. J'ai refait le site web pour le faire correspondre au nouveau comité et à la nouvelle direction artistique. Je gère également toute la partie gestion du Google Workspace partagé par les membres du comité.</p>,
+        status: 'Membre du comité',
+        instaUrl: 'https://www.instagram.com/okalo.ch/',
+        since: 'Juin 2024'
+    },
+    {
         title: 'Okalo.ch',
         id: 'okalo',
         subtitle: 'Bourse aux livres en ligne',
         lilTags: {
-            'Depuis': '2022',
-            'Utilisateurs': '500',
-            'Livres vendus': '200',
-            'Livres en vente': '5000'
+            'Utilisateurs': '650',
+            'Livres vendus': '300',
+            'Livres en vente': '6000'
         },
         techTags: [<ReactChip />, <NodejsChip />, <MuiChip />],
         link: 'https://www.okalo.ch/',
-        preview: [OkaloPreview1],
+        preview: ['videos/okalo.mp4'],
         color: '#0496FF',
         description: <p>
             Utilisé dans plus d'une dizaine de collèges genevois, <a href='https://www.okalo.ch/' target='_blank' rel="noreferrer">Okalo</a> facilite
@@ -56,7 +69,7 @@ export const projects: ProjectProps[] = [
             'Bière': 'CHF2'
         },
         link: 'https://www.lumm.love/',
-        preview: [LummcPreview1],
+        preview: ['videos/lummc.mp4'],
         color: 'rgb(205, 24, 27)',
         techTags: [<StaffChip />, <PlanningChip />, <AccountingChip />],
         description: <p>
@@ -78,7 +91,7 @@ export const projects: ProjectProps[] = [
             'Photos partagées': '200',
         },
         link: 'https://morii.lumm.love/',
-        preview: [MoriiPreview2, MoriiPreview1],
+        preview: ['videos/morii.mp4'],
         color: 'white',
         techTags: [<GoogleCloudChip />, <ReactChip />, <NodejsChip />],
         description: <p>
@@ -97,7 +110,7 @@ export const projects: ProjectProps[] = [
             'Plateforme': 'Android',
             'Téléchargement': '60',
         },
-        preview: [DasherPreview1],
+        preview: ['videos/dasher.mp4'],
         color: '#d0b0e7',
         techTags: [<LuaChip />, <Love2DChip />],
         description: <p>

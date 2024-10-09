@@ -43,14 +43,14 @@ function ProjectCard({
 }: ProjectCardProps) {
     const blob = useMemo(() => getBlob(color), [color])
 
-    return <div className='max-w-[600px] h-full flex flex-col justify-between relative'>
+    return <div className='lg:max-w-[45%] max-w-[100%] flex flex-col justify-between relative'>
         <div className='fixed top-0 left-0 w-[100vw] h-[100vh] -z-10 '
             style={{
                 backdropFilter: 'blur(100px)',
             }}>
         </div>
-        <div className='flex flex-col sm:flex-row items-center gap-6 '>
-            <div className='basis-auto sm:basis-2/3'>
+        <div className='flex flex-col sm:flex-row items-start gap-6 '>
+            <div className='basis-[default] sm:basis-2/3 flex-[2]'>
                 <div className='absolute w-[180%] h-[180%] -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 -z-20 opacity-25'>
                     <div className='relative w-full h-full flex justify-center items-center -top-48 sm:top-0'>
                         {blob}
@@ -65,17 +65,20 @@ function ProjectCard({
                 </GlitchyTextContainer>
 
                 {React.cloneElement(description, { style: { '--primary-color': color }, className: 'styled-link' })}
-                <div className='flex flex-row flex-wrap justify-start py-3 gap-2'>
+                <div className='flex sm:hidden flex-row flex-wrap justify-start pt-3 gap-2'>
                     {techTags}
                 </div>
             </div>
-            <div className='rounded-xl overflow-hidden basis-auto sm:basis-1/3 mx-10 sm:mx-0'>
+            <div className='rounded-xl overflow-hidden basis-[default] sm:basis-1/3 mx-10 sm:mx-0'>
                 <a href={link} target='_blank' rel="noreferrer">
-                    <img src={preview?.[0]} alt='project preview' />
+                    <video src={preview?.[0]} autoPlay muted loop playsInline />
                 </a>
             </div>
         </div>
-        <div>
+        <div className='w-full'>
+            <div className='hidden sm:flex flex-row flex-wrap justify-start pt-3 gap-2'>
+                {techTags}
+            </div>
             <div className='flex flex-row flex-wrap justify-between mt-6 gap-y-4 relative w-full' >
                 {Object.entries(lilTags || {}).map(([key, value]) =>
                     <div key={key} className='shrink w-[50%] sm:w-fit'>

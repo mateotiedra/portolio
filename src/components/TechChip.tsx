@@ -1,5 +1,5 @@
 import React from 'react'
-import { SiExpress, SiMui, SiReact, SiGooglecloud, SiNodedotjs, SiLua } from "react-icons/si";
+import { SiExpress, SiMui, SiReact, SiGooglecloud, SiNodedotjs, SiLua, SiTailwindcss, SiGoogle } from "react-icons/si";
 import { IoAccessibility, IoCalendar, IoReceipt, IoHeart } from "react-icons/io5";
 
 type TechChipProps = {
@@ -35,3 +35,5 @@ export const GoogleCloudChip = () => <TechChip name='Google Cloud' icon={<SiGoog
 export const NodejsChip = () => <TechChip name='Node.js' icon={<SiNodedotjs size={15} color='rgb(44 104 44)' />} url='https://nodejs.org/' />
 export const LuaChip = () => <TechChip name='Lua' icon={<SiLua size={15} color='#000080' />} url='https://www.lua.org/' />
 export const Love2DChip = () => <TechChip name='Love2D' icon={<IoHeart size={15} color='#B1E3FA' />} url='https://love2d.org/' />
+export const TailwindChip = () => <TechChip name='Tailwind' icon={<SiTailwindcss size={15} color='#0ea5e9' />} url='https://tailwindcss.com/' />
+export const GoogleAdminChip = () => <TechChip name='Google Admin' icon={<SiGoogle size={15} color='#1967d2' />} url='https://admin.google.com/' />

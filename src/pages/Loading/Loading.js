@@ -5,61 +5,64 @@ import { projects } from '../projects.tsx';
 import GlitchyTextContainer from '../../components/GlitchyTextContainer';
 
 // Easing function for ease-in-out
-const easeInOutQuad = (t) => {
-  return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+const easeInOutQuad = (t, min, max) => {
+  const range = max - min; // The difference between max and min
+  const easedValue = t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; // The original easing function
+
+  // Scale the eased value to the [min, max] range
+  return min + easedValue * range;
 };
 
 // The loading page
-function Loading({ notFullPage }) {
-  const [density, setDensity] = useState(0); // The value that will vary between 0 and 0.9
-  const duration = 3000; // Total duration of one animation cycle (in ms)
+function Loading({ loading }) {
+  const [tFactor, setTFactor] = useState(0); // The value that will vary between 0 and 0.9
 
-  const [start, setStart] = useState(0);
-  const [direction, setDirection] = useState(1);
   const nextAnimate = useRef(null);
 
-  const animate = useCallback(
-    (timestamp) => {
-      if (start === 0) setStart(timestamp);
-      const elapsed = timestamp - start;
+  const animate = useCallback((prevDirection) => {
+    setTFactor((prevTFactor) => {
+      let nextDirection = prevDirection;
+      let nextT = prevTFactor + nextDirection * 0.1;
 
-      // Calculate normalized time (0 to 1)
-      const t = Math.min(elapsed / duration, 1);
-
-      // Apply easing function
-      const easedValue = easeInOutQuad(t);
-
-      // Update state between 0 and 0.9
-      setDensity(0 + 0.5 * easedValue * direction);
-
-      // If the animation is complete (t >= 1), reset or change direction
-      if (t >= 1) {
-        setDirection((dir) => (dir *= -1)); // Reverse direction (from 0.9 to 0)
-        setStart(0); // Reset the animation cycle
+      if (nextT <= 0) {
+        nextDirection = 1;
+        nextT = 0;
+      } else if (nextT >= 1) {
+        nextDirection = -1;
+        nextT = 1;
       }
 
+      // Recursively schedule the next animation
+      nextAnimate.current && clearTimeout(nextAnimate.current);
       nextAnimate.current = setTimeout(() => {
-        animate(Date.now());
-      }, 100);
-    },
-    [direction, duration, start]
-  );
+        animate(nextDirection); // Continue animating with the new direction
+      }, 60 + 60 * (1 - nextT));
+
+      return nextT; // Return the new tFactor to update state
+    });
+  }, []);
 
   useEffect(() => {
-    animate(Date.now());
+    animate(1);
 
     // Cleanup animation on component unmount
-    return () => nextAnimate && clearTimeout(nextAnimate);
+    return () => nextAnimate.current && clearTimeout(nextAnimate.current);
   }, [animate]);
 
+  const density = easeInOutQuad(tFactor, 0, 0.7);
+
   return (
-    <div className='w-[100vw] h-[100vh] absolute centering'>
+    <div
+      className='w-[100vw] h-[100vh] absolute centering bg-black pointer-events-none transition-opacity duration-300 z-50'
+      style={{ opacity: loading ? 1 : 0 }}
+    >
       <GlitchyTextContainer
         colors={projects.map((proj) => proj.color)}
         variant='h2'
         density={density}
+        className='text-lg sm:text-3xl'
       >
-        Chargement
+        Chargement...
       </GlitchyTextContainer>
     </div>
   );

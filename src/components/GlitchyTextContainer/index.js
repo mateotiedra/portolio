@@ -39,7 +39,8 @@ function GlitchyTextContainer({
                 opacity: idToChange.includes(id) ? 1 : 0,
                 color: idToChange.includes(id)
                   ? color ||
-                    (colors && [Math.floor(Math.random() * colors.length)])
+                    (colors &&
+                      colors[Math.floor(Math.random() * colors.length)])
                   : 'white',
               }}
             >

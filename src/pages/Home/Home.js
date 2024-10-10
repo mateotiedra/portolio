@@ -27,7 +27,7 @@ function TitleSection({ glitchyTextDensity }) {
     setIndicatorOpacity(
       1 -
         (stickyElemRect.top - containerElemRect.top) /
-          (containerElemRect.height - stickyElemRect.height)
+          (containerElemRect.height - stickyElemRect.height || 1)
     );
   }, [setStickyJump, setIndicatorOpacity, downIndicatorRef]);
 
@@ -47,7 +47,7 @@ function TitleSection({ glitchyTextDensity }) {
     <>
       <div className='overflow-hidden sm:hidden'>
         <div className='relative flex justify-between w-[100vw] h-[280vw] '>
-          <div className='absolute flex justify-center w-[100%] pt-[24vw] z-50'>
+          <div className='absolute flex justify-center w-[100%] pt-[24vw] z-30'>
             <img
               className='relative rotate-180 w-[90vw]'
               src={whiteSharkImage}
@@ -92,7 +92,7 @@ function TitleSection({ glitchyTextDensity }) {
         </div>
       </div>
       <div className='hidden sm:flex flex-col justify-center items-center h-[80vh] mb-[10vh] mx-auto] max-w-[1375px] mx-auto'>
-        <div className='absolute flex justify-center w-[23%] left-[45%] -translate-x-1/2 z-50'>
+        <div className='absolute flex justify-center w-[23%] left-[45%] -translate-x-1/2 z-30'>
           <img
             className='relative hori -rotate-90'
             src={whiteSharkImage}
@@ -142,27 +142,28 @@ function Home() {
   );
 
   const [loading, setLoading] = useState(true);
-  const handleLoad = useCallback(() => {
-    setLoading(false);
+
+  const stopLoadWithDelay = useCallback(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
   }, [setLoading]);
 
   useEffect(() => {
-    const handleLoad = () => {
-      setLoading(false);
-    };
+    window.addEventListener('load', stopLoadWithDelay);
 
-    window.addEventListener('load', handleLoad);
+    const loadingTimeout = setTimeout(stopLoadWithDelay, 3000);
 
     // Clean up the event listener when the component is unmounted
     return () => {
-      window.removeEventListener('load', handleLoad);
+      window.removeEventListener('load', stopLoadWithDelay);
+      loadingTimeout && clearTimeout(loadingTimeout);
     };
-  }, [handleLoad]);
+  }, [stopLoadWithDelay]);
 
   return (
     <NoisyContainer>
-      {loading && <Loading />}
-
+      <Loading loading={loading} />
       <ScrollSpeedTracker onChange={updateGlitchyTextDensity} />
       <div style={{ display: loading ? 'none' : 'block' }}>
         <TitleSection glitchyTextDensity={glitchyTextDensity} />

@@ -48,7 +48,7 @@ function GlitchyTextContainer({
         );
       })
     );
-  }, [children, density, color]);
+  }, [children, density, color, colors]);
 
   switch (variant.length > 0 ? variant : children.type) {
     case 'h1':

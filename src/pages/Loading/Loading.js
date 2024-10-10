@@ -11,26 +11,6 @@ const easeInOutQuad = (t) => {
 
 // The loading page
 function Loading({ notFullPage }) {
-  const [seconds, setSeconds] = useState(3);
-  const [displayMessage, setDisplayMessage] = useState(false);
-
-  useEffect(() => {
-    let isCancelled = false;
-
-    if (!isCancelled) {
-      if (seconds > 0) {
-        setTimeout(() => {
-          if (!isCancelled) setSeconds(seconds - 1);
-        }, 1000);
-      } else {
-        setDisplayMessage(true);
-      }
-    }
-    return () => {
-      isCancelled = true;
-    };
-  }, [setDisplayMessage, seconds]);
-
   const [density, setDensity] = useState(0); // The value that will vary between 0 and 0.9
   const duration = 3000; // Total duration of one animation cycle (in ms)
 

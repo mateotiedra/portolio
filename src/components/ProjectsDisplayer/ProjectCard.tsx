@@ -1,7 +1,10 @@
 import React, { useMemo } from 'react'
+
+import { RiInstagramFill, RiExternalLinkFill } from "react-icons/ri";
+import LazyLoad from 'react-lazyload';
+
 import { ProjectProps } from "../../pages/projects";
 import GlitchyTextContainer from "../GlitchyTextContainer";
-import { RiInstagramFill, RiExternalLinkFill } from "react-icons/ri";
 
 type ProjectCardProps = ProjectProps & {
     glitchyTextDensity: number,
@@ -71,7 +74,9 @@ function ProjectCard({
             </div>
             <div className='rounded-xl overflow-hidden basis-[default] sm:basis-1/3 mx-10 sm:mx-0'>
                 <a href={link} target='_blank' rel="noreferrer">
-                    <video src={preview?.[0]} autoPlay muted loop playsInline />
+                    <LazyLoad offset={300}>
+                        <video src={preview?.[0]} autoPlay muted loop playsInline />
+                    </LazyLoad>
                 </a>
             </div>
         </div>

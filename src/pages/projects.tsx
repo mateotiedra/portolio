@@ -128,7 +128,7 @@ export const projects: ProjectProps[] = [
         subtitle: 'Jeu mobile',
         lilTags: {
             'Plateforme': 'Android',
-            'Téléchargement': '60',
+            'Téléchargements': '60',
         },
         preview: ['videos/dasher.mp4'],
         color: '#d0b0e7',

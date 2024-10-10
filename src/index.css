@@ -6,19 +6,19 @@
 
 @layer base {
   h1 {
-    @apply text-heading font-kanit font-black text-h1 leading-heading break-normal;
+    @apply text-heading whitespace-normal font-kanit font-black text-h1 leading-heading break-normal;
   }
   h2 {
-    @apply text-heading font-kanit font-bold text-5xl leading-heading uppercase pb-4 break-normal;
+    @apply text-heading whitespace-normal font-kanit font-bold text-5xl leading-heading uppercase pb-4 break-normal;
   }
   h3 {
-    @apply text-heading font-kanit font-bold text-3xl leading-heading uppercase pb-2 break-normal;
+    @apply text-heading whitespace-normal font-kanit font-bold text-3xl leading-heading uppercase pb-2 break-normal;
   }
   h4 {
-    @apply text-heading font-breeserif leading-heading text-base text-2xl pb-2 break-normal;
+    @apply text-heading whitespace-normal font-breeserif leading-heading text-base text-2xl pb-2 break-normal;
   }
   p {
-    @apply break-normal;
+    @apply break-normal whitespace-normal;
   }
   body {
     @apply bg-black;

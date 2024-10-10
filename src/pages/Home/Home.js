@@ -15,6 +15,7 @@ function TitleSection({ glitchyTextDensity }) {
   // Sticky indicator
   const [indicatorOpacity, setIndicatorOpacity] = useState(1);
   const [stickyJump, setStickyJump] = useState(true);
+
   const onScroll = useCallback(() => {
     if (!downIndicatorRef.current) return;
 
@@ -74,6 +75,7 @@ function TitleSection({ glitchyTextDensity }) {
             </div>
           </div>
         </div>
+
         <div
           ref={downIndicatorRef}
           className='absolute left-[21vw] top-[180vw] h-[84vw] flex flex-col justify-end'
@@ -140,6 +142,9 @@ function Home() {
   );
 
   const [loading, setLoading] = useState(true);
+  const handleLoad = useCallback(() => {
+    setLoading(false);
+  }, [setLoading]);
 
   useEffect(() => {
     const handleLoad = () => {
@@ -152,11 +157,12 @@ function Home() {
     return () => {
       window.removeEventListener('load', handleLoad);
     };
-  }, [setLoading]);
+  }, [handleLoad]);
 
   return (
     <NoisyContainer>
       {loading && <Loading />}
+
       <ScrollSpeedTracker onChange={updateGlitchyTextDensity} />
       <div style={{ display: loading ? 'none' : 'block' }}>
         <TitleSection glitchyTextDensity={glitchyTextDensity} />

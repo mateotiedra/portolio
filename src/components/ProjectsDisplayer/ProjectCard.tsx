@@ -42,7 +42,8 @@ function ProjectCard({
     description,
     status,
     instaUrl,
-    since
+    since,
+    ...props
 }: ProjectCardProps) {
     const blob = useMemo(() => getBlob(color), [color])
 
@@ -69,7 +70,8 @@ function ProjectCard({
 
                 {React.cloneElement(description, { style: { '--primary-color': color }, className: 'styled-link' })}
                 <div className='flex sm:hidden flex-row flex-wrap justify-start pt-3 gap-2'>
-                    {techTags}
+                    {techTags?.map((tag, id) => <div key={id}>{tag}</div>)}
+
                 </div>
             </div>
             <div className='rounded-xl overflow-hidden basis-[default] sm:basis-1/3 mx-10 sm:mx-0'>
@@ -82,7 +84,7 @@ function ProjectCard({
         </div>
         <div className='w-full'>
             <div className='hidden sm:flex flex-row flex-wrap justify-start pt-3 gap-2'>
-                {techTags}
+                {techTags?.map((tag, id) => <div key={id}>{tag}</div>)}
             </div>
             <div className='flex flex-row flex-wrap justify-between mt-6 gap-y-4 relative w-full' >
                 {Object.entries(lilTags || {}).map(([key, value]) =>

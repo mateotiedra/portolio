@@ -6,7 +6,7 @@ function GlitchyTextContainer({
   variant = '',
   density = 0.4,
   color,
-  colors = [''],
+  colors = undefined,
   ...props
 }) {
   const [letters, setLetters] = useState([]);
@@ -38,7 +38,8 @@ function GlitchyTextContainer({
               style={{
                 opacity: idToChange.includes(id) ? 1 : 0,
                 color: idToChange.includes(id)
-                  ? color || colors[Math.floor(Math.random() * colors.length)]
+                  ? color ||
+                    (colors && [Math.floor(Math.random() * colors.length)])
                   : 'white',
               }}
             >

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import { projects } from '../projects.tsx';
 
@@ -14,13 +14,13 @@ function Loading({ notFullPage }) {
   const [density, setDensity] = useState(0); // The value that will vary between 0 and 0.9
   const duration = 3000; // Total duration of one animation cycle (in ms)
 
-  useEffect(() => {
-    let start;
-    let direction = 1; // Used to alternate between increasing and decreasing
+  const [start, setStart] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const nextAnimate = useRef(null);
 
-    var nextAnimate;
-    const animate = (timestamp) => {
-      if (!start) start = timestamp;
+  const animate = useCallback(
+    (timestamp) => {
+      if (start === 0) setStart(timestamp);
       const elapsed = timestamp - start;
 
       // Calculate normalized time (0 to 1)
@@ -34,20 +34,23 @@ function Loading({ notFullPage }) {
 
       // If the animation is complete (t >= 1), reset or change direction
       if (t >= 1) {
-        direction *= -1; // Reverse direction (from 0.9 to 0)
-        start = null; // Reset the animation cycle
+        setDirection((dir) => (dir *= -1)); // Reverse direction (from 0.9 to 0)
+        setStart(0); // Reset the animation cycle
       }
 
-      nextAnimate = setTimeout(() => {
+      nextAnimate.current = setTimeout(() => {
         animate(Date.now());
       }, 100);
-    };
+    },
+    [direction, duration, start]
+  );
 
+  useEffect(() => {
     animate(Date.now());
 
     // Cleanup animation on component unmount
     return () => nextAnimate && clearTimeout(nextAnimate);
-  }, []);
+  }, [animate]);
 
   return (
     <div className='w-[100vw] h-[100vh] absolute centering'>

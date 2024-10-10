@@ -26,15 +26,16 @@ export const projects: ProjectProps[] = [
             'Date': '28.09.24',
             'DJ': '6',
             'Participants': '500',
-            'Staff': '20',
+            'Staffs': '20',
             'Bière': 'CHF3',
         },
         techTags: [<StaffChip />, <AccountingChip />],
         preview: ['videos/lummx2221.mp4'],
         color: 'silver',
         description: <p>
-            Quatrième édition de la <a href='https://www.lumm.love/' target='_blank' rel="noreferrer">LÜMM</a> organisée en collaboration direct avec <a href='https://2221.ch/' target='_blank' rel="noreferrer">2221</a>.
-            Soutenue par la brasserie <a href='https://lanebuleuse.ch/' target='_blank' rel="noreferrer">La Nébuleuse</a> et < a href='https://www.eltonymate.com/' target='_blank' rel="noreferrer" > El Tony Mate</a ></p>,
+            Quatrième édition de la <a href='https://www.lumm.love/' target='_blank' rel="noreferrer">LÜMM</a> organisée en collaboration étroite avec <a href='https://2221.ch/' target='_blank' rel="noreferrer">2221.ch</a>. Première édition où nous sortons nos nouveaux panneaux leds,
+            visuels et VJing par <a href='https://www.instagram.com/stories/b0nk_13' target='_blank' rel="noreferrer">b0nk</a>.
+            <br />Soutenue par la brasserie <a href='https://lanebuleuse.ch/' target='_blank' rel="noreferrer">La Nébuleuse</a> et < a href='https://www.eltonymate.com/' target='_blank' rel="noreferrer" > El Tony Mate</a >.</p>,
         status: 'Gros banger',
         instaUrl: 'https://www.instagram.com/lumm.love/',
     },

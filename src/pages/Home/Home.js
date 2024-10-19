@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import whiteSharkImage from '../../assets/images/landing-shark-white.png';
 import { RiArrowDownDoubleFill } from 'react-icons/ri';
@@ -8,9 +14,12 @@ import ScrollSpeedTracker from '../../components/GlitchyTextContainer/ScrollSpee
 import ProjectsDisplayer from '../../components/ProjectsDisplayer/index.tsx';
 import { projects } from '../projects.tsx';
 import Loading from '../Loading/Loading.js';
+import Footer from '../../components/Footer.js';
 
 function TitleSection({ glitchyTextDensity }) {
   const downIndicatorRef = useRef(null);
+
+  const projectsColor = useMemo(() => projects.map((proj) => proj.color), []);
 
   // Sticky indicator
   const [indicatorOpacity, setIndicatorOpacity] = useState(1);
@@ -57,6 +66,7 @@ function TitleSection({ glitchyTextDensity }) {
           <div className='absolute flex justify-between h-[100vh] w-[100%] px-[10vw] overflow'>
             <div className='relative top-[-3vw] left-[20vw]'>
               <GlitchyTextContainer
+                colors={projectsColor}
                 variant='h1'
                 density={glitchyTextDensity + 0.04}
                 className={titleTextRotatedClassName}
@@ -66,6 +76,7 @@ function TitleSection({ glitchyTextDensity }) {
             </div>
             <div className='relative top-[80vw] right-[16vw]'>
               <GlitchyTextContainer
+                colors={projectsColor}
                 variant='h1'
                 density={glitchyTextDensity + 0.04}
                 className={titleTextRotatedClassName}
@@ -104,6 +115,7 @@ function TitleSection({ glitchyTextDensity }) {
             variant='h1'
             density={glitchyTextDensity + 0.04}
             className={titleTextFlatClassName}
+            colors={projectsColor}
           >
             Mateo
           </GlitchyTextContainer>
@@ -113,6 +125,7 @@ function TitleSection({ glitchyTextDensity }) {
             variant='h1'
             density={glitchyTextDensity + 0.04}
             className={titleTextFlatClassName}
+            colors={projectsColor}
           >
             Tiedra
           </GlitchyTextContainer>
@@ -172,6 +185,7 @@ function Home() {
           glitchyTextDensity={glitchyTextDensity}
         />
       </div>
+      <Footer />
     </NoisyContainer>
   );
 }

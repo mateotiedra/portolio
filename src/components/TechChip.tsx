@@ -1,6 +1,7 @@
 import React from 'react'
-import { SiExpress, SiMui, SiReact, SiGooglecloud, SiNodedotjs, SiLua, SiTailwindcss, SiGoogle, SiPython, SiPytorch, SiNumpy } from "react-icons/si";
+import { SiExpress, SiMui, SiReact, SiGooglecloud, SiNodedotjs, SiLua, SiTailwindcss, SiGoogle, SiPython, SiPytorch, SiNumpy, SiFlutter } from "react-icons/si";
 import { IoAccessibility, IoCalendar, IoReceipt, IoHeart } from "react-icons/io5";
+import { TbTools } from "react-icons/tb";
 
 type TechChipProps = {
     name: string,
@@ -40,4 +41,5 @@ export const GoogleAdminChip = () => <TechChip name='Google Admin' icon={<SiGoog
 export const PythonChip = () => <TechChip name='Python' icon={<SiPython size={15} color='#ffe872' />} url='https://www.python.org/' />
 export const PyTorchChip = () => <TechChip name='PyTorch' icon={<SiPytorch size={15} color='#ee4c2c' />} url='https://pytorch.org/' />
 export const NumpyChip = () => <TechChip name='NumPy' icon={<SiNumpy size={15} color='#4dabcf' />} url='https://numpy.org/' />
-
+export const FlutterChip = () => <TechChip name='Flutter' icon={<SiFlutter size={15} color='#2472d6' />} url='https://flutter.dev/' />
+export const ConceptionChip = () => <TechChip name='Conception' icon={<TbTools size={15} color='#c211b3' />} url='https://flutter.dev/' />

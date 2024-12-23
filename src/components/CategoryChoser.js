@@ -33,7 +33,10 @@ function CategoryChooser({
   fr,
 }) {
   const projects = useMemo(() => (fr ? projectsFr : projectsEn), [fr]);
-  const projectsColor = useMemo(() => projects.map((proj) => proj.color), []);
+  const projectsColor = useMemo(
+    () => projects.map((proj) => proj.color),
+    [projects]
+  );
 
   const randomColors = useMemo(() => {
     const shuffledColors = [...projectsColor].sort(() => 0.5 - Math.random());
@@ -71,7 +74,7 @@ function CategoryChooser({
           .length;
       })
     );
-  }, [selectedCategories, setShownProjects]);
+  }, [selectedCategories, setShownProjects, projects]);
 
   useEffect(() => {
     if (window.location.href.includes('cv')) {

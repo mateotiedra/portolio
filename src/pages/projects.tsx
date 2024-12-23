@@ -1,6 +1,6 @@
 import React from "react";
 
-import { AccountingChip, GoogleAdminChip, GoogleCloudChip, Love2DChip, LuaChip, MuiChip, NodejsChip, NumpyChip, PlanningChip, PythonChip, PyTorchChip, ReactChip, StaffChip, TailwindChip } from '../components/TechChip.tsx';
+import { AccountingChip, ConceptionChip, FlutterChip, GoogleAdminChip, GoogleCloudChip, Love2DChip, LuaChip, MuiChip, NodejsChip, NumpyChip, PlanningChip, PythonChip, PyTorchChip, ReactChip, StaffChip, TailwindChip } from '../components/TechChip.tsx';
 
 export type ProjectProps = {
     title: string;
@@ -195,6 +195,24 @@ export const projectsFr: ProjectProps[] = [
 
 export const projectsEn: ProjectProps[] = [
     {
+        subtitle: 'Lead developer',
+        title: 'Iglow',
+        id: 'iglow',
+        lilTags: {
+            'Team': 'of 7',
+        },
+        techTags: [<FlutterChip />, <ReactChip />, <ConceptionChip />],
+        preview: ['videos/iglow.mp4'],
+        color: '#dc0028',
+        description: <p>
+            The Iglow smart jacket is a project that aims to improve the safety of cyclists by making them more visible at night. The jacket signals the cyclist's intentions to other road users by displaying light patterns on the back of the jacket.
+            I was mainly responsible of the website and the phone app that allows the user to customize the light patterns.
+        </p>,
+        status: 'Released soon',
+        categories: ['dev'],
+        link: 'https://iglow.swiss/',
+    },
+    {
         subtitle: 'Development of',
         title: 'Super S8000',
         id: 'lummx2221',
@@ -204,7 +222,7 @@ export const projectsEn: ProjectProps[] = [
             'Engines': '6',
             'Team': 'of 6',
         },
-        techTags: [<PythonChip />, <PyTorchChip />, <NumpyChip />],
+        techTags: [<ConceptionChip />, <PythonChip />, <PyTorchChip />, <NumpyChip />],
         preview: ['videos/ss8.mp4'],
         color: '#01a63e',
         description: <p>
@@ -213,7 +231,6 @@ export const projectsEn: ProjectProps[] = [
         </p>,
         status: 'Completed',
         since: 'December 2024',
-        instaUrl: 'https://www.instagram.com/ndlm_epfl/',
         categories: ['academic', 'dev']
     },
     {
@@ -289,7 +306,7 @@ export const projectsEn: ProjectProps[] = [
             'Books sold': '300',
             'Books for sale': '6000'
         },
-        techTags: [<ReactChip />, <NodejsChip />, <MuiChip />],
+        techTags: [<ReactChip />, <NodejsChip />, <MuiChip />, <ConceptionChip />],
         link: 'https://www.okalo.ch/',
         preview: ['videos/okalo.mp4'],
         color: '#0496FF',

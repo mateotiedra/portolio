@@ -197,6 +197,18 @@ function Home() {
           glitchyTextDensity={glitchyTextDensity}
         />
       </div>
+      {shownProjects.length < projectsEn.length && (
+        <div className='w-full  flex justify-center'>
+          <span
+            className='text-white underline cursor-pointer'
+            onClick={() => {
+              window.location.href = '/';
+            }}
+          >
+            See all projects
+          </span>
+        </div>
+      )}
       <Footer />
     </NoisyContainer>
   );

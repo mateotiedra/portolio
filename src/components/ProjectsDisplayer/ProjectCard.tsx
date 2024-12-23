@@ -97,7 +97,7 @@ function ProjectCard({
                 )}
             </div>
             <div className='border-[1px] border-white rounded-xl px-5 py-3 flex flex-row justify-between items-center gap-3 mt-6'>
-                <p>Statut : <span className='   text-white'>{status}</span>{!!since && <> depuis <span className=' text-white'>{since}</span></>}</p>
+                <p>Status : <span className='text-white'>{status}</span>{!!since && <> since <span className=' text-white'>{since}</span></>}</p>
                 <div className='flex flex-row gap-2 items-center'>
                     {instaUrl && <a href={instaUrl}><RiInstagramFill color='white' size={28} /></a>}
                     {link && <a href={link} target='_blank' rel="noreferrer"><div className='p-[2px] bg-white color-black rounded-sm'><RiExternalLinkFill color='black' size={20} /></div></a>}

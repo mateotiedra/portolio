@@ -11,6 +11,7 @@ function App() {
       <ErrorHandlerWrapper>
         <Routes>
           <Route path='/' default element={<Home />} />
+          <Route path='/:mode' default element={<Home />} />
         </Routes>
       </ErrorHandlerWrapper>
     </Router>

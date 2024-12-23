@@ -53,7 +53,7 @@ function ProjectCard({
                 backdropFilter: 'blur(100px)',
             }}>
         </div>
-        <div className='flex flex-col sm:flex-row items-start gap-6 '>
+        <div className='flex flex-col sm:flex-row items-center sm:items-start gap-6 '>
             <div className='basis-[default] sm:basis-2/3 flex-[2]'>
                 <div className='absolute w-[180%] h-[180%] -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 -z-20 opacity-25'>
                     <div className='relative w-full h-full flex justify-center items-center -top-48 sm:top-0'>

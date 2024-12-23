@@ -15,34 +15,37 @@ export type ProjectProps = {
     status: string;
     instaUrl?: string;
     since?: string;
+    categories?: string[];
 }
 
 export const projects: ProjectProps[] = [
     {
         subtitle: 'Développement du',
-        title: 'Super Scanner 8000',
+        title: 'Super S8000',
         id: 'lummx2221',
         lilTags: {
-            'Semaines de travail': '8',
+            'Temps de travail': '8 semaines',
             'Budget': 'CHF270',
-            'Équipe': '6',
+            'Moteurs': '6',
+            'Équipe': 'de 6',
         },
         techTags: [<PythonChip />, <PyTorchChip />, <NumpyChip />],
         preview: ['videos/ss8.mp4'],
         color: '#01a63e',
         description: <p>
-            Le <a href='https://github.com/epfl-cs358/2024fa-superscanner8000' target='_blank' rel="noreferrer">SuperScanner8000</a> est un robot ayant pour but de modéliser en 3D un object selectionné. Le robot se déplace afin de prendre des photos sous différents angles, qu'il va ensuite utiliser dans <a href='https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/' target='_blank' rel="noreferrer">3DGS</a> pour la recontruction du modèle 3D.
+            Le <a href='https://github.com/epfl-cs358/2024fa-superscanner8000' target='_blank' rel="noreferrer">SuperScanner8000</a> est un robot qui scanne en 3D un object selectionné. Il se déplace afin de prendre des photos sous différents angles, qu'il utilise dans <a href='https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/' target='_blank' rel="noreferrer">3DGS</a> pour la recontruction du modèle en 3D.
             La détection de l'objet se fait via <a href="https://github.com/Gy920/segment-anything-2-real-time" target="_blank" rel="noreferrer">une variante de Segment Anything 2</a>.
 
         </p>,
         status: 'Terminé',
         since: 'décembre 2024',
         instaUrl: 'https://www.instagram.com/ndlm_epfl/',
+        categories: ['academic', 'dev']
     },
     {
         title: 'La NDLM 24',
         id: 'ndlm24',
-        subtitle: 'Responsable opérations à',
+        subtitle: 'Responsable opérations',
         lilTags: {
             'Date': '05.10.24',
             'Participants': '2400',
@@ -59,6 +62,7 @@ export const projects: ProjectProps[] = [
         </p>,
         status: 'Membre du comité',
         instaUrl: 'https://www.instagram.com/ndlm_epfl/',
+        categories: ['assoc']
     },
     {
         title: 'Lümm x 2221',
@@ -80,6 +84,7 @@ export const projects: ProjectProps[] = [
             <br />Soutenue par la brasserie <a href='https://lanebuleuse.ch/' target='_blank' rel="noreferrer">La Nébuleuse</a> et < a href='https://www.eltonymate.com/' target='_blank' rel="noreferrer" > El Tony Mate</a >.</p>,
         status: 'Gros banger',
         instaUrl: 'https://www.instagram.com/lumm.love/',
+        categories: ['assoc']
     },
     {
         title: 'Artiphys',
@@ -98,7 +103,8 @@ export const projects: ProjectProps[] = [
             Membre du comité de l'association <a href='https://www.artiphys.ch/' target='_blank' rel="noreferrer">Artiphys</a> pour cette éditon 2025. Refonte du site web pour le faire correspondre à la nouvelle direction artistique et au nouveau comité. Gestion des entrées et des billeteries de chaque évenements.</p>,
         status: 'Membre du comité',
         instaUrl: 'https://www.instagram.com/artiphysfestival/',
-        since: 'Juin 2024'
+        since: 'Juin 2024',
+        categories: ['assoc', 'dev']
     },
     {
         title: 'Okalo.ch',
@@ -119,7 +125,8 @@ export const projects: ProjectProps[] = [
         </p>,
         status: 'Actif',
         instaUrl: 'https://www.instagram.com/okalo.ch/',
-        since: '2022'
+        since: '2022',
+        categories: ['dev']
     },
     {
         title: 'LÜMM C',
@@ -143,6 +150,7 @@ export const projects: ProjectProps[] = [
         </p>,
         status: 'Big succès',
         instaUrl: 'https://www.instagram.com/lumm.love/',
+        categories: ['assoc']
     },
     {
         title: 'Morii',
@@ -162,7 +170,8 @@ export const projects: ProjectProps[] = [
             une plateforme de partage de photos qui permet de se souvenir des bons moments grâce à des photos triées et sans perte de qualité.
         </p>,
         status: 'En pause',
-        since: 'mai 2024'
+        since: 'mai 2024',
+        categories: ['dev']
     },
     {
         title: 'Dasher',
@@ -179,6 +188,7 @@ export const projects: ProjectProps[] = [
             Jeu mobile addictif développé pendant le covid. J'ai été en contact avec un représentant de <a href='https://lionstudios.cc/' target='_blank' rel="noreferrer">LionStudios</a> qui s'était montré intéressé par la publication du jeu. Cependant, après une phase de test, les retours des joueurs n'ont pas été suffisamment positifs, et le projet n'a pas été poursuivi.
         </p>,
         status: 'Échec  ',
-        since: '2020'
+        since: '2020',
+        categories: ['dev']
     },
 ];

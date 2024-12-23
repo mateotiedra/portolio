@@ -12,9 +12,11 @@ import NoisyContainer from '../../components/NoisyContainer/NoisyContainer';
 import GlitchyTextContainer from '../../components/GlitchyTextContainer';
 import ScrollSpeedTracker from '../../components/GlitchyTextContainer/ScrollSpeedTracker';
 import ProjectsDisplayer from '../../components/ProjectsDisplayer/index.tsx';
-import { projects } from '../projects.tsx';
 import Loading from '../Loading/Loading.js';
 import Footer from '../../components/Footer.js';
+
+import { projects } from '../projects.tsx';
+import CategoryChooser from '../../components/CategoryChoser.js';
 
 function TitleSection({ glitchyTextDensity }) {
   const downIndicatorRef = useRef(null);
@@ -174,14 +176,20 @@ function Home() {
     };
   }, [stopLoadWithDelay]);
 
+  const [shownProjects, setShownProjects] = useState(projects);
+
   return (
     <NoisyContainer>
       <Loading loading={loading} />
       <ScrollSpeedTracker onChange={updateGlitchyTextDensity} />
       <div style={{ display: loading ? 'none' : 'block' }}>
         <TitleSection glitchyTextDensity={glitchyTextDensity} />
+        <CategoryChooser
+          glitchyTextDensity={glitchyTextDensity}
+          setShownProjects={setShownProjects}
+        />
         <ProjectsDisplayer
-          projects={projects}
+          projects={shownProjects}
           glitchyTextDensity={glitchyTextDensity}
         />
       </div>

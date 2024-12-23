@@ -251,7 +251,7 @@ export const projectsEn: ProjectProps[] = [
             The <a href='https://nuit-de-la-magistrale.ch/' target='_blank' rel="noreferrer">Nuit de La Magistrale</a> is the official event concluding the master's degree graduation ceremony of <a href='https://www.epfl.ch/' target='_blank' rel="noreferrer">EPFL</a>.
             Organizing an event of this scale at the <a href='https://www.stcc.ch/' target='_blank' rel="noreferrer">Swisstech Convention Center</a> is a significant technical and logistical challenge. As the operations manager, I was responsible for coordinating the setup/teardown of the site and recruiting and managing the 180 volunteers.
         </p>,
-        status: 'Committee Member',
+        status: 'Former committee Member',
         instaUrl: 'https://www.instagram.com/ndlm_epfl/',
         categories: ['assoc']
     },

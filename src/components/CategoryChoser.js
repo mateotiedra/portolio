@@ -77,7 +77,10 @@ function CategoryChooser({
   }, [selectedCategories, setShownProjects, projects]);
 
   useEffect(() => {
-    if (window.location.href.includes('cv')) {
+    if (
+      window.location.href.includes('cv') ||
+      window.location.href.includes('dev')
+    ) {
       setSelectedCategories(['dev', 'academic']);
     }
   }, []);

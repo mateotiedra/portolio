@@ -1,6 +1,6 @@
 import React from "react";
 
-import { AccountingChip, GoogleAdminChip, GoogleCloudChip, Love2DChip, LuaChip, MuiChip, NodejsChip, PlanningChip, ReactChip, StaffChip, TailwindChip } from '../components/TechChip.tsx';
+import { AccountingChip, GoogleAdminChip, GoogleCloudChip, Love2DChip, LuaChip, MuiChip, NodejsChip, NumpyChip, PlanningChip, PythonChip, PyTorchChip, ReactChip, StaffChip, TailwindChip } from '../components/TechChip.tsx';
 
 export type ProjectProps = {
     title: string;
@@ -18,6 +18,48 @@ export type ProjectProps = {
 }
 
 export const projects: ProjectProps[] = [
+    {
+        subtitle: 'Développement du',
+        title: 'Super Scanner 8000',
+        id: 'lummx2221',
+        lilTags: {
+            'Semaines de travail': '8',
+            'Budget': 'CHF270',
+            'Équipe': '6',
+        },
+        techTags: [<PythonChip />, <PyTorchChip />, <NumpyChip />],
+        preview: ['videos/ss8.mp4'],
+        color: '#01a63e',
+        description: <p>
+            Le <a href='https://github.com/epfl-cs358/2024fa-superscanner8000' target='_blank' rel="noreferrer">SuperScanner8000</a> est un robot ayant pour but de modéliser en 3D un object selectionné. Le robot se déplace afin de prendre des photos sous différents angles, qu'il va ensuite utiliser dans <a href='https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/' target='_blank' rel="noreferrer">3DGS</a> pour la recontruction du modèle 3D.
+            La détection de l'objet se fait via <a href="https://github.com/Gy920/segment-anything-2-real-time" target="_blank" rel="noreferrer">une variante de Segment Anything 2</a>.
+
+        </p>,
+        status: 'Terminé',
+        since: 'décembre 2024',
+        instaUrl: 'https://www.instagram.com/ndlm_epfl/',
+    },
+    {
+        title: 'La NDLM 24',
+        id: 'ndlm24',
+        subtitle: 'Responsable opérations à',
+        lilTags: {
+            'Date': '05.10.24',
+            'Participants': '2400',
+            'Staffs': '180',
+            'Bars': '4',
+            'Scènes': '2',
+        },
+        techTags: [<StaffChip />, <PlanningChip />],
+        preview: ['videos/ndlm24.mp4'],
+        color: '#c3a36a',
+        description: <p>
+            La <a href='https://nuit-de-la-magistrale.ch/' target='_blank' rel="noreferrer">Nuit de La Magistrale</a> est l'événement officiel concluant la remise des diplômes de master de <a href='https://www.epfl.ch/' target='_blank' rel="noreferrer">l'EPFL</a>.
+            Organiser un évenement de cette ampleur au <a href='https://www.stcc.ch/' target='_blank' rel="noreferrer">Swisstech Convention Center</a> est un défi technique et logistique de taille. En tant que responsable des opérations, j'étais en charge de coordonner le montage/démontage du site ainsi que de recruter et gérer les 180 bénévoles.
+        </p>,
+        status: 'Membre du comité',
+        instaUrl: 'https://www.instagram.com/ndlm_epfl/',
+    },
     {
         title: 'Lümm x 2221',
         id: 'lummx2221',
@@ -53,7 +95,7 @@ export const projects: ProjectProps[] = [
         preview: ['videos/artiphys.mp4'],
         color: '#f9a5ee',
         description: <p>
-            Membre du comité de l'association <a href='https://www.artiphys.ch/' target='_blank' rel="noreferrer">Artiphys</a> pour cette éditon 2025. J'ai refait le site web pour le faire correspondre au nouveau comité et à la nouvelle direction artistique. Je gère également toute la partie gestion du Google Workspace partagé par les membres du comité.</p>,
+            Membre du comité de l'association <a href='https://www.artiphys.ch/' target='_blank' rel="noreferrer">Artiphys</a> pour cette éditon 2025. Refonte du site web pour le faire correspondre à la nouvelle direction artistique et au nouveau comité. Gestion des entrées et des billeteries de chaque évenements.</p>,
         status: 'Membre du comité',
         instaUrl: 'https://www.instagram.com/artiphysfestival/',
         since: 'Juin 2024'

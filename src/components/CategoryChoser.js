@@ -1,13 +1,13 @@
 import { useCallback, useMemo, useState, useEffect } from 'react';
 
-import { projects } from '../pages/projects.tsx';
+import { projectsFr, projectsEn } from '../pages/projects.tsx';
 
 import GlitchyTextContainer from './GlitchyTextContainer/index.js';
 
 const SelectedChip = ({ onClick, selected, text, color }) => {
   return (
     <div
-      className='flex flex-row gap-2 rounded-xl items-center justify-center px-2 py-1 border-[1px] cursor-pointer'
+      className='flex flex-row gap-2 rounded-xl items-center justify-center px-2 py-1 border-[1px] cursor-pointer z-30'
       style={{
         borderColor: color,
         background: selected ? color : 'transparent',
@@ -26,7 +26,13 @@ const SelectedChip = ({ onClick, selected, text, color }) => {
   );
 };
 
-function CategoryChooser({ categories, setShownProjects, glitchyTextDensity }) {
+function CategoryChooser({
+  categories,
+  setShownProjects,
+  glitchyTextDensity,
+  fr,
+}) {
+  const projects = useMemo(() => (fr ? projectsFr : projectsEn), [fr]);
   const projectsColor = useMemo(() => projects.map((proj) => proj.color), []);
 
   const randomColors = useMemo(() => {
@@ -80,7 +86,7 @@ function CategoryChooser({ categories, setShownProjects, glitchyTextDensity }) {
         variant='h3'
         density={glitchyTextDensity + 0.04}
       >
-        Project Categories :
+        {fr ? 'Type de projet' : 'Project Categories :'}
       </GlitchyTextContainer>
       <div className='flex flex-wrap justify-start gap-2 relative top-[-3px]'>
         <SelectedChip
@@ -90,7 +96,7 @@ function CategoryChooser({ categories, setShownProjects, glitchyTextDensity }) {
           onClick={onChipClick('dev')}
         />
         <SelectedChip
-          text='Academic'
+          text={fr ? 'Académique' : 'Academic'}
           color={randomColors[1]}
           selected={selectedCategories.includes('academic')}
           onClick={onChipClick('academic')}
@@ -107,7 +113,7 @@ function CategoryChooser({ categories, setShownProjects, glitchyTextDensity }) {
           color={randomColors[2]}
         /> */}
         <SelectedChip
-          text='All'
+          text={fr ? 'Tout' : 'All'}
           color={randomColors[3]}
           selected={selectedCategories.includes('all')}
           onClick={onChipClick('all')}

@@ -12,6 +12,7 @@ function App() {
         <Routes>
           <Route path='/' default element={<Home />} />
           <Route path='/:mode' default element={<Home />} />
+          <Route path='/:lang/:mode' default element={<Home />} />
         </Routes>
       </ErrorHandlerWrapper>
     </Router>

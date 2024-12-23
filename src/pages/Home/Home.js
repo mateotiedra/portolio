@@ -15,13 +15,13 @@ import ProjectsDisplayer from '../../components/ProjectsDisplayer/index.tsx';
 import Loading from '../Loading/Loading.js';
 import Footer from '../../components/Footer.js';
 
-import { projects } from '../projects.tsx';
+import { projectsFr, projectsEn } from '../projects.tsx';
 import CategoryChooser from '../../components/CategoryChoser.js';
 
 function TitleSection({ glitchyTextDensity }) {
   const downIndicatorRef = useRef(null);
 
-  const projectsColor = useMemo(() => projects.map((proj) => proj.color), []);
+  const projectsColor = useMemo(() => projectsFr.map((proj) => proj.color), []);
 
   // Sticky indicator
   const [indicatorOpacity, setIndicatorOpacity] = useState(1);
@@ -176,7 +176,11 @@ function Home() {
     };
   }, [stopLoadWithDelay]);
 
-  const [shownProjects, setShownProjects] = useState(projects);
+  useEffect(() => {
+    document.title = 'Mateo Tiedra';
+  }, []);
+
+  const [shownProjects, setShownProjects] = useState(projectsEn);
 
   return (
     <NoisyContainer>

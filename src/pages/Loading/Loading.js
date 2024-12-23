@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
-import { projects } from '../projects.tsx';
+import { projectsEn } from '../projects.tsx';
 
 import GlitchyTextContainer from '../../components/GlitchyTextContainer';
 
@@ -57,7 +57,7 @@ function Loading({ loading }) {
       style={{ opacity: loading ? 1 : 0 }}
     >
       <GlitchyTextContainer
-        colors={projects.map((proj) => proj.color)}
+        colors={projectsEn.map((proj) => proj.color)}
         variant='h2'
         density={density}
         className='text-lg sm:text-3xl'

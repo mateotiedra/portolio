@@ -27,6 +27,7 @@ function TechChip({
 export default TechChip;
 
 export const ReactChip = () => <TechChip name='React' icon={<SiReact size={15} color={'rgb(8, 126, 164)'} />} url='https://react.dev/' />
+export const ReactNativeChip = () => <TechChip name='React Native' icon={<SiReact size={15} color={'rgb(8, 126, 164)'} />} url='https://reactnative.dev/' />
 export const ExpressChip = () => <TechChip name='Express' icon={<SiExpress size={15} />} url='https://expressjs.com/' />
 export const MuiChip = () => <TechChip name='Mui' icon={<SiMui size={15} color='#29b6f6' />} url='https://mui.com/' />
 export const StaffChip = () => <TechChip name='Gestion staff' icon={<IoAccessibility size={15} color='#85C7F2' />} />

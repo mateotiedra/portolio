@@ -1,6 +1,6 @@
 import React from "react";
 
-import { AccountingChip, ConceptionChip, FlutterChip, GoogleAdminChip, GoogleCloudChip, Love2DChip, LuaChip, MuiChip, NodejsChip, NumpyChip, PlanningChip, PythonChip, PyTorchChip, ReactChip, StaffChip, TailwindChip } from '../components/TechChip.tsx';
+import { AccountingChip, ConceptionChip, FlutterChip, GoogleAdminChip, GoogleCloudChip, Love2DChip, LuaChip, MuiChip, NodejsChip, NumpyChip, PlanningChip, PythonChip, PyTorchChip, ReactChip, ReactNativeChip, StaffChip, TailwindChip } from '../components/TechChip.tsx';
 
 export type ProjectProps = {
     title: string;
@@ -306,7 +306,7 @@ export const projectsEn: ProjectProps[] = [
             'Books sold': '300',
             'Books for sale': '6000'
         },
-        techTags: [<ReactChip />, <NodejsChip />, <MuiChip />, <ConceptionChip />],
+        techTags: [<ConceptionChip />, <ReactChip />, <NodejsChip />, <MuiChip />],
         link: 'https://www.okalo.ch/',
         preview: ['videos/okalo.mp4'],
         color: '#0496FF',
@@ -354,7 +354,7 @@ export const projectsEn: ProjectProps[] = [
         link: 'https://morii.lumm.love/',
         preview: ['videos/morii.mp4'],
         color: 'white',
-        techTags: [<GoogleCloudChip />, <ReactChip />, <NodejsChip />],
+        techTags: [<ConceptionChip />, <GoogleCloudChip />, <ReactChip />, <NodejsChip />],
         description: <p>
             The main goal of this project was to replace the famous <span style={{ fontStyle: 'italic' }}>"Send your photos to the group."</span><br />
             <a href='https://morii.lumm.love/' target='_blank' rel="noreferrer">Morii</a> is
@@ -380,6 +380,25 @@ export const projectsEn: ProjectProps[] = [
         </p>,
         status: 'Failure',
         since: '2020',
+        categories: ['dev']
+    },
+    {
+        title: 'Parkeur',
+        id: 'parkeur',
+        subtitle: 'Mobile app',
+        lilTags: {
+            'Platform': 'Android',
+            'Released on': 'Google Play',
+
+        },
+        preview: ['videos/parkeur.mp4'],
+        color: '#4c63ec',
+        techTags: [<ConceptionChip />, <ReactNativeChip />],
+        description: <p>
+            A mobile app designed to help users learn language vocabulary. The app adapts its learning mode to match the user’s current knowledge of the vocabulary. It also allows users to scan vocabulary lists for seamless integration.
+        </p>,
+        status: 'Finished',
+        since: '2019',
         categories: ['dev']
     },
 ];

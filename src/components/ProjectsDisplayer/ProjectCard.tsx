@@ -47,13 +47,13 @@ function ProjectCard({
 }: ProjectCardProps) {
     const blob = useMemo(() => getBlob(color), [color])
 
-    return <div className='lg:max-w-[45%] max-w-[100%] flex flex-col justify-between relative'>
+    return <div className='lg:max-w-[70%] xl:max-w-[45%] w-full max-w-[100%] flex flex-col justify-between relative'>
         <div className='fixed top-0 left-0 w-[100vw] h-[100vh] -z-10 '
             style={{
                 backdropFilter: 'blur(100px)',
             }}>
         </div>
-        <div className='flex flex-col sm:flex-row items-center sm:items-start gap-6 '>
+        <div className='flex flex-col sm:flex-row items-stretch sm:items-start gap-6 min-w-md'>
             <div className='basis-[default] sm:basis-2/3 flex-[2]'>
                 <div className='absolute w-[180%] h-[180%] -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 -z-20 opacity-25'>
                     <div className='relative w-full h-full flex justify-center items-center -top-48 sm:top-0'>
@@ -74,10 +74,10 @@ function ProjectCard({
 
                 </div>
             </div>
-            <div className='rounded-xl overflow-hidden basis-[default] sm:basis-1/3 mx-10 sm:mx-0'>
+            <div className='rounded-xl overflow-hidden sm:w-full basis-[default] sm:basis-1/3 mx-10 sm:mx-0'>
                 <a href={link} target='_blank' rel="noreferrer">
-                    <LazyLoad offset={300}>
-                        <video src={preview?.[0]} autoPlay muted loop playsInline />
+                    <LazyLoad offset={300} className='w-full'>
+                        <video src={preview?.[0]} autoPlay muted loop playsInline className='w-full' />
                     </LazyLoad>
                 </a>
             </div>

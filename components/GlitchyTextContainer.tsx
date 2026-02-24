@@ -20,6 +20,14 @@ function extractClassName(children: React.ReactNode): string {
   return '';
 }
 
+function extractTag(children: React.ReactNode): string {
+  if (children && typeof children === 'object' && 'type' in children) {
+    const t = (children as React.ReactElement<any>).type;
+    if (typeof t === 'string') return t;
+  }
+  return '';
+}
+
 function GlitchyTextContainer({
   children,
   variant = '',
@@ -81,7 +89,11 @@ function GlitchyTextContainer({
     );
   }, [children, density, color, colors]);
 
-  const Tag = variant === 'h1' ? 'h1' : variant === 'h2' ? 'h2' : variant === 'h3' ? 'h3' : variant === 'h4' ? 'h4' : 'p';
+  // Determine tag: explicit variant > child element type > default 'p'
+  const childTag = extractTag(children);
+  const tagName = variant.length > 0 ? variant : (childTag || 'p');
+  
+  const Tag = tagName === 'h1' ? 'h1' : tagName === 'h2' ? 'h2' : tagName === 'h3' ? 'h3' : tagName === 'h4' ? 'h4' : tagName === 'h5' ? 'h5' : tagName === 'h6' ? 'h6' : 'p';
 
   return <Tag className={extraClassName} {...props}>{letters}</Tag>;
 }

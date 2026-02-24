@@ -17,7 +17,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
         <meta name="theme-color" content="#000000" />
       </head>
-      <body>{children}</body>
+      <body style={{ backgroundColor: 'black', color: '#C3C3C3' }}>{children}</body>
     </html>
   )
 }

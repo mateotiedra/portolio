@@ -23,11 +23,12 @@ function CategoryChooser({ categories, setShownProjects, glitchyTextDensity }: {
   glitchyTextDensity: number
 }) {
   const projects = projectsEn
-  const projectsColor = useMemo(() => projects.map((proj) => proj.color), [projects])
+  const projectsColor = useMemo(() => projects.map((proj) => proj.color), [])
   const randomColors = useMemo(() => {
     const shuffled = [...projectsColor].sort(() => 0.5 - Math.random())
     return shuffled.slice(0, 4)
-  }, [projectsColor])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const [selectedCategories, setSelectedCategories] = useState(['all'])
 

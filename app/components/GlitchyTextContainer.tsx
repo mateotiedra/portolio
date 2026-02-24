@@ -75,7 +75,7 @@ function GlitchyTextContainer({
       case 'h6': return 'h6'
       default: return 'p'
     }
-  })() as keyof JSX.IntrinsicElements
+  })() as keyof React.JSX.IntrinsicElements
 
   return <Tag {...props}>{letters}</Tag>
 }

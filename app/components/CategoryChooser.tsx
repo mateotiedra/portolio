@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useMemo, useState, useEffect } from 'react'
+import { useCallback, useMemo, useRef, useState, useEffect } from 'react'
 import { projectsEn } from './projects'
 import GlitchyTextContainer from './GlitchyTextContainer'
 import { ProjectProps } from './projects'
@@ -24,11 +24,12 @@ function CategoryChooser({ categories, setShownProjects, glitchyTextDensity }: {
 }) {
   const projects = projectsEn
   const projectsColor = useMemo(() => projects.map((proj) => proj.color), [])
-  const randomColors = useMemo(() => {
+  const randomColorsRef = useRef<string[] | null>(null)
+  if (!randomColorsRef.current) {
     const shuffled = [...projectsColor].sort(() => 0.5 - Math.random())
-    return shuffled.slice(0, 4)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    randomColorsRef.current = shuffled.slice(0, 4)
+  }
+  const randomColors = randomColorsRef.current
 
   const [selectedCategories, setSelectedCategories] = useState(['all'])
 

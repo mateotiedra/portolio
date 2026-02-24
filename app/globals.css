@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Pacifico&display=swap&family=Bree+Serif&display=swap');
+
+@theme {
+  --font-kanit: 'Kanit', sans-serif;
+  --font-pacifico: 'Pacifico', serif;
+  --font-breeserif: 'Bree Serif', serif;
+
+  --text-2xs: 0.6rem;
+  --text-base: 20px;
+  --text-h1: 2.25rem;
+
+  --leading-heading: 1;
+  --leading-base: 1.3;
+
+  --color-heading: white;
+  --color-base: #C3C3C3;
+  --color-primary: var(--primary-color, white);
+}
+
+:root {
+  --primary-color: white;
+}
+
+@layer base {
+  h1 {
+    color: white;
+    white-space: normal;
+    font-family: var(--font-kanit);
+    font-weight: 900;
+    font-size: var(--text-h1);
+    line-height: var(--leading-heading);
+    overflow-wrap: break-word;
+  }
+  h2 {
+    color: white;
+    white-space: normal;
+    font-family: var(--font-kanit);
+    font-weight: 700;
+    font-size: 3rem;
+    line-height: var(--leading-heading);
+    text-transform: uppercase;
+    padding-bottom: 1rem;
+    overflow-wrap: break-word;
+  }
+  h3 {
+    color: white;
+    white-space: normal;
+    font-family: var(--font-kanit);
+    font-weight: 700;
+    font-size: 1.875rem;
+    line-height: var(--leading-heading);
+    text-transform: uppercase;
+    padding-bottom: 0.5rem;
+    overflow-wrap: break-word;
+  }
+  h4 {
+    color: white;
+    white-space: normal;
+    font-family: var(--font-breeserif);
+    line-height: var(--leading-heading);
+    font-size: 1.5rem;
+    padding-bottom: 0.5rem;
+    overflow-wrap: break-word;
+  }
+  p {
+    overflow-wrap: break-word;
+    white-space: normal;
+  }
+  body {
+    background-color: black;
+  }
+  html {
+    font-family: var(--font-kanit);
+    font-size: var(--text-base);
+    line-height: var(--leading-base);
+    padding-bottom: 0.25rem;
+  }
+}
+
+.styled-link > a {
+  font-weight: 700;
+  text-decoration: underline;
+  color: var(--primary-color, white);
+}
+
+.section-container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  max-width: 80rem;
+  padding-bottom: 5rem;
+}
+
+@media (min-width: 640px) {
+  .section-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.centering {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.noise-container {
+  position: relative;
+}
+
+.noise-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/images/noisy-filter.png');
+  background-repeat: repeat;
+  pointer-events: none;
+  z-index: 999;
+}

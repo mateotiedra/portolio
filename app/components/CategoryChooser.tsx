@@ -1,21 +1,36 @@
 'use client'
 
-import { useCallback, useMemo, useRef, useState, useEffect } from 'react'
+import { useCallback, useMemo, useState, useEffect } from 'react'
 import { projectsEn } from './projects'
 import GlitchyTextContainer from './GlitchyTextContainer'
 import { ProjectProps } from './projects'
 
-const SelectedChip = ({ onClick, selected, text, color }: { onClick: () => void, selected: boolean, text: string, color: string }) => (
-  <div
-    className="flex flex-row gap-2 rounded-xl items-center justify-center px-2 py-1 border-[1px] cursor-pointer z-30"
-    style={{ borderColor: color, background: selected ? color : 'transparent' }}
-    onClick={onClick}
-  >
-    <span className="uppercase text-xs" style={{ color: selected ? 'black' : color }}>
-      {text}
-    </span>
-  </div>
-)
+const PROJECT_COLORS = projectsEn.map((proj) => proj.color)
+
+function shuffleAndPick(arr: string[], n: number): string[] {
+  const shuffled = [...arr].sort(() => 0.5 - Math.random())
+  return shuffled.slice(0, n)
+}
+
+function SelectedChip({ onClick, selected, text, color }: { onClick: () => void, selected: boolean, text: string, color: string }) {
+  return (
+    <div
+      className="flex flex-row gap-2 rounded-xl items-center justify-center px-2 py-1 cursor-pointer z-30"
+      style={{
+        border: `1px solid ${color}`,
+        background: selected ? color : 'transparent',
+      }}
+      onClick={onClick}
+    >
+      <span
+        className="uppercase text-xs"
+        style={{ color: selected ? 'black' : color }}
+      >
+        {text}
+      </span>
+    </div>
+  )
+}
 
 function CategoryChooser({ categories, setShownProjects, glitchyTextDensity }: {
   categories?: string[]
@@ -23,15 +38,14 @@ function CategoryChooser({ categories, setShownProjects, glitchyTextDensity }: {
   glitchyTextDensity: number
 }) {
   const projects = projectsEn
-  const projectsColor = useMemo(() => projects.map((proj) => proj.color), [])
-  const randomColorsRef = useRef<string[] | null>(null)
-  if (!randomColorsRef.current) {
-    const shuffled = [...projectsColor].sort(() => 0.5 - Math.random())
-    randomColorsRef.current = shuffled.slice(0, 4)
-  }
-  const randomColors = randomColorsRef.current
 
-  const [selectedCategories, setSelectedCategories] = useState(['all'])
+  // Compute random colors ONCE on client mount — avoids hydration mismatch and strict mode issues
+  const [randomColors, setRandomColors] = useState<string[]>(['white', 'white', 'white', 'white'])
+  useEffect(() => {
+    setRandomColors(shuffleAndPick(PROJECT_COLORS, 4))
+  }, [])
+
+  const [selectedCategories, setSelectedCategories] = useState<string[]>(['all'])
 
   const onChipClick = useCallback((category: string) => () => {
     if (category === 'all') {
@@ -45,7 +59,7 @@ function CategoryChooser({ categories, setShownProjects, glitchyTextDensity }: {
     }
   }, [])
 
-  useMemo(() => {
+  useEffect(() => {
     setShownProjects(
       projects.filter((proj) => {
         if (selectedCategories.includes('all')) return true
@@ -62,7 +76,7 @@ function CategoryChooser({ categories, setShownProjects, glitchyTextDensity }: {
 
   return (
     <div className="section-container flex flex-col md:flex-row items-center gap-4">
-      <GlitchyTextContainer colors={projectsColor} variant="h3" density={glitchyTextDensity + 0.04}>
+      <GlitchyTextContainer colors={PROJECT_COLORS} variant="h3" density={glitchyTextDensity + 0.04}>
         Project Categories :
       </GlitchyTextContainer>
       <div className="flex flex-wrap justify-start gap-2 relative top-[-3px]">

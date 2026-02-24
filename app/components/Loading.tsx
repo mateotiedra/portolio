@@ -45,7 +45,7 @@ function Loading({ loading }: { loading: boolean }) {
         density={density}
         className="text-lg sm:text-3xl"
       >
-        Loading...
+        Chargement...
       </GlitchyTextContainer>
     </div>
   )

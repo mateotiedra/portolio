@@ -2,6 +2,24 @@
 import { useEffect, useState } from 'react';
 import { getRandomNumbers } from './helpers';
 
+function extractText(children: React.ReactNode): string {
+  if (typeof children === 'string') return children;
+  if (typeof children === 'number') return String(children);
+  if (!children) return '';
+  if (Array.isArray(children)) return children.map(extractText).join('');
+  if (typeof children === 'object' && 'props' in children) {
+    return extractText((children as React.ReactElement<any>).props.children);
+  }
+  return '';
+}
+
+function extractClassName(children: React.ReactNode): string {
+  if (children && typeof children === 'object' && 'props' in children) {
+    return (children as React.ReactElement<any>).props.className || '';
+  }
+  return '';
+}
+
 function GlitchyTextContainer({
   children,
   variant = '',
@@ -22,16 +40,8 @@ function GlitchyTextContainer({
   const [letters, setLetters] = useState<React.ReactNode[]>([]);
 
   useEffect(() => {
-    let text = '';
-    let childClassName = '';
-
-    if (typeof children === 'string') {
-      text = children;
-    } else if (children && typeof children === 'object' && 'props' in children) {
-      const el = children as React.ReactElement<any>;
-      text = typeof el.props.children === 'string' ? el.props.children : '';
-      childClassName = el.props.className || '';
-    }
+    const text = extractText(children);
+    const childClassName = extractClassName(children);
 
     if (!text) return;
 
@@ -52,11 +62,10 @@ function GlitchyTextContainer({
           </span>
           <span
             className={
-              'absolute translate-x-[-50%] translate-y-[-55%] left-1/2 top-1/2 lowercase transition-colors flex justify-center items-center ' +
+              'absolute translate-x-[-50%] translate-y-[-55%] left-1/2 top-1/2 font-pacifico lowercase transition-colors flex justify-center items-center ' +
               childClassName
             }
             style={{
-              fontFamily: "'Pacifico', serif",
               opacity: idToChange.includes(id) ? 1 : 0,
               color: idToChange.includes(id)
                 ? color ||

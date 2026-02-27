@@ -1,6 +1,5 @@
-'use client'
 
-import React, { useMemo } from 'react'
+import React from 'react'
 import { RiInstagramFill, RiExternalLinkFill } from 'react-icons/ri'
 import { ProjectProps } from './projects'
 import GlitchyTextContainer from './GlitchyTextContainer'
@@ -13,14 +12,15 @@ const blobs = [
 ]
 
 type ProjectCardProps = ProjectProps & {
+  index: number
   glitchyTextDensity: number
 }
 
 function ProjectCard({
-  title, subtitle, lilTags, techTags, link, glitchyTextDensity,
+  index, title, subtitle, lilTags, techTags, link, glitchyTextDensity,
   preview, color, description, status, instaUrl, since,
 }: ProjectCardProps) {
-  const blob = useMemo(() => blobs[Math.floor(Math.random() * blobs.length)](color), [color])
+  const blob = blobs[index % blobs.length](color)
 
   return (
     <div className="lg:max-w-[70%] xl:max-w-[45%] w-full max-w-[100%] flex flex-col justify-between relative">

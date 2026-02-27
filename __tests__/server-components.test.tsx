@@ -33,3 +33,4 @@ describe('Footer (server component)', () => {
     assert.ok(html.includes('instagram.com'), 'Should have Instagram link')
   })
 })
+

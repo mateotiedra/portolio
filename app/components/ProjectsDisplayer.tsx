@@ -6,7 +6,7 @@ import ProjectCard from './ProjectCard'
 
 function ProjectsDisplayer({ projects, glitchyTextDensity }: { projects: ProjectProps[], glitchyTextDensity: number }) {
   const cards = useMemo(() => projects.map((project, id) => (
-    <ProjectCard key={id} glitchyTextDensity={glitchyTextDensity} {...project} />
+    <ProjectCard key={id} index={id} glitchyTextDensity={glitchyTextDensity} {...project} />
   )), [projects, glitchyTextDensity])
 
   return (

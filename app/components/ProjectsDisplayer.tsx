@@ -10,7 +10,7 @@ function ProjectsDisplayer({ projects, glitchyTextDensity }: { projects: Project
   )), [projects, glitchyTextDensity])
 
   return (
-    <div className="section-container flex flex-row flex-wrap justify-center gap-20 h-full items-stretch basis-0 overflow-hidden">
+    <div className="section-container flex flex-row flex-wrap justify-start gap-20 h-full items-stretch basis-0 overflow-hidden">
       {cards}
     </div>
   )

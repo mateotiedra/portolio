@@ -53,7 +53,10 @@ function CategoryChooser({ categories, setShownProjects, glitchyTextDensity }: {
     } else {
       setSelectedCategories((prev) => {
         if (prev.includes('all')) return [category]
-        if (prev.includes(category)) return prev.filter((c) => c !== category)
+        if (prev.includes(category)) {
+          const next = prev.filter((c) => c !== category)
+          return next.length === 0 ? ['all'] : next
+        }
         return [...prev, category]
       })
     }

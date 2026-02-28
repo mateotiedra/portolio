@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fonts loaded via <link> in layout.tsx */
+
+@layer base {
+  h1 {
+    @apply text-heading whitespace-normal font-kanit font-black text-h1 leading-heading break-normal;
+  }
+  h2 {
+    @apply text-heading whitespace-normal font-kanit font-bold text-5xl leading-heading uppercase pb-4 break-normal;
+  }
+  h3 {
+    @apply text-heading whitespace-normal font-kanit font-bold text-3xl leading-heading uppercase pb-2 break-normal;
+  }
+  h4 {
+    @apply text-heading whitespace-normal font-breeserif leading-heading text-base text-2xl pb-2 break-normal;
+  }
+  p {
+    @apply break-normal whitespace-normal;
+  }
+  body {
+    @apply bg-black;
+  }
+  html {
+    @apply font-kanit text-base leading-base pb-1;
+  }
+}
+
+:root {
+  --primary-color: white;
+}
+
+.styled-link > a {
+  @apply font-bold underline text-primary;
+}
+
+.section-container {
+  @apply mx-auto px-5 sm:px-8 max-w-7xl pb-20;
+}
+
+.centering {
+  @apply flex justify-center items-center;
+}
+
+/* Noise overlay */
+.noise-container {
+  position: relative;
+}
+
+.noise-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/images/noisy-filter.png');
+  background-repeat: repeat;
+  pointer-events: none;
+  z-index: 999;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8,0,1,1);
+  }
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0,0,0.2,1);
+  }
+}

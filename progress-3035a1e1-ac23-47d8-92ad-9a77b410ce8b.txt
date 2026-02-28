@@ -1,0 +1,35 @@
+# Progress Log
+Run: 3035a1e1-ac23-47d8-92ad-9a77b410ce8b
+Task: Refactor portfolio Next.js app to use React Server Components where possible
+Started: 2026-02-27T23:45:00+01:00
+
+## Codebase Patterns
+- Project uses Next.js 15 with React 19, tsconfig has `jsx: "preserve"`
+- Components are in `app/components/`
+- TechChip.tsx already had `import React` but Footer.tsx did not — added it for test compatibility
+- react-icons is server-safe (works in RSC)
+- Tests: use `npx tsx --test __tests__/*.test.tsx` with node:test + renderToString
+- Build: `npm run build`, typecheck: `npx tsc --noEmit`
+
+---
+
+## 2026-02-27 23:45 - US-001: Convert TechChip.tsx and Footer.tsx to server components
+- Verified TechChip.tsx and Footer.tsx have no 'use client', no hooks, no state, no browser APIs
+- Added `import React from 'react'` to Footer.tsx (was missing, needed for test runner)
+- Created __tests__/server-components.test.tsx with 4 tests (3 TechChip, 1 Footer)
+- All tests pass, build succeeds, typecheck passes
+- Files changed: app/components/Footer.tsx, __tests__/server-components.test.tsx
+- **Learnings:** Footer.tsx relied on automatic JSX transform without React import; added explicit import for compatibility
+---
+
+## 2026-02-27 23:56 - US-002: Make ProjectCard.tsx a server component with deterministic blob selection
+- Removed 'use client' directive from ProjectCard.tsx
+- Removed useMemo import and usage
+- Added `index: number` prop to ProjectCardProps
+- Replaced `blobs[Math.floor(Math.random() * blobs.length)](color)` with `blobs[index % blobs.length](color)`
+- Updated ProjectsDisplayer.tsx to pass `index={id}` to each ProjectCard
+- Created __tests__/project-card.test.tsx with 5 tests (all pass)
+- Build succeeds, typecheck passes
+- Files changed: app/components/ProjectCard.tsx, app/components/ProjectsDisplayer.tsx, __tests__/project-card.test.tsx
+- **Learnings:** GlitchyTextContainer doesn't import React explicitly — can't use renderToString in tests for components that include it; use source-analysis tests instead
+---

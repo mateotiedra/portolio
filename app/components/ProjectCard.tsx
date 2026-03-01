@@ -18,19 +18,15 @@ function LazyVideo({ src, className }: { src?: string; className?: string }) {
     const video = videoRef.current
     if (!video) return
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          video.play().catch(() => {})
-        } else {
-          video.pause()
-        }
-      },
-      { threshold: 0.1 }
-    )
+    // Fix: React doesn't guarantee muted attribute in DOM (github.com/facebook/react/issues/10389)
+    // Safari checks the HTML attribute before allowing autoplay
+    video.defaultMuted = true
+    video.muted = true
+    video.setAttribute('muted', '')
+    video.setAttribute('playsinline', '')
 
-    observer.observe(video)
-    return () => observer.disconnect()
+    // Force play after attributes are set
+    video.play().catch(() => {})
   }, [])
 
   return (
@@ -41,7 +37,7 @@ function LazyVideo({ src, className }: { src?: string; className?: string }) {
       muted
       loop
       playsInline
-      preload="metadata"
+      preload="auto"
       className={className}
     />
   )
@@ -62,7 +58,7 @@ function ProjectCard({
     <div className="lg:max-w-[70%] xl:max-w-[45%] w-full max-w-[100%] flex flex-col justify-between relative">
       <div className="flex flex-col sm:flex-row items-stretch sm:items-start gap-6 min-w-md">
         <div className="basis-[default] sm:basis-2/3 flex-[2]">
-          <div className="absolute w-[180%] h-[180%] -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 -z-20 opacity-25">
+          <div className="absolute w-[180%] h-[180%] -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 -z-20 opacity-25 blur-3xl">
             <div className="relative w-full h-full flex justify-center items-center -top-48 sm:top-0">
               {blob}
             </div>

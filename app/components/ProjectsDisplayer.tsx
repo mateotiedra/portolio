@@ -10,7 +10,7 @@ function ProjectsDisplayer({ projects, glitchyTextDensity }: { projects: Project
   )), [projects, glitchyTextDensity])
 
   return (
-    <div className="section-container flex flex-row flex-wrap justify-start gap-20 h-full items-stretch basis-0 overflow-hidden relative">
+    <div className="flex flex-row flex-wrap justify-start gap-20 h-full items-stretch basis-0 overflow-hidden relative mt-12">
       <div className="fixed inset-0 -z-10" style={{ backdropFilter: 'blur(100px)', WebkitBackdropFilter: 'blur(100px)' }} />
       {cards}
     </div>

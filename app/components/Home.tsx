@@ -119,10 +119,12 @@ export default function Home() {
     <div className="noise-container">
       <Loading loading={loading} />
       <ScrollSpeedTracker onChange={updateGlitchyTextDensity} />
-      <div style={{ display: loading ? 'none' : 'block' }}>
+      <div style={{ opacity: loading ? 0 : 1, pointerEvents: loading ? 'none' : 'auto' }}>
         <TitleSection glitchyTextDensity={glitchyTextDensity} />
-        <CategoryChooser glitchyTextDensity={glitchyTextDensity} setShownProjects={setShownProjects} />
-        <ProjectsDisplayer projects={shownProjects} glitchyTextDensity={glitchyTextDensity} />
+        <div className="section-container">
+          <CategoryChooser glitchyTextDensity={glitchyTextDensity} setShownProjects={setShownProjects} />
+          <ProjectsDisplayer projects={shownProjects} glitchyTextDensity={glitchyTextDensity} />
+        </div>
       </div>
       {shownProjects.length < projectsEn.length && (
         <div className="w-full flex justify-center">

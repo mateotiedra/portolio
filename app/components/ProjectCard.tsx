@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { RiInstagramFill, RiExternalLinkFill } from 'react-icons/ri'
 import { ProjectProps } from './projects'
 import GlitchyTextContainer from './GlitchyTextContainer'
@@ -10,6 +10,42 @@ const blobs = [
   (color: string) => <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path fill={color} d="M31.9,-45.6C35.1,-35.3,27.2,-19.3,32,-3.9C36.8,11.6,54.4,26.5,55.1,38C55.8,49.4,39.8,57.3,23.2,63.1C6.5,69,-10.7,72.8,-17.4,63.5C-24.1,54.2,-20.4,31.9,-21.1,18.2C-21.8,4.5,-26.9,-0.6,-32,-11.5C-37.1,-22.5,-42.1,-39.4,-36.8,-49.3C-31.5,-59.2,-15.7,-62.2,-0.7,-61.3C14.3,-60.5,28.6,-55.8,31.9,-45.6Z" transform="translate(100 100)" /></svg>,
   (color: string) => <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path fill={color} d="M55.2,-57.1C67.8,-55.2,71.7,-34.2,65.8,-18.8C59.9,-3.4,44.3,6.6,36.7,22.6C29.2,38.6,29.6,60.7,20.7,69.4C11.7,78.1,-6.6,73.4,-20.7,64.8C-34.8,56.3,-44.5,43.8,-55.5,29.6C-66.5,15.5,-78.8,-0.3,-77.1,-14.2C-75.3,-28.1,-59.6,-40.1,-44.4,-41.6C-29.2,-43.1,-14.6,-34.1,3.3,-38.1C21.3,-42.1,42.6,-59.1,55.2,-57.1Z" transform="translate(100 100)" /></svg>,
 ]
+
+function LazyVideo({ src, className }: { src?: string; className?: string }) {
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {})
+        } else {
+          video.pause()
+        }
+      },
+      { threshold: 0.1 }
+    )
+
+    observer.observe(video)
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <video
+      ref={videoRef}
+      src={src}
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="metadata"
+      className={className}
+    />
+  )
+}
 
 type ProjectCardProps = ProjectProps & {
   index: number
@@ -24,7 +60,6 @@ function ProjectCard({
 
   return (
     <div className="lg:max-w-[70%] xl:max-w-[45%] w-full max-w-[100%] flex flex-col justify-between relative">
-      <div className="fixed top-0 left-0 w-[100vw] h-[100vh] -z-10" style={{ backdropFilter: 'blur(100px)' }} />
       <div className="flex flex-col sm:flex-row items-stretch sm:items-start gap-6 min-w-md">
         <div className="basis-[default] sm:basis-2/3 flex-[2]">
           <div className="absolute w-[180%] h-[180%] -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 -z-20 opacity-25">
@@ -45,7 +80,7 @@ function ProjectCard({
         </div>
         <div className="rounded-xl overflow-hidden sm:w-full basis-[default] sm:basis-1/3 mx-10 sm:mx-0">
           <a href={link} target="_blank" rel="noreferrer">
-            <video src={preview?.[0]} autoPlay muted loop playsInline className="w-full" />
+            <LazyVideo src={preview?.[0]} className="w-full" />
           </a>
         </div>
       </div>

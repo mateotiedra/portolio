@@ -13,8 +13,19 @@ const easeInOutQuad = (t: number, min: number, max: number) => {
 function Loading({ loading }: { loading: boolean }) {
   const [tFactor, setTFactor] = useState(0)
   const nextAnimate = useRef<NodeJS.Timeout | null>(null)
+  const loadingRef = useRef(loading)
+
+  useEffect(() => {
+    loadingRef.current = loading
+    if (!loading && nextAnimate.current) {
+      clearTimeout(nextAnimate.current)
+      nextAnimate.current = null
+    }
+  }, [loading])
 
   const animate = useCallback((prevDirection: number) => {
+    if (!loadingRef.current) return
+
     setTFactor((prev) => {
       let nextDirection = prevDirection
       let nextT = prev + nextDirection * 0.1
@@ -22,7 +33,9 @@ function Loading({ loading }: { loading: boolean }) {
       else if (nextT >= 1) { nextDirection = -1; nextT = 1 }
 
       if (nextAnimate.current) clearTimeout(nextAnimate.current)
-      nextAnimate.current = setTimeout(() => animate(nextDirection), 60 + 60 * (1 - nextT))
+      if (loadingRef.current) {
+        nextAnimate.current = setTimeout(() => animate(nextDirection), 60 + 60 * (1 - nextT))
+      }
       return nextT
     })
   }, [])

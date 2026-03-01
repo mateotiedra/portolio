@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { getRandomNumbers } from './helpers'
 
 type GlitchyTextContainerProps = {
@@ -22,6 +22,7 @@ function GlitchyTextContainer({
   ...props
 }: GlitchyTextContainerProps) {
   const [letters, setLetters] = useState<React.ReactNode[]>([])
+  const colorsKey = useMemo(() => colors?.join(',') ?? '', [colors])
 
   useEffect(() => {
     const text = typeof children === 'string' 
@@ -62,7 +63,8 @@ function GlitchyTextContainer({
         </span>
       ))
     )
-  }, [children, density, color, colors])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [children, density, color, colorsKey])
 
   const Tag = (() => {
     const v = variant.length > 0 ? variant : children?.type
@@ -80,4 +82,4 @@ function GlitchyTextContainer({
   return <Tag {...props}>{letters}</Tag>
 }
 
-export default GlitchyTextContainer
+export default React.memo(GlitchyTextContainer)

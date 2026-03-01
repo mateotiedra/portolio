@@ -78,7 +78,7 @@ function CategoryChooser({ categories, setShownProjects, glitchyTextDensity }: {
   }, [])
 
   return (
-    <div className="section-container flex flex-col md:flex-row items-center gap-4">
+    <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
       <GlitchyTextContainer colors={PROJECT_COLORS} variant="h3" density={glitchyTextDensity + 0.04}>
         Project Categories :
       </GlitchyTextContainer>

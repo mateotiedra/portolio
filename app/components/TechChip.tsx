@@ -1,5 +1,6 @@
 import React from 'react'
-import { SiMui, SiReact, SiGooglecloud, SiNodedotjs, SiLua, SiTailwindcss, SiGoogle, SiPython, SiPytorch, SiNumpy, SiFlutter, SiNextdotjs, SiDocker, SiSupabase, SiMetabase, SiN8N } from 'react-icons/si'
+import { SiMui, SiReact, SiGooglecloud, SiNodedotjs, SiLua, SiTailwindcss, SiGoogle, SiPython, SiPytorch, SiNumpy, SiFlutter, SiNextdotjs, SiDocker, SiSupabase, SiMetabase } from 'react-icons/si'
+import { TbCircuitSwitchOpen } from 'react-icons/tb'
 import { IoAccessibility, IoCalendar, IoReceipt, IoHeart } from 'react-icons/io5'
 import { TbTools, TbRobot, TbServer } from 'react-icons/tb'
 
@@ -46,4 +47,4 @@ export const SupabaseChip = () => <TechChip name="Supabase" color="#3ECF8E" icon
 export const MetabaseChip = () => <TechChip name="Metabase" color="#509EE3" icon={<SiMetabase size={15} color="#509EE3" />} url="https://www.metabase.com/" />
 export const AIChip = () => <TechChip name="AI Agents" color="#a78bfa" icon={<TbRobot size={15} color="#a78bfa" />} />
 export const InfraChip = () => <TechChip name="Infrastructure" color="#f59e0b" icon={<TbServer size={15} color="#f59e0b" />} />
-export const N8nChip = () => <TechChip name="n8n" color="#ea4b71" icon={<SiN8N size={15} color="#ea4b71" />} url="https://n8n.io/" />
+export const N8nChip = () => <TechChip name="n8n" color="#ea4b71" icon={<TbCircuitSwitchOpen size={15} color="#ea4b71" />} url="https://n8n.io/" />

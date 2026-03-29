@@ -17,10 +17,16 @@ function Loading({ loading }: { loading: boolean }) {
 
   useEffect(() => {
     loadingRef.current = loading
+    if (loading) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
     if (!loading && nextAnimate.current) {
       clearTimeout(nextAnimate.current)
       nextAnimate.current = null
     }
+    return () => { document.body.style.overflow = '' }
   }, [loading])
 
   const animate = useCallback((prevDirection: number) => {

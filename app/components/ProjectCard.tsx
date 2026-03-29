@@ -1,5 +1,6 @@
 
 import React, { useEffect, useRef } from 'react'
+import Image from 'next/image'
 import { RiInstagramFill, RiExternalLinkFill } from 'react-icons/ri'
 import { ProjectProps } from './projects'
 import GlitchyTextContainer from './GlitchyTextContainer'
@@ -76,7 +77,11 @@ function ProjectCard({
         </div>
         <div className="rounded-xl overflow-hidden sm:w-full basis-[default] sm:basis-1/3 mx-10 sm:mx-0">
           <a href={link} target="_blank" rel="noreferrer">
-            <LazyVideo src={preview?.[0]} className="w-full" />
+            {preview?.[0]?.match(/\.(mp4|webm)$/) ? (
+              <LazyVideo src={preview[0]} className="w-full" />
+            ) : preview?.[0] ? (
+              <Image src={`/${preview[0]}`} alt={title} width={640} height={400} className="w-full object-cover" />
+            ) : null}
           </a>
         </div>
       </div>

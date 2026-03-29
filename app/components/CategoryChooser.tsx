@@ -40,9 +40,9 @@ function CategoryChooser({ categories, setShownProjects, glitchyTextDensity }: {
   const projects = projectsEn
 
   // Compute random colors ONCE on client mount — avoids hydration mismatch and strict mode issues
-  const [randomColors, setRandomColors] = useState<string[]>(['white', 'white', 'white', 'white'])
+  const [randomColors, setRandomColors] = useState<string[]>(['white', 'white', 'white', 'white', 'white'])
   useEffect(() => {
-    setRandomColors(shuffleAndPick(PROJECT_COLORS, 4))
+    setRandomColors(shuffleAndPick(PROJECT_COLORS, 5))
   }, [])
 
   const [selectedCategories, setSelectedCategories] = useState<string[]>(['all'])
@@ -72,8 +72,13 @@ function CategoryChooser({ categories, setShownProjects, glitchyTextDensity }: {
   }, [selectedCategories, setShownProjects, projects])
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && (window.location.href.includes('cv') || window.location.href.includes('dev'))) {
+    if (typeof window === 'undefined') return
+    const path = window.location.pathname.replace('/', '').toLowerCase()
+    const validCategories = ['dev', 'pro', 'academic', 'assoc']
+    if (path === 'cv') {
       setSelectedCategories(['dev', 'academic'])
+    } else if (validCategories.includes(path)) {
+      setSelectedCategories([path])
     }
   }, [])
 
@@ -84,9 +89,10 @@ function CategoryChooser({ categories, setShownProjects, glitchyTextDensity }: {
       </GlitchyTextContainer>
       <div className="flex flex-wrap justify-start gap-2 relative top-[-3px]">
         <SelectedChip text="Dev" color={randomColors[0]} selected={selectedCategories.includes('dev')} onClick={onChipClick('dev')} />
-        <SelectedChip text="Academic" color={randomColors[1]} selected={selectedCategories.includes('academic')} onClick={onChipClick('academic')} />
-        <SelectedChip text="Association" color={randomColors[2]} selected={selectedCategories.includes('assoc')} onClick={onChipClick('assoc')} />
-        <SelectedChip text="All" color={randomColors[3]} selected={selectedCategories.includes('all')} onClick={onChipClick('all')} />
+        <SelectedChip text="Freelance" color={randomColors[1]} selected={selectedCategories.includes('pro')} onClick={onChipClick('pro')} />
+        <SelectedChip text="Academic" color={randomColors[2]} selected={selectedCategories.includes('academic')} onClick={onChipClick('academic')} />
+        <SelectedChip text="Association" color={randomColors[3]} selected={selectedCategories.includes('assoc')} onClick={onChipClick('assoc')} />
+        <SelectedChip text="All" color={randomColors[4]} selected={selectedCategories.includes('all')} onClick={onChipClick('all')} />
       </div>
     </div>
   )

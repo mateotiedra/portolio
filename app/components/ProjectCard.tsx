@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { RiInstagramFill, RiExternalLinkFill } from 'react-icons/ri'
 import { ProjectProps } from './projects'
@@ -13,34 +13,45 @@ const blobs = [
 ]
 
 function LazyVideo({ src, className }: { src?: string; className?: string }) {
+  const containerRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const el = containerRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setIsVisible(true); observer.disconnect() } },
+      { rootMargin: '200px' }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
 
   useEffect(() => {
     const video = videoRef.current
-    if (!video) return
+    if (!video || !isVisible) return
 
-    // Fix: React doesn't guarantee muted attribute in DOM (github.com/facebook/react/issues/10389)
-    // Safari checks the HTML attribute before allowing autoplay
     video.defaultMuted = true
     video.muted = true
     video.setAttribute('muted', '')
     video.setAttribute('playsinline', '')
-
-    // Force play after attributes are set
     video.play().catch(() => {})
-  }, [])
+  }, [isVisible])
 
   return (
-    <video
-      ref={videoRef}
-      src={src}
-      autoPlay
-      muted
-      loop
-      playsInline
-      preload="auto"
-      className={className}
-    />
+    <div ref={containerRef}>
+      <video
+        ref={videoRef}
+        src={isVisible ? src : undefined}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="none"
+        className={className}
+      />
+    </div>
   )
 }
 
@@ -56,7 +67,7 @@ function ProjectCard({
   const blob = blobs[index % blobs.length](color)
 
   return (
-    <div className="lg:max-w-[70%] xl:max-w-[45%] w-full max-w-[100%] flex flex-col justify-between relative">
+    <div className="w-full flex flex-col justify-between relative">
       <div className="flex flex-col sm:flex-row items-stretch sm:items-start gap-6 min-w-md">
         <div className="basis-[default] sm:basis-2/3 flex-[2]">
           <div className="absolute w-[180%] h-[180%] -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 -z-20 opacity-25 blur-3xl">
@@ -67,7 +78,7 @@ function ProjectCard({
           <GlitchyTextContainer color={color} variant="h4" density={glitchyTextDensity}>
             {subtitle}
           </GlitchyTextContainer>
-          <GlitchyTextContainer color={color} variant="h2" density={glitchyTextDensity / 1.2 + 0.1}>
+          <GlitchyTextContainer color={color} variant="h2" density={glitchyTextDensity / 1.2 + 0.1} style={{ overflowWrap: 'anywhere' }}>
             {title}
           </GlitchyTextContainer>
           {React.isValidElement(description) ? React.cloneElement(description as React.ReactElement<any>, { style: { '--primary-color': color } as any, className: 'styled-link' }) : description}
@@ -111,4 +122,4 @@ function ProjectCard({
   )
 }
 
-export default ProjectCard
+export default React.memo(ProjectCard)

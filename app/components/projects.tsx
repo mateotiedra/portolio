@@ -5,6 +5,13 @@ import {
   PythonChip, PyTorchChip, ReactChip, ReactNativeChip, StaffChip, SupabaseChip, TailwindChip
 } from './TechChip'
 
+export type ProjectPreview = {
+  src: string
+  width: number
+  height: number
+  poster?: string
+}
+
 export type ProjectProps = {
   title: string
   id: string
@@ -12,7 +19,7 @@ export type ProjectProps = {
   lilTags?: Record<string, string>
   techTags?: React.ReactNode[]
   link?: string
-  preview?: string[]
+  preview?: ProjectPreview
   description: React.ReactNode
   color: string
   status: string
@@ -29,7 +36,7 @@ export const projectsEn: ProjectProps[] = [
     lilTags: { 'Team': 'of 3' },
     techTags: [<NextjsChip key="nj" />, <SupabaseChip key="sb" />, <DockerChip key="d" />, <InfraChip key="i" />, <AIChip key="ai" />],
     link: 'https://meky.ch/',
-    preview: ['images/meky/screenshot.png'],
+    preview: { src: 'images/meky/screenshot.webp', width: 787, height: 1398 },
     color: '#22CC93',
     description: <p>SaaS platform offering digital QR code menus with 3D dish visualization for restaurants. Built by orchestrating AI coding agents in constrained environments. Self-hosted infrastructure. Clients acquired via direct outreach in French-speaking Switzerland. Registered in the Swiss commercial registry.</p>,
     status: 'Working on it',
@@ -43,7 +50,7 @@ export const projectsEn: ProjectProps[] = [
     lilTags: { 'Centers': '8', 'Employees': '60+', 'Internship': '4 months' },
     techTags: [<AIChip key="ai" />, <MetabaseChip key="mb" />, <InfraChip key="i" />, <N8nChip key="n8n" />],
     link: 'https://physio-7.ch/',
-    preview: ['videos/physio7.mp4'],
+    preview: { src: 'videos/physio7.mp4', width: 682, height: 1280, poster: 'videos/posters/physio7.webp' },
     color: '#F29100',
     description: <p>Sole technical profile in a network of 8 physiotherapy centers. Responsible for process automation, business intelligence, AI integration, internal software development, and server infrastructure management. Enabling data-driven decisions at board level through self-hosted analytics tools and AI agents. Continuing to work there freely after the end of the full-time internship.</p>,
     status: 'Working there',
@@ -58,7 +65,7 @@ export const projectsEn: ProjectProps[] = [
     lilTags: { 'Developed in': '4 hours' },
     techTags: [<NextjsChip key="nj" />, <TailwindChip key="t" />, <AIChip key="ai" />],
     link: 'https://thaqirenovation.ch/',
-    preview: ['videos/thaqi.mp4'],
+    preview: { src: 'videos/thaqi.mp4', width: 614, height: 1280, poster: 'videos/posters/thaqi.webp' },
     color: '#0078b6',
     description: <p>Full website design and development for a Swiss renovation company. Built from scratch including responsive design, SEO optimization, and deployment. First time discovering and leveraging AI coding agents, significantly accelerating the development process.</p>,
     status: 'Delivered',
@@ -70,7 +77,7 @@ export const projectsEn: ProjectProps[] = [
     id: 'koriox',
     techTags: [<DockerChip key="d" />, <InfraChip key="i" />],
     link: 'https://koriox.ch/',
-    preview: ['images/koriox/screenshot.png'],
+    preview: { src: 'images/koriox/screenshot.webp', width: 769, height: 1367 },
     color: '#1e3a5f',
     description: <p>Infrastructure management and production deployment for a client-built application (Lovable). Handled the full mise en production including server setup, Docker containerization, domain configuration, and deployment pipeline. Ongoing maintenance and monitoring.</p>,
     status: 'Delivered',
@@ -82,7 +89,7 @@ export const projectsEn: ProjectProps[] = [
     id: 'bsc-sc',
     lilTags: { 'University': 'EPFL', 'Duration': '3 years', 'GPA': '5.19/6' },
     link: 'https://www.epfl.ch/schools/ic/education/bachelor-in-communication-systems/',
-    preview: ['images/bsc-sc/diploma.png'],
+    preview: { src: 'images/bsc-sc/diploma.webp', width: 1300, height: 2060 },
     color: '#e10000',
     description: <p>Bachelor&apos;s degree in Communication Systems at EPFL, covering a broad foundation in computer science, telecommunications, and information security.</p>,
     status: 'Completed',
@@ -95,7 +102,7 @@ export const projectsEn: ProjectProps[] = [
     lilTags: { 'Lab': 'DLAB', 'Supervisor': 'Robert West', 'Grade': '6' },
     techTags: [<ReactChip key="r" />, <AIChip key="ai" />],
     link: 'https://emojinize.xyz/',
-    preview: ['videos/llmojis.mp4'],
+    preview: { src: 'videos/llmojis.mp4', width: 688, height: 1280, poster: 'videos/posters/llmojis.webp' },
     color: '#facc15',
     description: <p>Research project at <a href="https://dlab.epfl.ch/" target="_blank" rel="noreferrer">EPFL DLAB</a> analyzing how LLMs behave in constrained environments, specifically emoji-only communication, compared to human players. Built an online multiplayer game where players communicate words using only emojis, and an LLM arena benchmarking various models under the same conditions. Research publication forthcoming.</p>,
     status: 'Completed',
@@ -108,7 +115,7 @@ export const projectsEn: ProjectProps[] = [
     id: 'iglow',
     lilTags: { 'Team': 'of 7' },
     techTags: [<FlutterChip key="f" />, <ReactChip key="r" />, <ConceptionChip key="c" />],
-    preview: ['videos/iglow.mp4'],
+    preview: { src: 'videos/iglow.mp4', width: 720, height: 1280, poster: 'videos/posters/iglow.webp' },
     color: '#dc0028',
     description: <p>Smart jacket improving cyclist visibility at night with light patterns signaling intentions. Built the website and the companion app for customizing patterns.</p>,
     status: 'Released soon',
@@ -121,7 +128,7 @@ export const projectsEn: ProjectProps[] = [
     id: 'ss8000',
     lilTags: { 'Work time': '8 weeks', 'Budget': 'CHF270', 'Engines': '6', 'Team': 'of 6' },
     techTags: [<ConceptionChip key="c" />, <PythonChip key="p" />, <PyTorchChip key="pt" />, <NumpyChip key="n" />],
-    preview: ['videos/ss8.mp4'],
+    preview: { src: 'videos/ss8.mp4', width: 200, height: 338, poster: 'videos/posters/ss8.webp' },
     color: '#01a63e',
     description: <p>The <a href="https://github.com/epfl-cs358/2024fa-superscanner8000" target="_blank" rel="noreferrer">SuperScanner8000</a> is a robot that scans a selected object in 3D. It moves to take photos from different angles, which it uses in <a href="https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/" target="_blank" rel="noreferrer">3DGS</a> for 3D model reconstruction. Object detection is done via <a href="https://github.com/Gy920/segment-anything-2-real-time" target="_blank" rel="noreferrer">a variant of Segment Anything 2</a>.</p>,
     status: 'Completed',
@@ -134,7 +141,7 @@ export const projectsEn: ProjectProps[] = [
     subtitle: 'Operations Manager',
     lilTags: { 'Date': '05.10.24', 'Participants': '2400', 'Staffs': '180', 'Bars': '4', 'Stages': '2' },
     techTags: [<StaffChip key="s" />, <PlanningChip key="p" />],
-    preview: ['videos/ndlm24.mp4'],
+    preview: { src: 'videos/ndlm24.mp4', width: 320, height: 568, poster: 'videos/posters/ndlm24.webp' },
     color: '#c3a36a',
     description: <p>Official <a href="https://www.epfl.ch/" target="_blank" rel="noreferrer">EPFL</a> master&apos;s graduation event at the <a href="https://www.stcc.ch/" target="_blank" rel="noreferrer">SwissTech Convention Center</a>. Coordinated site setup/teardown and managed 180 volunteers.</p>,
     status: 'Former committee Member',
@@ -147,7 +154,7 @@ export const projectsEn: ProjectProps[] = [
     subtitle: 'DJ sets & LED panels',
     lilTags: { 'Date': '28.09.24', 'DJs': '6', 'Participants': '500', 'Staffs': '20', 'Beer': 'CHF3' },
     techTags: [<StaffChip key="s" />, <AccountingChip key="a" />],
-    preview: ['videos/lummx2221.mp4'],
+    preview: { src: 'videos/lummx2221.mp4', width: 324, height: 576, poster: 'videos/posters/lummx2221.webp' },
     color: 'silver',
     description: <p>Fourth <a href="https://www.lumm.love/" target="_blank" rel="noreferrer">LÜMM</a> edition with <a href="https://2221.ch/" target="_blank" rel="noreferrer">2221.ch</a>. Debuted LED panels with VJing by <a href="https://www.instagram.com/stories/b0nk_13" target="_blank" rel="noreferrer">b0nk</a>. Supported by <a href="https://lanebuleuse.ch/" target="_blank" rel="noreferrer">La Nébuleuse</a> and <a href="https://www.eltonymate.com/" target="_blank" rel="noreferrer">El Tony Mate</a>.</p>,
     status: 'Big banger',
@@ -161,7 +168,7 @@ export const projectsEn: ProjectProps[] = [
     lilTags: { 'Events': '4', 'Festival-goers': '1200', 'Committee members': '29' },
     techTags: [<ReactChip key="r" />, <TailwindChip key="t" />, <GoogleAdminChip key="g" />],
     link: 'https://artiphys.ch/',
-    preview: ['videos/artiphys.mp4'],
+    preview: { src: 'videos/artiphys.mp4', width: 320, height: 568, poster: 'videos/posters/artiphys.webp' },
     color: '#f9a5ee',
     description: <p>Webmaster for the 2025 edition of <a href="https://www.artiphys.ch/" target="_blank" rel="noreferrer">Artiphys</a>. Redesigned the website and managed entries/ticketing for each event.</p>,
     status: 'Committee Member',
@@ -176,7 +183,7 @@ export const projectsEn: ProjectProps[] = [
     lilTags: { 'Users': '700+', 'Books listed/sold': '6,000+' },
     techTags: [<ConceptionChip key="c" />, <ReactChip key="r" />, <NodejsChip key="n" />, <MuiChip key="m" />],
     link: 'https://www.okalo.ch/',
-    preview: ['videos/okalo.mp4'],
+    preview: { src: 'videos/okalo.mp4', width: 320, height: 568, poster: 'videos/posters/okalo.webp' },
     color: '#0496FF',
     description: <p>Platform used in a dozen+ Geneva colleges for buying and selling second-hand textbooks between students.</p>,
     status: 'Active',
@@ -190,7 +197,7 @@ export const projectsEn: ProjectProps[] = [
     subtitle: 'Parade, concerts & DJ sets',
     lilTags: { 'Date': '11.05.24', 'Participants': '700', 'Staffs': '46', 'Beer': 'CHF2' },
     link: 'https://www.lumm.love/',
-    preview: ['videos/lummc.mp4'],
+    preview: { src: 'videos/lummc.mp4', width: 320, height: 568, poster: 'videos/posters/lummc.webp' },
     color: 'rgb(205, 24, 27)',
     techTags: [<StaffChip key="s" />, <PlanningChip key="p" />, <AccountingChip key="a" />],
     description: <p>Third <a href="https://www.lumm.love/" target="_blank" rel="noreferrer">LÜMM</a> edition, co-founded in early 2024. With <a href="https://satellite.bar/" target="_blank" rel="noreferrer">Satellite</a> bar and <a href="https://artepoly.agepoly.ch/" target="_blank" rel="noreferrer">ArtePoly</a>. Supported by <a href="https://lanebuleuse.ch/" target="_blank" rel="noreferrer">La Nébuleuse</a> and <a href="https://www.eltonymate.com/" target="_blank" rel="noreferrer">El Tony Mate</a>.</p>,
@@ -204,7 +211,7 @@ export const projectsEn: ProjectProps[] = [
     subtitle: 'Shared photodump',
     lilTags: { 'Tested at': 'lümm c', 'Photos shared': '200' },
     link: 'https://morii.lumm.love/',
-    preview: ['videos/morii.mp4'],
+    preview: { src: 'videos/morii.mp4', width: 320, height: 568, poster: 'videos/posters/morii.webp' },
     color: 'white',
     techTags: [<ConceptionChip key="c" />, <GoogleCloudChip key="gc" />, <ReactChip key="r" />, <NodejsChip key="n" />],
     description: <p>Photo-sharing platform to replace the classic <span style={{ fontStyle: 'italic' }}>&quot;Send your photos to the group.&quot;</span> Sorted photos, no quality loss.</p>,
@@ -217,7 +224,7 @@ export const projectsEn: ProjectProps[] = [
     id: 'dasher',
     subtitle: 'Mobile game',
     lilTags: { 'Platform': 'Android', 'Downloads': '60' },
-    preview: ['videos/dasher.mp4'],
+    preview: { src: 'videos/dasher.mp4', width: 320, height: 568, poster: 'videos/posters/dasher.webp' },
     color: '#d0b0e7',
     techTags: [<LuaChip key="l" />, <Love2DChip key="lv" />],
     description: <p>Mobile game built during covid. <a href="https://lionstudios.cc/" target="_blank" rel="noreferrer">LionStudios</a> showed interest in publishing, but player feedback wasn&apos;t strong enough to proceed.</p>,
@@ -230,7 +237,7 @@ export const projectsEn: ProjectProps[] = [
     id: 'parkeur',
     subtitle: 'Mobile app',
     lilTags: { 'Platform': 'Android', 'Released on': 'Google Play' },
-    preview: ['videos/parkeur.mp4'],
+    preview: { src: 'videos/parkeur.mp4', width: 320, height: 650, poster: 'videos/posters/parkeur.webp' },
     color: '#4c63ec',
     techTags: [<ConceptionChip key="c" />, <ReactNativeChip key="rn" />],
     description: <p>Language vocabulary learning app with adaptive modes and vocabulary list scanning.</p>,

@@ -12,17 +12,20 @@ const blobs = [
   (color: string) => <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path fill={color} d="M55.2,-57.1C67.8,-55.2,71.7,-34.2,65.8,-18.8C59.9,-3.4,44.3,6.6,36.7,22.6C29.2,38.6,29.6,60.7,20.7,69.4C11.7,78.1,-6.6,73.4,-20.7,64.8C-34.8,56.3,-44.5,43.8,-55.5,29.6C-66.5,15.5,-78.8,-0.3,-77.1,-14.2C-75.3,-28.1,-59.6,-40.1,-44.4,-41.6C-29.2,-43.1,-14.6,-34.1,3.3,-38.1C21.3,-42.1,42.6,-59.1,55.2,-57.1Z" transform="translate(100 100)" /></svg>,
 ]
 
-function LazyVideo({ src, className }: { src?: string; className?: string }) {
+function LazyVideo({
+  src, width, height, poster, className,
+}: { src?: string; width: number; height: number; poster?: string; className?: string }) {
   const containerRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const [isVisible, setIsVisible] = useState(false)
+  const aspectRatio = `${width} / ${height}`
 
   useEffect(() => {
     const el = containerRef.current
     if (!el) return
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) { setIsVisible(true); observer.disconnect() } },
-      { rootMargin: '200px' }
+      { rootMargin: '600px' }
     )
     observer.observe(el)
     return () => observer.disconnect()
@@ -40,16 +43,20 @@ function LazyVideo({ src, className }: { src?: string; className?: string }) {
   }, [isVisible])
 
   return (
-    <div ref={containerRef}>
+    <div ref={containerRef} style={{ aspectRatio }}>
       <video
         ref={videoRef}
         src={isVisible ? src : undefined}
+        poster={isVisible ? poster : undefined}
+        width={width}
+        height={height}
         autoPlay
         muted
         loop
         playsInline
         preload="none"
         className={className}
+        style={{ aspectRatio }}
       />
     </div>
   )
@@ -88,10 +95,23 @@ function ProjectCard({
         </div>
         <div className="rounded-xl overflow-hidden sm:w-full basis-[default] sm:basis-1/3 mx-10 sm:mx-0">
           <a href={link} target="_blank" rel="noreferrer">
-            {preview?.[0]?.match(/\.(mp4|webm)$/) ? (
-              <LazyVideo src={preview[0]} className="w-full" />
-            ) : preview?.[0] ? (
-              <Image src={`/${preview[0]}`} alt={title} width={640} height={400} className="w-full object-cover" />
+            {preview?.src.match(/\.(mp4|webm)$/) ? (
+              <LazyVideo
+                src={`/${preview.src}`}
+                poster={preview.poster ? `/${preview.poster}` : undefined}
+                width={preview.width}
+                height={preview.height}
+                className="w-full h-auto"
+              />
+            ) : preview ? (
+              <Image
+                src={`/${preview.src}`}
+                alt={title}
+                width={preview.width}
+                height={preview.height}
+                sizes="(max-width: 639px) calc(100vw - 5rem), (max-width: 1279px) 33vw, 25vw"
+                className="w-full h-auto object-cover"
+              />
             ) : null}
           </a>
         </div>

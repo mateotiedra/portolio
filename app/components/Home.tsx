@@ -41,7 +41,7 @@ function TitleSection({ glitchyTextDensity }: { glitchyTextDensity: number }) {
       <div className="overflow-hidden sm:hidden">
         <div className="relative flex justify-between w-[100vw] h-[280vw]">
           <div className="absolute flex justify-center w-[100%] pt-[24vw] z-30">
-            <Image className="relative rotate-180 w-[90vw]" src="/images/landing-shark-white.png" alt="White hammer shark" width={900} height={450} priority />
+            <Image className="relative rotate-180 w-[90vw]" src="/images/landing-shark-white.webp" alt="White hammer shark" width={900} height={450} sizes="(max-width: 639px) 90vw, 23vw" priority />
           </div>
           <div className="absolute flex justify-between h-[100vh] w-[100%] px-[10vw] overflow">
             <div className="relative top-[-3vw] left-[20vw]">
@@ -66,7 +66,7 @@ function TitleSection({ glitchyTextDensity }: { glitchyTextDensity: number }) {
       {/* Desktop */}
       <div className="hidden sm:flex flex-col justify-center items-center h-[80vh] mb-[10vh] max-w-[1375px] mx-auto">
         <div className="absolute flex justify-center w-[23%] left-[45%] -translate-x-1/2 z-30">
-          <Image className="relative -rotate-90" src="/images/landing-shark-white.png" alt="White hammer shark" width={900} height={450} />
+          <Image className="relative -rotate-90" src="/images/landing-shark-white.webp" alt="White hammer shark" width={900} height={450} sizes="(max-width: 639px) 90vw, 23vw" />
         </div>
         <div className="relative">
           <GlitchyTextContainer variant="h1" density={glitchyTextDensity + 0.04} className={titleTextFlatClassName} colors={projectsColor}>
@@ -99,14 +99,17 @@ export default function Home() {
   }, [])
 
   const [loading, setLoading] = useState(true)
+  const loadStopped = useRef(false)
 
   const stopLoadWithDelay = useCallback(() => {
-    setTimeout(() => setLoading(false), 500)
+    if (loadStopped.current) return
+    loadStopped.current = true
+    setTimeout(() => setLoading(false), 150)
   }, [])
 
   useEffect(() => {
     window.addEventListener('load', stopLoadWithDelay)
-    const timeout = setTimeout(stopLoadWithDelay, 3000)
+    const timeout = setTimeout(stopLoadWithDelay, 1200)
     return () => {
       window.removeEventListener('load', stopLoadWithDelay)
       clearTimeout(timeout)

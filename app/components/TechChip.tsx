@@ -1,7 +1,7 @@
 import React from 'react'
 import { SiMui, SiReact, SiGooglecloud, SiNodedotjs, SiLua, SiTailwindcss, SiGoogle, SiPython, SiPytorch, SiNumpy, SiFlutter, SiNextdotjs, SiDocker, SiSupabase, SiMetabase } from 'react-icons/si'
 import { TbCircuitSwitchOpen } from 'react-icons/tb'
-import { IoAccessibility, IoCalendar, IoReceipt, IoHeart } from 'react-icons/io5'
+import { IoAccessibility, IoCalendar, IoReceipt, IoHeart, IoShieldCheckmark } from 'react-icons/io5'
 import { TbTools, TbRobot, TbServer } from 'react-icons/tb'
 
 type TechChipProps = {
@@ -29,6 +29,7 @@ export const ReactNativeChip = () => <TechChip name="React Native" color="rgb(8,
 export const MuiChip = () => <TechChip name="Mui" color="#29b6f6" icon={<SiMui size={15} color="#29b6f6" />} url="https://mui.com/" />
 export const StaffChip = () => <TechChip name="Gestion staff" color="#85C7F2" icon={<IoAccessibility size={15} color="#85C7F2" />} />
 export const PlanningChip = () => <TechChip name="Opérationnel" color="#A8C686" icon={<IoCalendar size={15} color="#A8C686" />} />
+export const SafetyChip = () => <TechChip name="Gestion sécurité" color="#60b8ed" icon={<IoShieldCheckmark size={15} color="#60b8ed" />} />
 export const AccountingChip = () => <TechChip name="Comptabilité" color="#ffe74c" icon={<IoReceipt size={15} color="#ffe74c" />} />
 export const GoogleCloudChip = () => <TechChip name="Google Cloud" color="#1a73e8" icon={<SiGooglecloud size={15} color="#1a73e8" />} url="https://cloud.google.com/storage/" />
 export const NodejsChip = () => <TechChip name="Node.js" color="rgb(44 104 44)" icon={<SiNodedotjs size={15} color="rgb(44 104 44)" />} url="https://nodejs.org/" />

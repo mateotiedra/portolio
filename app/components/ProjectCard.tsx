@@ -1,7 +1,7 @@
 
 import React, { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
-import { RiInstagramFill, RiExternalLinkFill } from 'react-icons/ri'
+import { RiInstagramFill, RiExternalLinkFill, RiTiktokFill } from 'react-icons/ri'
 import { ProjectProps } from './projects'
 import GlitchyTextContainer from './GlitchyTextContainer'
 
@@ -294,7 +294,7 @@ type ProjectCardProps = ProjectProps & {
 
 function ProjectCard({
   index, title, subtitle, lilTags, techTags, link, glitchyTextDensity,
-  preview, color, description, status, instaUrl, since, prepareImmediately,
+  preview, color, description, status, instaUrl, tiktokUrl, since, prepareImmediately,
   onVideoSettled,
 }: ProjectCardProps) {
   const blob = blobs[index % blobs.length](color)
@@ -362,6 +362,7 @@ function ProjectCard({
           <p>Status : <span className="text-white">{status}</span>{!!since && <> since <span className="text-white">{since}</span></>}</p>
           <div className="flex flex-row gap-2 items-center">
             {instaUrl && <a href={instaUrl}><RiInstagramFill color="white" size={28} /></a>}
+            {tiktokUrl && <a href={tiktokUrl} target="_blank" rel="noreferrer" aria-label={`${title} on TikTok`}><RiTiktokFill color="white" size={28} /></a>}
             {link && <a href={link} target="_blank" rel="noreferrer"><div className="p-[2px] bg-white rounded-sm"><RiExternalLinkFill color="black" size={20} /></div></a>}
           </div>
         </div>

@@ -2,7 +2,7 @@ import React from 'react'
 import {
   AccountingChip, AIChip, ConceptionChip, DockerChip, FlutterChip, GoogleAdminChip, GoogleCloudChip,
   InfraChip, Love2DChip, LuaChip, MetabaseChip, MuiChip, N8nChip, NextjsChip, NodejsChip, NumpyChip, PlanningChip,
-  PythonChip, PyTorchChip, ReactChip, ReactNativeChip, StaffChip, SupabaseChip, TailwindChip
+  PythonChip, PyTorchChip, ReactChip, ReactNativeChip, SafetyChip, StaffChip, SupabaseChip, TailwindChip
 } from './TechChip'
 
 export type ProjectPreview = {
@@ -24,11 +24,27 @@ export type ProjectProps = {
   color: string
   status: string
   instaUrl?: string
+  tiktokUrl?: string
   since?: string
   categories?: string[]
 }
 
 export const projectsEn: ProjectProps[] = [
+  {
+    subtitle: 'Setup, teardown & safety at',
+    title: 'Orion Festival',
+    id: 'orion-festival',
+    lilTags: { 'Edition': 'First', 'Duration': '2 days', 'Festival-goers': '5,000' },
+    techTags: [<StaffChip key="s" />, <PlanningChip key="p" />, <SafetyChip key="safety" />],
+    link: 'https://orionfestival.ch/',
+    preview: { src: 'videos/orion.mp4', width: 720, height: 1280, poster: 'videos/posters/orion.webp' },
+    color: '#015f9c',
+    description: <p>First edition of <a href="https://orionfestival.ch/" target="_blank" rel="noreferrer">Orion Festival</a> in Bernex: two days and 5,000 festival-goers over the weekend, far more than expected. A hugely successful launch: the beer stocked for both evenings sold out by 9 p.m. on the first night. Coordinated the setup and teardown of the stages, carried out by <a href="https://www.lumm.love/" target="_blank" rel="noreferrer">LÜMM</a>, and was responsible for safety throughout the event.</p>,
+    status: 'Just getting started',
+    instaUrl: 'https://www.instagram.com/orionfestival.ch/',
+    tiktokUrl: 'https://www.tiktok.com/@orionfestival.ch',
+    categories: ['assoc'],
+  },
   {
     subtitle: 'Co-founder & CTO',
     title: 'Meky',
@@ -39,8 +55,7 @@ export const projectsEn: ProjectProps[] = [
     preview: { src: 'images/meky/screenshot.webp', width: 787, height: 1398 },
     color: '#22CC93',
     description: <p>SaaS platform offering digital QR code menus with 3D dish visualization for restaurants. Built by orchestrating AI coding agents in constrained environments. Self-hosted infrastructure. Clients acquired via direct outreach in French-speaking Switzerland. Registered in the Swiss commercial registry.</p>,
-    status: 'Working on it',
-    since: 'January 2025',
+    status: 'Completed and discontinued',
     categories: ['dev'],
   },
   {

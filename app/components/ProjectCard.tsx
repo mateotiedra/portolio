@@ -11,53 +11,276 @@ const blobs = [
   (color: string) => <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path fill={color} d="M31.9,-45.6C35.1,-35.3,27.2,-19.3,32,-3.9C36.8,11.6,54.4,26.5,55.1,38C55.8,49.4,39.8,57.3,23.2,63.1C6.5,69,-10.7,72.8,-17.4,63.5C-24.1,54.2,-20.4,31.9,-21.1,18.2C-21.8,4.5,-26.9,-0.6,-32,-11.5C-37.1,-22.5,-42.1,-39.4,-36.8,-49.3C-31.5,-59.2,-15.7,-62.2,-0.7,-61.3C14.3,-60.5,28.6,-55.8,31.9,-45.6Z" transform="translate(100 100)" /></svg>,
   (color: string) => <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path fill={color} d="M55.2,-57.1C67.8,-55.2,71.7,-34.2,65.8,-18.8C59.9,-3.4,44.3,6.6,36.7,22.6C29.2,38.6,29.6,60.7,20.7,69.4C11.7,78.1,-6.6,73.4,-20.7,64.8C-34.8,56.3,-44.5,43.8,-55.5,29.6C-66.5,15.5,-78.8,-0.3,-77.1,-14.2C-75.3,-28.1,-59.6,-40.1,-44.4,-41.6C-29.2,-43.1,-14.6,-34.1,3.3,-38.1C21.3,-42.1,42.6,-59.1,55.2,-57.1Z" transform="translate(100 100)" /></svg>,
 ]
+const PLAYBACK_ENTRY_RATIO = 0.04
+const PLAYBACK_EXIT_RATIO = 0.001
+
+type LazyVideoProps = {
+  src?: string
+  width: number
+  height: number
+  poster?: string
+  className?: string
+  prepareImmediately?: boolean
+  onVideoSettled?: (src: string) => void
+}
 
 function LazyVideo({
-  src, width, height, poster, className,
-}: { src?: string; width: number; height: number; poster?: string; className?: string }) {
+  src,
+  width,
+  height,
+  poster,
+  className,
+  prepareImmediately = false,
+  onVideoSettled,
+}: LazyVideoProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
-  const [isVisible, setIsVisible] = useState(false)
+  const coverRef = useRef<HTMLImageElement>(null)
+  const attachSourceRef = useRef<() => void>(() => {})
+  const checkReadinessRef = useRef<() => void>(() => {})
+  const settledCallbackRef = useRef(onVideoSettled)
+  const [sourceAttached, setSourceAttached] = useState(false)
   const aspectRatio = `${width} / ${height}`
 
   useEffect(() => {
-    const el = containerRef.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setIsVisible(true); observer.disconnect() } },
-      { rootMargin: '600px' }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
+    settledCallbackRef.current = onVideoSettled
+  }, [onVideoSettled])
 
   useEffect(() => {
+    const container = containerRef.current
     const video = videoRef.current
-    if (!video || !isVisible) return
+    if (!container || !video) return
+
+    let active = true
+    const usesIntersectionObserver = typeof IntersectionObserver !== 'undefined'
+    let preparationObserver: IntersectionObserver | null = null
+    let playbackObserver: IntersectionObserver | null = null
+    let fallbackFrame = 0
+    let revealFrame = 0
+    let sourceIsAttached = false
+    let viewportVisible = false
+    let playbackDesired = false
+    let playPending = false
+    let playRejected = false
+    let settled = false
+    let revealScheduled = false
+
+    setSourceAttached(false)
+    if (coverRef.current) coverRef.current.style.display = ''
+    video.pause()
+
+    const isPlaybackDesired = () => (
+      sourceIsAttached
+      && viewportVisible
+      && document.visibilityState === 'visible'
+      && video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA
+    )
+
+    const reconcilePlayback = (visibilityTransition = false) => {
+      if (!active) return
+
+      const shouldPlay = isPlaybackDesired()
+      const enteringPlayback = shouldPlay && !playbackDesired
+      playbackDesired = shouldPlay
+
+      if (!shouldPlay) {
+        video.pause()
+        return
+      }
+
+      if (visibilityTransition && enteringPlayback) playRejected = false
+      if (playRejected || playPending || !video.paused) return
+
+      playPending = true
+      const playResult = video.play()
+      if (!playResult) {
+        playPending = false
+        if (!isPlaybackDesired()) video.pause()
+        return
+      }
+
+      playResult.then(() => {
+        playPending = false
+        if (!active || !isPlaybackDesired()) video.pause()
+      }).catch(() => {
+        playPending = false
+        if (!active) return
+        playRejected = true
+        if (!isPlaybackDesired()) video.pause()
+      })
+    }
+
+    const notifySettled = () => {
+      if (!active || settled || !src) return
+      settled = true
+      settledCallbackRef.current?.(src)
+    }
+
+    const markFrameReady = () => {
+      if (!active || revealScheduled || video.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) return
+      revealScheduled = true
+      revealFrame = requestAnimationFrame(() => {
+        revealScheduled = false
+        if (!active || video.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) return
+        if (coverRef.current) coverRef.current.style.display = 'none'
+        notifySettled()
+        reconcilePlayback()
+      })
+    }
+
+    const handleLoadedData = () => markFrameReady()
+    const handleError = () => {
+      if (!active) return
+      video.pause()
+      notifySettled()
+    }
+
+    const attachSource = () => {
+      if (!active || sourceIsAttached || !src) return
+      sourceIsAttached = true
+      setSourceAttached(true)
+      preparationObserver?.disconnect()
+    }
+
+    const updateViewportVisibility = (nextVisible: boolean) => {
+      if (viewportVisible === nextVisible) return
+      viewportVisible = nextVisible
+      if (usesIntersectionObserver) {
+        if (nextVisible) window.addEventListener('scroll', scheduleViewportRead, { passive: true })
+        else window.removeEventListener('scroll', scheduleViewportRead)
+      }
+      reconcilePlayback(true)
+    }
+    const updateViewportIntersection = (hasPositiveArea: boolean, intersectionRatio: number) => {
+      const requiredRatio = viewportVisible ? PLAYBACK_EXIT_RATIO : PLAYBACK_ENTRY_RATIO
+      updateViewportVisibility(hasPositiveArea && intersectionRatio >= requiredRatio)
+    }
+
+
+    const readViewportVisibility = () => {
+      fallbackFrame = 0
+      if (!active) return
+      const rect = container.getBoundingClientRect()
+      const visibleWidth = Math.max(0, Math.min(rect.right, window.innerWidth) - Math.max(rect.left, 0))
+      const visibleHeight = Math.max(0, Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0))
+      const visibleArea = visibleWidth * visibleHeight
+      const totalArea = rect.width * rect.height
+      updateViewportIntersection(
+        visibleArea > 0,
+        totalArea > 0 ? visibleArea / totalArea : 0
+      )
+    }
+
+    const scheduleViewportRead = () => {
+      if (!fallbackFrame) fallbackFrame = requestAnimationFrame(readViewportVisibility)
+    }
+
+    const handleDocumentVisibility = () => reconcilePlayback(true)
 
     video.defaultMuted = true
     video.muted = true
     video.setAttribute('muted', '')
     video.setAttribute('playsinline', '')
-    video.play().catch(() => {})
-  }, [isVisible])
+    video.addEventListener('loadeddata', handleLoadedData)
+    video.addEventListener('error', handleError)
+    document.addEventListener('visibilitychange', handleDocumentVisibility)
+
+    attachSourceRef.current = attachSource
+    checkReadinessRef.current = markFrameReady
+
+    if (!src) {
+      return () => {
+        active = false
+        video.removeEventListener('loadeddata', handleLoadedData)
+        video.removeEventListener('error', handleError)
+        document.removeEventListener('visibilitychange', handleDocumentVisibility)
+      }
+    }
+
+    if (usesIntersectionObserver) {
+      preparationObserver = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) attachSource()
+        },
+        { rootMargin: '1200px 0px' }
+      )
+      preparationObserver.observe(container)
+
+      playbackObserver = new IntersectionObserver(
+        ([entry]) => {
+          const hasPositiveArea = entry.intersectionRect.width > 0 && entry.intersectionRect.height > 0
+          if (viewportVisible && entry.intersectionRatio < PLAYBACK_EXIT_RATIO) {
+            readViewportVisibility()
+            return
+          }
+          updateViewportIntersection(hasPositiveArea, entry.intersectionRatio)
+        },
+        {
+          rootMargin: '0px',
+          threshold: [PLAYBACK_EXIT_RATIO, PLAYBACK_ENTRY_RATIO],
+        }
+      )
+      playbackObserver.observe(container)
+    } else {
+      attachSource()
+      window.addEventListener('scroll', scheduleViewportRead, { passive: true })
+      window.addEventListener('resize', scheduleViewportRead, { passive: true })
+      scheduleViewportRead()
+    }
+
+    if (prepareImmediately) attachSource()
+
+    return () => {
+      active = false
+      attachSourceRef.current = () => {}
+      checkReadinessRef.current = () => {}
+      preparationObserver?.disconnect()
+      playbackObserver?.disconnect()
+      window.removeEventListener('scroll', scheduleViewportRead)
+      window.removeEventListener('resize', scheduleViewportRead)
+      document.removeEventListener('visibilitychange', handleDocumentVisibility)
+      video.removeEventListener('loadeddata', handleLoadedData)
+      video.removeEventListener('error', handleError)
+      if (fallbackFrame) cancelAnimationFrame(fallbackFrame)
+      if (revealFrame) cancelAnimationFrame(revealFrame)
+      video.pause()
+    }
+  }, [src])
+
+  useEffect(() => {
+    if (prepareImmediately) attachSourceRef.current()
+  }, [prepareImmediately])
+
+  useEffect(() => {
+    if (!sourceAttached) return
+    checkReadinessRef.current()
+  }, [sourceAttached])
 
   return (
-    <div ref={containerRef} style={{ aspectRatio }}>
+    <div ref={containerRef} className="relative" style={{ aspectRatio }}>
       <video
         ref={videoRef}
-        src={isVisible ? src : undefined}
-        poster={isVisible ? poster : undefined}
+        src={sourceAttached ? src : undefined}
+        poster={poster}
         width={width}
         height={height}
-        autoPlay
         muted
         loop
         playsInline
-        preload="none"
+        preload={sourceAttached ? 'auto' : 'none'}
         className={className}
         style={{ aspectRatio }}
       />
+      {poster && (
+        <img
+          ref={coverRef}
+          src={poster}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full object-cover"
+          onError={(event) => { event.currentTarget.style.display = 'none' }}
+        />
+      )}
     </div>
   )
 }
@@ -65,11 +288,14 @@ function LazyVideo({
 type ProjectCardProps = ProjectProps & {
   index: number
   glitchyTextDensity: number
+  prepareImmediately?: boolean
+  onVideoSettled?: (src: string) => void
 }
 
 function ProjectCard({
   index, title, subtitle, lilTags, techTags, link, glitchyTextDensity,
-  preview, color, description, status, instaUrl, since,
+  preview, color, description, status, instaUrl, since, prepareImmediately,
+  onVideoSettled,
 }: ProjectCardProps) {
   const blob = blobs[index % blobs.length](color)
 
@@ -102,6 +328,8 @@ function ProjectCard({
                 width={preview.width}
                 height={preview.height}
                 className="w-full h-auto"
+                prepareImmediately={prepareImmediately}
+                onVideoSettled={onVideoSettled}
               />
             ) : preview ? (
               <Image

@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { projectsEn } from './projects'
 import GlitchyTextContainer from './GlitchyTextContainer'
 
@@ -12,44 +12,48 @@ const easeInOutQuad = (t: number, min: number, max: number) => {
 
 function Loading({ loading }: { loading: boolean }) {
   const [tFactor, setTFactor] = useState(0)
-  const nextAnimate = useRef<NodeJS.Timeout | null>(null)
-  const loadingRef = useRef(loading)
+  const tFactorRef = useRef(0)
 
   useEffect(() => {
-    loadingRef.current = loading
-    if (loading) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
+    if (!loading) return
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = previousOverflow
     }
-    if (!loading && nextAnimate.current) {
-      clearTimeout(nextAnimate.current)
-      nextAnimate.current = null
-    }
-    return () => { document.body.style.overflow = '' }
   }, [loading])
 
-  const animate = useCallback((prevDirection: number) => {
-    if (!loadingRef.current) return
-
-    setTFactor((prev) => {
-      let nextDirection = prevDirection
-      let nextT = prev + nextDirection * 0.1
-      if (nextT <= 0) { nextDirection = 1; nextT = 0 }
-      else if (nextT >= 1) { nextDirection = -1; nextT = 1 }
-
-      if (nextAnimate.current) clearTimeout(nextAnimate.current)
-      if (loadingRef.current) {
-        nextAnimate.current = setTimeout(() => animate(nextDirection), 60 + 60 * (1 - nextT))
-      }
-      return nextT
-    })
-  }, [])
-
   useEffect(() => {
-    animate(1)
-    return () => { if (nextAnimate.current) clearTimeout(nextAnimate.current) }
-  }, [animate])
+    if (!loading) return
+
+    let active = true
+    let direction = 1
+    let timer = 0
+
+    const animate = () => {
+      if (!active) return
+
+      let nextT = tFactorRef.current + direction * 0.1
+      if (nextT <= 0) {
+        direction = 1
+        nextT = 0
+      } else if (nextT >= 1) {
+        direction = -1
+        nextT = 1
+      }
+
+      tFactorRef.current = nextT
+      setTFactor(nextT)
+      timer = window.setTimeout(animate, 60 + 60 * (1 - nextT))
+    }
+
+    animate()
+    return () => {
+      active = false
+      clearTimeout(timer)
+    }
+  }, [loading])
 
   const density = easeInOutQuad(tFactor, 0, 0.7)
 

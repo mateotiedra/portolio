@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { RiInstagramFill, RiExternalLinkFill, RiTiktokFill } from 'react-icons/ri'
 import { ProjectProps } from './projects'
 import GlitchyTextContainer from './GlitchyTextContainer'
+import type { Locale } from './locale'
 
 const blobs = [
   (color: string) => <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path fill={color} d="M34.6,-27.4C40.1,-20.6,36.6,-6.5,33.2,7.3C29.8,21.1,26.5,34.6,14.9,45.9C3.3,57.2,-16.5,66.3,-27.6,59.9C-38.8,53.6,-41.3,31.8,-47.3,9.6C-53.3,-12.6,-62.9,-35.2,-55.6,-42.4C-48.3,-49.6,-24.2,-41.5,-4.8,-37.6C14.5,-33.8,29,-34.3,34.6,-27.4Z" transform="translate(100 100)" /></svg>,
@@ -287,6 +288,7 @@ function LazyVideo({
 
 type ProjectCardProps = ProjectProps & {
   index: number
+  locale: Locale
   glitchyTextDensity: number
   prepareImmediately?: boolean
   onVideoSettled?: (src: string) => void
@@ -295,7 +297,7 @@ type ProjectCardProps = ProjectProps & {
 function ProjectCard({
   index, title, subtitle, lilTags, techTags, link, glitchyTextDensity,
   preview, color, description, status, instaUrl, tiktokUrl, since, prepareImmediately,
-  onVideoSettled,
+  onVideoSettled, locale,
 }: ProjectCardProps) {
   const blob = blobs[index % blobs.length](color)
 
@@ -359,10 +361,10 @@ function ProjectCard({
           ))}
         </div>
         <div className="border-[1px] border-white rounded-xl px-5 py-3 flex flex-row justify-between items-center gap-3 mt-6">
-          <p>Status : <span className="text-white">{status}</span>{!!since && <> since <span className="text-white">{since}</span></>}</p>
+          <p>{locale === 'fr' ? 'Statut' : 'Status'} : <span className="text-white">{status}</span>{!!since && <> {locale === 'fr' ? 'depuis' : 'since'} <span className="text-white">{since}</span></>}</p>
           <div className="flex flex-row gap-2 items-center">
             {instaUrl && <a href={instaUrl}><RiInstagramFill color="white" size={28} /></a>}
-            {tiktokUrl && <a href={tiktokUrl} target="_blank" rel="noreferrer" aria-label={`${title} on TikTok`}><RiTiktokFill color="white" size={28} /></a>}
+            {tiktokUrl && <a href={tiktokUrl} target="_blank" rel="noreferrer" aria-label={`${title} ${locale === 'fr' ? 'sur' : 'on'} TikTok`}><RiTiktokFill color="white" size={28} /></a>}
             {link && <a href={link} target="_blank" rel="noreferrer"><div className="p-[2px] bg-white rounded-sm"><RiExternalLinkFill color="black" size={20} /></div></a>}
           </div>
         </div>

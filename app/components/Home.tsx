@@ -10,6 +10,9 @@ import Loading from './Loading'
 import Footer from './Footer'
 import { projectsEn, ProjectProps } from './projects'
 import CategoryChooser from './CategoryChooser'
+import { getInitialLocale, saveLocale, type Locale } from './locale'
+import { projectsFr } from './projects'
+import { LocaleContext } from './LocaleContext'
 
 const STARTUP_MAX_WAIT_MS = 8000
 
@@ -163,6 +166,26 @@ export default function Home() {
   const canUpdateDensity = useRef(true)
   const pulseResetTimeout = useRef<number | null>(null)
   const [glitchyTextDensity, setGlitchyTextDensity] = useState(0)
+  const [locale, setLocale] = useState<Locale>('en')
+  const projects = locale === 'fr' ? projectsFr : projectsEn
+
+  useEffect(() => {
+    const initial = getInitialLocale()
+    setLocale(initial)
+  }, [])
+
+  useEffect(() => {
+    document.documentElement.lang = locale
+    const description = document.querySelector('meta[name="description"]')
+    if (description) description.setAttribute('content', locale === 'fr'
+      ? 'Portfolio de Mateo Tiedra : développement, expériences professionnelles, projets académiques et associations.'
+      : 'Portfolio of Mateo Tiedra: development, professional work, academic projects and associations.')
+  }, [locale])
+
+  const changeLocale = (next: Locale) => {
+    setLocale(next)
+    saveLocale(next)
+  }
 
   const updateGlitchyTextDensity = useCallback((scrollSpeed: number) => {
     if (canUpdateDensity.current && scrollSpeed > 100) {
@@ -357,29 +380,41 @@ export default function Home() {
 
 
   return (
-    <div className="noise-container">
-      <Loading loading={loading} />
+    <LocaleContext.Provider value={locale}>
+      <div className="noise-container">
+      <Loading loading={loading} locale={locale} />
       <ScrollSpeedTracker onChange={updateGlitchyTextDensity} />
       <div style={{ opacity: loading ? 0 : 1, pointerEvents: loading ? 'none' : 'auto' }}>
+        <div className="absolute right-4 top-4 z-40 flex gap-2" role="group" aria-label={locale === 'fr' ? 'Langue' : 'Language'}>
+          {(['fr', 'en'] as const).map((option) => (
+            <button key={option} type="button" onClick={() => changeLocale(option)}
+              aria-pressed={locale === option}
+              className={`rounded border px-3 py-1 text-sm font-bold ${locale === option ? 'border-white bg-white text-black' : 'border-gray-400 text-white'}`}>
+              {option.toUpperCase()}
+            </button>
+          ))}
+        </div>
         <TitleSection glitchyTextDensity={glitchyTextDensity} />
         <div className="section-container">
-          <CategoryChooser glitchyTextDensity={glitchyTextDensity} setShownProjects={setShownProjects} />
+          <CategoryChooser glitchyTextDensity={glitchyTextDensity} projects={projects} setShownProjects={setShownProjects} locale={locale} />
           <ProjectsDisplayer
             projects={shownProjects}
+            locale={locale}
             glitchyTextDensity={glitchyTextDensity}
             priorityVideoSources={priorityVideoSources}
             onVideoSettled={onVideoSettled}
           />
         </div>
       </div>
-      {shownProjects.length < projectsEn.length && (
+      {shownProjects.length < projects.length && (
         <div className="w-full flex justify-center">
-          <span className="text-white underline cursor-pointer" onClick={() => { window.location.href = '/' }}>
-            See all projects
-          </span>
+          <button className="text-white underline cursor-pointer" onClick={() => { window.location.href = '/' }}>
+            {locale === 'fr' ? 'Voir tous les projets' : 'See all projects'}
+          </button>
         </div>
       )}
       <Footer />
-    </div>
+      </div>
+    </LocaleContext.Provider>
   )
 }

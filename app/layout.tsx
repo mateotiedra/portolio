@@ -3,7 +3,7 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Mateo Tiedra',
-  description: 'Site portfolio de Mateo Tiedra',
+  description: 'Portfolio of Mateo Tiedra: development, professional work, academic projects and associations.',
 }
 
 export default function RootLayout({

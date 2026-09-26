@@ -3,9 +3,11 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { ProjectProps } from './projects'
 import ProjectCard from './ProjectCard'
+import type { Locale } from './locale'
 
 type ProjectsDisplayerProps = {
   projects: ProjectProps[]
+  locale: Locale
   glitchyTextDensity: number
   priorityVideoSources: ReadonlySet<string>
   onVideoSettled: (src: string) => void
@@ -13,6 +15,7 @@ type ProjectsDisplayerProps = {
 
 function ProjectsDisplayer({
   projects,
+  locale,
   glitchyTextDensity,
   priorityVideoSources,
   onVideoSettled,
@@ -116,6 +119,7 @@ function ProjectsDisplayer({
       <div key={project.id} data-project-id={project.id} ref={getCardRef(project.id)} className="lg:max-w-[70%] xl:max-w-[45%] w-full max-w-[100%] flex">
         <ProjectCard
           index={index}
+          locale={locale}
           glitchyTextDensity={visibleIds.has(project.id) ? glitchyTextDensity : 0}
           prepareImmediately={!!videoSource && priorityVideoSources.has(videoSource)}
           onVideoSettled={onVideoSettled}
@@ -123,7 +127,7 @@ function ProjectsDisplayer({
         />
       </div>
     )
-  }), [projects, glitchyTextDensity, visibleIds, getCardRef, priorityVideoSources, onVideoSettled])
+  }), [projects, locale, glitchyTextDensity, visibleIds, getCardRef, priorityVideoSources, onVideoSettled])
 
   return (
     <div className="flex flex-row flex-wrap justify-start gap-20 h-full items-stretch basis-0 overflow-hidden relative mt-12">

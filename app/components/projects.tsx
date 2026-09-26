@@ -71,7 +71,7 @@ export const projectsEn: ProjectProps[] = [
     status: 'Working there',
     instaUrl: 'https://www.instagram.com/physiosept/',
     since: 'August 2025',
-    categories: ['dev'],
+    categories: ['dev', 'pro'],
   },
   {
     subtitle: 'Freelance development',
@@ -261,3 +261,140 @@ export const projectsEn: ProjectProps[] = [
     categories: ['dev'],
   },
 ]
+
+type ProjectTranslation = Pick<ProjectProps, 'title' | 'description' | 'status'> &
+  Partial<Pick<ProjectProps, 'subtitle' | 'lilTags' | 'since'>>
+
+const projectTranslationsFr: ProjectTranslation[] = [
+  {
+    subtitle: 'Montage, démontage et sécurité pour',
+    title: 'Orion Festival',
+    lilTags: { 'Édition': 'Première', 'Durée': '2 jours', 'Festivaliers': '5 000' },
+    description: <p>Première édition de l&apos;<a href="https://orionfestival.ch/" target="_blank" rel="noreferrer">Orion Festival</a> à Bernex : deux jours et 5 000 festivaliers sur le week-end, bien plus que prévu. Un lancement couronné de succès : le stock de bière prévu pour les deux soirées était épuisé à 21 h dès la première nuit. Coordination du montage et du démontage des scènes, assurés par <a href="https://www.lumm.love/" target="_blank" rel="noreferrer">LÜMM</a>, et responsabilité de la sécurité pendant tout l&apos;événement.</p>,
+    status: 'L’aventure ne fait que commencer',
+  },
+  {
+    subtitle: 'Cofondateur et CTO',
+    title: 'Meky',
+    lilTags: { 'Équipe': 'de 3 personnes' },
+    description: <p>Plateforme SaaS proposant aux restaurants des menus numériques par code QR avec visualisation 3D des plats. Développée en orchestrant des agents de programmation par IA dans des environnements contraints. Infrastructure auto-hébergée. Clients acquis par démarchage direct en Suisse romande. Entreprise inscrite au registre du commerce suisse.</p>,
+    status: 'Terminé et abandonné',
+  },
+  {
+    subtitle: 'Optimisation des opérations et IA chez',
+    title: 'Physio 7',
+    lilTags: { 'Centres': '8', 'Employés': '60+', 'Stage': '4 mois' },
+    description: <p>Seul profil technique au sein d&apos;un réseau de huit centres de physiothérapie. Responsable de l&apos;automatisation des processus, de l&apos;informatique décisionnelle, de l&apos;intégration de l&apos;IA, du développement de logiciels internes et de la gestion de l&apos;infrastructure serveur. Mise à disposition d&apos;outils d&apos;analyse auto-hébergés et d&apos;agents IA permettant au conseil d&apos;administration de prendre des décisions fondées sur les données. Poursuite libre de cette activité après la fin du stage à temps plein.</p>,
+    status: 'En poste',
+    since: 'Août 2025',
+  },
+  {
+    subtitle: 'Développement en freelance',
+    title: 'Thaqi Renovation',
+    lilTags: { 'Développé en': '4 heures' },
+    description: <p>Conception et développement complets du site d&apos;une entreprise suisse de rénovation. Réalisé de A à Z, avec une interface adaptative, l&apos;optimisation du référencement et la mise en production. Première découverte et utilisation d&apos;agents de programmation par IA, qui ont considérablement accéléré le développement.</p>,
+    status: 'Livré',
+  },
+  {
+    subtitle: 'Infrastructure en freelance',
+    title: 'Koriox',
+    description: <p>Gestion de l&apos;infrastructure et déploiement en production d&apos;une application créée par un client avec Lovable. Prise en charge complète de la mise en production : configuration du serveur, conteneurisation avec Docker, configuration du domaine et chaîne de déploiement. Maintenance et supervision continues.</p>,
+    status: 'Livré',
+  },
+  {
+    subtitle: 'Bachelor en',
+    title: 'Systèmes de communication',
+    lilTags: { 'Université': 'EPFL', 'Durée': '3 ans', 'Moyenne': '5,19/6' },
+    description: <p>Bachelor en systèmes de communication à l&apos;EPFL, offrant de solides bases en informatique, en télécommunications et en sécurité de l&apos;information.</p>,
+    status: 'Terminé',
+  },
+  {
+    subtitle: 'Projet de bachelor à l’EPFL DLAB',
+    title: 'LLMojis',
+    lilTags: { 'Laboratoire': 'DLAB', 'Superviseur': 'Robert West', 'Note': '6' },
+    description: <p>Projet de recherche à l&apos;<a href="https://dlab.epfl.ch/" target="_blank" rel="noreferrer">EPFL DLAB</a> analysant le comportement des LLM dans des environnements contraints, en particulier lors de communications exclusivement composées d&apos;émojis, et le comparant à celui de joueurs humains. Développement d&apos;un jeu multijoueur en ligne dans lequel les joueurs communiquent des mots uniquement à l&apos;aide d&apos;émojis, ainsi que d&apos;une arène de LLM évaluant différents modèles dans les mêmes conditions. Publication scientifique à paraître.</p>,
+    status: 'Terminé',
+    since: '2025',
+  },
+  {
+    subtitle: 'Développeur principal',
+    title: 'Iglow',
+    lilTags: { 'Équipe': 'de 7 personnes' },
+    description: <p>Veste intelligente améliorant la visibilité nocturne des cyclistes grâce à des motifs lumineux signalant leurs intentions. Développement du site web et de l&apos;application associée permettant de personnaliser les motifs.</p>,
+    status: 'Sortie prochaine',
+  },
+  {
+    subtitle: 'Développement de',
+    title: 'Super S8000',
+    lilTags: { 'Temps de travail': '8 semaines', 'Budget': '270 CHF', 'Moteurs': '6', 'Équipe': 'de 6 personnes' },
+    description: <p>Le <a href="https://github.com/epfl-cs358/2024fa-superscanner8000" target="_blank" rel="noreferrer">SuperScanner8000</a> est un robot qui numérise en 3D un objet sélectionné. Il se déplace pour prendre des photos sous différents angles, puis les utilise avec <a href="https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/" target="_blank" rel="noreferrer">3DGS</a> afin de reconstruire un modèle 3D. La détection de l&apos;objet repose sur <a href="https://github.com/Gy920/segment-anything-2-real-time" target="_blank" rel="noreferrer">une variante de Segment Anything 2</a>.</p>,
+    status: 'Terminé',
+    since: 'Décembre 2024',
+  },
+  {
+    title: 'La NDLM 24',
+    subtitle: 'Responsable des opérations',
+    lilTags: { 'Date': '05.10.24', 'Participants': '2 400', 'Bénévoles': '180', 'Bars': '4', 'Scènes': '2' },
+    description: <p>Événement officiel de remise des diplômes de master de l&apos;<a href="https://www.epfl.ch/" target="_blank" rel="noreferrer">EPFL</a> au <a href="https://www.stcc.ch/" target="_blank" rel="noreferrer">SwissTech Convention Center</a>. Coordination du montage et du démontage du site, ainsi que gestion de 180 bénévoles.</p>,
+    status: 'Ancien membre du comité',
+  },
+  {
+    title: 'Lümm x 2221',
+    subtitle: 'DJ sets et panneaux LED',
+    lilTags: { 'Date': '28.09.24', 'DJ': '6', 'Participants': '500', 'Bénévoles': '20', 'Bière': '3 CHF' },
+    description: <p>Quatrième édition de <a href="https://www.lumm.love/" target="_blank" rel="noreferrer">LÜMM</a>, organisée avec <a href="https://2221.ch/" target="_blank" rel="noreferrer">2221.ch</a>. Première utilisation de panneaux LED accompagnés du VJing de <a href="https://www.instagram.com/stories/b0nk_13" target="_blank" rel="noreferrer">b0nk</a>. Avec le soutien de <a href="https://lanebuleuse.ch/" target="_blank" rel="noreferrer">La Nébuleuse</a> et d&apos;<a href="https://www.eltonymate.com/" target="_blank" rel="noreferrer">El Tony Mate</a>.</p>,
+    status: 'Énorme soirée',
+  },
+  {
+    title: 'Artiphys',
+    subtitle: 'Webmaster chez',
+    lilTags: { 'Événements': '4', 'Festivaliers': '1 200', 'Membres du comité': '29' },
+    description: <p>Webmaster de l&apos;édition 2025 d&apos;<a href="https://www.artiphys.ch/" target="_blank" rel="noreferrer">Artiphys</a>. Refonte du site web et gestion des inscriptions et de la billetterie de chaque événement.</p>,
+    status: 'Membre du comité',
+    since: 'Juin 2024',
+  },
+  {
+    title: 'Okalo.ch',
+    subtitle: 'Bourse aux livres en ligne',
+    lilTags: { 'Utilisateurs': '700+', 'Livres proposés/vendus': '6 000+' },
+    description: <p>Plateforme utilisée dans plus d&apos;une douzaine de collèges genevois pour l&apos;achat et la vente de manuels scolaires d&apos;occasion entre élèves.</p>,
+    status: 'Actif',
+    since: '2022',
+  },
+  {
+    title: 'LÜMM C',
+    subtitle: 'Parade, concerts et DJ sets',
+    lilTags: { 'Date': '11.05.24', 'Participants': '700', 'Bénévoles': '46', 'Bière': '2 CHF' },
+    description: <p>Troisième édition de <a href="https://www.lumm.love/" target="_blank" rel="noreferrer">LÜMM</a>, cofondée début 2024. Avec le bar <a href="https://satellite.bar/" target="_blank" rel="noreferrer">Satellite</a> et <a href="https://artepoly.agepoly.ch/" target="_blank" rel="noreferrer">ArtePoly</a>. Avec le soutien de <a href="https://lanebuleuse.ch/" target="_blank" rel="noreferrer">La Nébuleuse</a> et d&apos;<a href="https://www.eltonymate.com/" target="_blank" rel="noreferrer">El Tony Mate</a>.</p>,
+    status: 'Grand succès',
+  },
+  {
+    title: 'Morii',
+    subtitle: 'Album photo partagé',
+    lilTags: { 'Testé à': 'LÜMM C', 'Photos partagées': '200' },
+    description: <p>Plateforme de partage de photos conçue pour remplacer le classique <span style={{ fontStyle: 'italic' }}>&quot;Envoyez vos photos dans le groupe.&quot;</span> Photos triées, sans perte de qualité.</p>,
+    status: 'En pause',
+    since: 'Mai 2024',
+  },
+  {
+    title: 'Dasher',
+    subtitle: 'Jeu mobile',
+    lilTags: { 'Plateforme': 'Android', 'Téléchargements': '60' },
+    description: <p>Jeu mobile développé pendant le Covid. <a href="https://lionstudios.cc/" target="_blank" rel="noreferrer">LionStudios</a> s&apos;est montré intéressé par sa publication, mais les retours des joueurs n&apos;étaient pas assez positifs pour poursuivre.</p>,
+    status: 'Échec',
+    since: '2020',
+  },
+  {
+    title: 'Parkeur',
+    subtitle: 'Application mobile',
+    lilTags: { 'Plateforme': 'Android', 'Publié sur': 'Google Play' },
+    description: <p>Application d&apos;apprentissage du vocabulaire avec des modes adaptatifs et la numérisation de listes de vocabulaire.</p>,
+    status: 'Terminé',
+    since: '2019',
+  },
+]
+
+export const projectsFr: ProjectProps[] = projectsEn.map((project, index) => ({
+  ...project,
+  ...projectTranslationsFr[index],
+}))

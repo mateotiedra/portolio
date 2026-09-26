@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { projectsEn } from './projects'
 import GlitchyTextContainer from './GlitchyTextContainer'
+import type { Locale } from './locale'
 
 const easeInOutQuad = (t: number, min: number, max: number) => {
   const range = max - min
@@ -10,7 +11,7 @@ const easeInOutQuad = (t: number, min: number, max: number) => {
   return min + easedValue * range
 }
 
-function Loading({ loading }: { loading: boolean }) {
+function Loading({ loading, locale }: { loading: boolean, locale: Locale }) {
   const [tFactor, setTFactor] = useState(0)
   const tFactorRef = useRef(0)
 
@@ -68,7 +69,7 @@ function Loading({ loading }: { loading: boolean }) {
         density={density}
         className="text-lg sm:text-3xl"
       >
-        Chargement...
+        {locale === 'fr' ? 'Chargement...' : 'Loading...'}
       </GlitchyTextContainer>
     </div>
   )

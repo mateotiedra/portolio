@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { SiMui, SiReact, SiGooglecloud, SiNodedotjs, SiLua, SiTailwindcss, SiGoogle, SiPython, SiPytorch, SiNumpy, SiFlutter, SiNextdotjs, SiDocker, SiSupabase, SiMetabase } from 'react-icons/si'
 import { TbCircuitSwitchOpen } from 'react-icons/tb'
 import { IoAccessibility, IoCalendar, IoReceipt, IoHeart, IoShieldCheckmark } from 'react-icons/io5'
 import { TbTools, TbRobot, TbServer } from 'react-icons/tb'
 
+import { LocaleContext } from './LocaleContext'
 type TechChipProps = {
   name: string
   url?: string
@@ -11,11 +12,20 @@ type TechChipProps = {
   color?: string
 }
 
+const englishLabels: Record<string, string> = {
+  'Gestion staff': 'Staff management',
+  'Opérationnel': 'Operations',
+  'Gestion sécurité': 'Safety management',
+  'Comptabilité': 'Accounting',
+  'Conception': 'Design',
+}
+
 function TechChip({ name, icon, url, color }: TechChipProps) {
+  const locale = useContext(LocaleContext)
   return (
     <a className="cursor-pointer" target="_blank" rel="noreferrer" href={url}>
       <div className="flex flex-row gap-2 rounded-xl items-center justify-center px-2 py-1 border-[1px]" style={{ borderColor: color, color }}>
-        <span className="uppercase text-2xs">{name}</span>
+        <span className="uppercase text-2xs">{locale === 'fr' ? (name === 'AI Agents' ? 'Agents IA' : name) : (englishLabels[name] ?? name)}</span>
         {icon}
       </div>
     </a>

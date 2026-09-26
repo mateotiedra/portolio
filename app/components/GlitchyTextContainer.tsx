@@ -10,6 +10,7 @@ type GlitchyTextContainerProps = {
   color?: string
   colors?: string[]
   className?: string
+  keepWordsIntact?: boolean
   [key: string]: any
 }
 
@@ -19,6 +20,7 @@ function GlitchyTextContainer({
   density = 0.4,
   color,
   colors = undefined,
+  keepWordsIntact = false,
   ...props
 }: GlitchyTextContainerProps) {
   const text = typeof children === 'string'
@@ -91,7 +93,18 @@ function GlitchyTextContainer({
     }
   })() as keyof React.JSX.IntrinsicElements
 
-  return <Tag {...props}>{letters}</Tag>
+  let offset = 0
+  const content = keepWordsIntact
+    ? extractedText.split(/(\s+)/).map((part, index) => {
+      const start = offset
+      offset += part.length
+      return /^\s+$/.test(part)
+        ? part
+        : <span key={index} data-title-word className="inline-block whitespace-nowrap">{letters.slice(start, offset)}</span>
+    })
+    : letters
+
+  return <Tag {...props}>{content}</Tag>
 }
 
 export default React.memo(GlitchyTextContainer)

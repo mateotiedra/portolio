@@ -300,6 +300,31 @@ function ProjectCard({
   onVideoSettled, locale,
 }: ProjectCardProps) {
   const blob = blobs[index % blobs.length](color)
+  const titleRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const heading = titleRef.current?.querySelector('h2')
+    if (!heading) return
+    const container = heading.parentElement
+    if (!container) return
+
+    const fitTitle = () => {
+      heading.style.removeProperty('font-size')
+      const available = container.clientWidth
+      if (!available) return
+      const longest = Math.max(0, ...Array.from(heading.querySelectorAll<HTMLElement>('[data-title-word]'), word => word.getBoundingClientRect().width))
+      if (longest > available) {
+        const baseSize = parseFloat(getComputedStyle(heading).fontSize)
+        heading.style.fontSize = `${baseSize * (available - 1) / longest}px`
+      }
+    }
+
+    const observer = new ResizeObserver(fitTitle)
+    observer.observe(container)
+    document.fonts.ready.then(fitTitle)
+    return () => observer.disconnect()
+  }, [title])
+
 
   return (
     <div className="w-full flex flex-col justify-between relative">
@@ -313,9 +338,11 @@ function ProjectCard({
           <GlitchyTextContainer color={color} variant="h4" density={glitchyTextDensity}>
             {subtitle}
           </GlitchyTextContainer>
-          <GlitchyTextContainer color={color} variant="h2" density={glitchyTextDensity / 1.2 + 0.1} style={{ overflowWrap: 'anywhere' }}>
-            {title}
-          </GlitchyTextContainer>
+          <div ref={titleRef}>
+            <GlitchyTextContainer keepWordsIntact color={color} variant="h2" density={glitchyTextDensity / 1.2 + 0.1}>
+              {title}
+            </GlitchyTextContainer>
+          </div>
           {React.isValidElement(description) ? React.cloneElement(description as React.ReactElement<any>, { style: { '--primary-color': color } as any, className: 'styled-link' }) : description}
           <div className="flex sm:hidden flex-row flex-wrap justify-start pt-3 gap-2">
             {techTags?.map((tag, id) => <div key={id}>{tag}</div>)}

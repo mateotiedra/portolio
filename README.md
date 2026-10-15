@@ -29,6 +29,10 @@ Set `STANDALONE=1` when a standalone Next.js server build is required instead.
 
 The portfolio is available in French and English. On first visit, the browser's preferred language selects French for `fr-*` and English otherwise. The FR/EN buttons at the top of the page override that choice and save it in local storage for future visits. The selection applies to project content and category-filtered routes (`/dev`, `/pro`, `/academic`, `/assoc`, `/cv`). Because the site is statically exported, the initial HTML is English; the browser applies the visitor's selected language after hydration.
 
+Project entries live in `app/components/projects.tsx`, newest first. Keep the French translations in the same order as the English entries. Crab Fit MCP is the latest project, listed in the Development category.
+
+The Crab Fit MCP preview is a screenshot of the Crab Fit homepage, stored at `public/images/crabfit-mcp/screenshot.webp`; personal recently visited events are excluded.
+
 ## Media startup and playback
 
 The startup overlay remains until the selected projects' still previews, fonts, and video previews from the first two rendered projects have settled. An 8-second deadline prevents a failed or hanging resource from blocking the page indefinitely.

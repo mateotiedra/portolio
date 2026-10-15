@@ -25,3 +25,6 @@ pnpm-lock.yaml
 .next
 node_modules
 out/
+
+# TypeScript incremental build cache
+*.tsbuildinfo

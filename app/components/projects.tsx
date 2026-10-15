@@ -31,6 +31,18 @@ export type ProjectProps = {
 
 export const projectsEn: ProjectProps[] = [
   {
+    subtitle: 'AI scheduling integration',
+    title: 'Crab Fit MCP',
+    id: 'crabfit-mcp',
+    techTags: [<PythonChip key="p" />, <AIChip key="ai" />],
+    link: 'https://github.com/mateotiedra/crabfit-mcp',
+    preview: { src: 'images/crabfit-mcp/screenshot.webp', width: 787, height: 1398 },
+    color: '#f97316',
+    description: <p>Local Model Context Protocol server connecting AI assistants to <a href="https://crab.fit/" target="_blank" rel="noreferrer">Crab Fit</a>. Built with Python and FastMCP to create scheduling polls, read time slots, and manage participant availability directly through the Crab Fit API. Saves timezone preferences across conversations, with no browser automation or API key required.</p>,
+    status: 'Available on GitHub',
+    categories: ['dev'],
+  },
+  {
     subtitle: 'Setup, teardown & safety at',
     title: 'Orion Festival',
     id: 'orion-festival',
@@ -266,6 +278,12 @@ type ProjectTranslation = Pick<ProjectProps, 'title' | 'description' | 'status'>
   Partial<Pick<ProjectProps, 'subtitle' | 'lilTags' | 'since'>>
 
 const projectTranslationsFr: ProjectTranslation[] = [
+  {
+    subtitle: 'Planification assistée par IA',
+    title: 'Crab Fit MCP',
+    description: <p>Serveur local Model Context Protocol reliant les assistants IA à <a href="https://crab.fit/" target="_blank" rel="noreferrer">Crab Fit</a>. Développé en Python avec FastMCP pour créer des sondages de planification, consulter les créneaux et gérer les disponibilités des participants directement via l&apos;API Crab Fit. Mémorise le fuseau horaire entre les conversations, sans automatisation de navigateur ni clé API.</p>,
+    status: 'Disponible sur GitHub',
+  },
   {
     subtitle: 'Montage, démontage et sécurité pour',
     title: 'Orion Festival',

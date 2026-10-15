@@ -60,7 +60,7 @@ function Loading({ loading, locale }: { loading: boolean, locale: Locale }) {
 
   return (
     <div
-      className="w-[100vw] h-[100vh] absolute centering bg-black pointer-events-none transition-opacity duration-300 z-50"
+      className="w-full h-[100vh] absolute centering bg-black pointer-events-none transition-opacity duration-300 z-50"
       style={{ opacity: loading ? 1 : 0 }}
     >
       <GlitchyTextContainer

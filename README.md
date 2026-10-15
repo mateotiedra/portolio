@@ -37,6 +37,8 @@ The Crab Fit MCP preview is a screenshot of the Crab Fit homepage, stored at `pu
 
 The startup overlay remains until the selected projects' still previews, fonts, and video previews from the first two rendered projects have settled. An 8-second deadline prevents a failed or hanging resource from blocking the page indefinitely.
 
+The startup overlay uses the page container's width (`100%`), not `100vw`, so it does not create horizontal overflow when the vertical scrollbar appears.
+
 Videos keep their poster visible until a decoded frame is available. Sources prepare within 1200 px of the viewport, while playback is restricted to videos that actually intersect the viewport in a visible browser tab. Offscreen videos pause without resetting their current time. MP4 assets are stored with front-loaded metadata and no unused audio streams.
 
 ## Verification

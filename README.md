@@ -41,6 +41,10 @@ The startup overlay uses the page container's width (`100%`), not `100vw`, so it
 
 Videos keep their poster visible until a decoded frame is available. Sources prepare within 1200 px of the viewport, while playback is restricted to videos that actually intersect the viewport in a visible browser tab. Offscreen videos pause without resetting their current time. MP4 assets are stored with front-loaded metadata and no unused audio streams.
 
+Orion is remuxed without audio using video stream copy: H.264, 720 × 1280, 25 fps. Its compressed video and all 641 packet timestamps are unchanged; removing the AAC stream reduces the file from 5,773,283 to 5,557,234 bytes. The container ends at 25.64 seconds instead of 25.77 seconds because the audio tail is gone.
+
+The existing grain, glitch and halo composition remain unchanged. A production-browser experiment replacing the fixed backdrop blur with local halo blur did not improve the median scroll frame count, so that rendering change was not retained.
+
 ## Verification
 
 ```bash

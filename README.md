@@ -31,6 +31,8 @@ The portfolio is available in French and English. On first visit, the browser's 
 
 Project entries live in `app/components/projects.tsx`, newest first. Keep the French translations in the same order as the English entries. asciipaper-hyprland is the latest project, listed in the Development category.
 
+Use `link` for a project's website and optional `githubUrl` for its public source repository. Cards show a GitHub icon separately from website/social links, and previews open the website when available, otherwise the repository. Repository links are shared by both languages through the English metadata; only translated text belongs in `projectTranslationsFr`.
+
 The Crab Fit MCP preview is a screenshot of the Crab Fit homepage, stored at `public/images/crabfit-mcp/screenshot.webp`; personal recently visited events are excluded.
 
 The asciipaper-hyprland preview uses `public/videos/asciipaper-hyprland.mp4` with a matching WebP poster in `public/videos/posters/`. Both are derived from the project's MIT-licensed `docs/media/demo.mp4` (copyright 2026 mateotiedra), center-cropped to 360 × 640 to match the other portrait previews. The text column can shrink around long project names without collapsing the video column.

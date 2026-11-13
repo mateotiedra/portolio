@@ -1,7 +1,7 @@
 
 import React, { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
-import { RiInstagramFill, RiExternalLinkFill, RiTiktokFill } from 'react-icons/ri'
+import { RiGithubFill, RiInstagramFill, RiExternalLinkFill, RiTiktokFill } from 'react-icons/ri'
 import { ProjectProps } from './projects'
 import GlitchyTextContainer from './GlitchyTextContainer'
 import type { Locale } from './locale'
@@ -295,7 +295,7 @@ type ProjectCardProps = ProjectProps & {
 }
 
 function ProjectCard({
-  index, title, subtitle, lilTags, techTags, link, glitchyTextDensity,
+  index, title, subtitle, lilTags, techTags, link, githubUrl, glitchyTextDensity,
   preview, color, description, status, instaUrl, tiktokUrl, since, prepareImmediately,
   onVideoSettled, locale,
 }: ProjectCardProps) {
@@ -349,7 +349,7 @@ function ProjectCard({
           </div>
         </div>
         <div className="rounded-xl overflow-hidden sm:w-full basis-[default] sm:basis-1/3 mx-10 sm:mx-0">
-          <a href={link} target="_blank" rel="noreferrer">
+          <a href={link || githubUrl} target="_blank" rel="noreferrer">
             {preview?.src.match(/\.(mp4|webm)$/) ? (
               <LazyVideo
                 src={`/${preview.src}`}
@@ -393,6 +393,7 @@ function ProjectCard({
             {instaUrl && <a href={instaUrl}><RiInstagramFill color="white" size={28} /></a>}
             {tiktokUrl && <a href={tiktokUrl} target="_blank" rel="noreferrer" aria-label={`${title} ${locale === 'fr' ? 'sur' : 'on'} TikTok`}><RiTiktokFill color="white" size={28} /></a>}
             {link && <a href={link} target="_blank" rel="noreferrer"><div className="p-[2px] bg-white rounded-sm"><RiExternalLinkFill color="black" size={20} /></div></a>}
+            {githubUrl && <a href={githubUrl} target="_blank" rel="noreferrer" aria-label={`${title} ${locale === 'fr' ? 'sur' : 'on'} GitHub`}><RiGithubFill color="white" size={28} /></a>}
           </div>
         </div>
       </div>

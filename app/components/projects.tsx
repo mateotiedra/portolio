@@ -19,6 +19,7 @@ export type ProjectProps = {
   lilTags?: Record<string, string>
   techTags?: React.ReactNode[]
   link?: string
+  githubUrl?: string
   preview?: ProjectPreview
   description: React.ReactNode
   color: string
@@ -36,7 +37,7 @@ export const projectsEn: ProjectProps[] = [
     subtitle: 'Interactive ASCII wallpaper',
     lilTags: { 'Platform': 'Linux / Hyprland', 'Languages': 'C, Python, GLSL', 'License': 'MIT' },
     techTags: [<PythonChip key="p" />],
-    link: 'https://github.com/mateotiedra/asciipaper-hyprland',
+    githubUrl: 'https://github.com/mateotiedra/asciipaper-hyprland',
     preview: { src: 'videos/asciipaper-hyprland.mp4', width: 360, height: 640, poster: 'videos/posters/asciipaper-hyprland.webp' },
     color: '#cba6c8',
     description: <p>An animated wallpaper for Hyprland with an ASCII shark, configurable Matrix rain and a pink cursor-following fish with an articulated tail. Built as an add-on around the unchanged <a href="https://github.com/cYoren/asciipaper-engine" target="_blank" rel="noreferrer">ASCII Paper</a> engine, with live effect tuning through a JSON configuration file.</p>,
@@ -48,7 +49,7 @@ export const projectsEn: ProjectProps[] = [
     title: 'Crab Fit MCP',
     id: 'crabfit-mcp',
     techTags: [<PythonChip key="p" />, <AIChip key="ai" />],
-    link: 'https://github.com/mateotiedra/crabfit-mcp',
+    githubUrl: 'https://github.com/mateotiedra/crabfit-mcp',
     preview: { src: 'images/crabfit-mcp/screenshot.webp', width: 787, height: 1398 },
     color: '#f97316',
     description: <p>Local Model Context Protocol server connecting AI assistants to <a href="https://crab.fit/" target="_blank" rel="noreferrer">Crab Fit</a>. Built with Python and FastMCP to create scheduling polls, read time slots, and manage participant availability directly through the Crab Fit API. Saves timezone preferences across conversations, with no browser automation or API key required.</p>,
@@ -62,6 +63,7 @@ export const projectsEn: ProjectProps[] = [
     lilTags: { 'Edition': 'First', 'Duration': '2 days', 'Festival-goers': '5,000' },
     techTags: [<StaffChip key="s" />, <PlanningChip key="p" />, <SafetyChip key="safety" />],
     link: 'https://orionfestival.ch/',
+    githubUrl: 'https://github.com/mateotiedra/orion-website',
     preview: { src: 'videos/orion.mp4', width: 720, height: 1280, poster: 'videos/posters/orion.webp' },
     color: '#015f9c',
     description: <p>First edition of <a href="https://orionfestival.ch/" target="_blank" rel="noreferrer">Orion Festival</a> in Bernex: two days and 5,000 festival-goers over the weekend, far more than expected. A hugely successful launch: the beer stocked for both evenings sold out by 9 p.m. on the first night. Coordinated the setup and teardown of the stages, carried out by <a href="https://www.lumm.love/" target="_blank" rel="noreferrer">LÜMM</a>, and was responsible for safety throughout the event.</p>,
@@ -90,6 +92,7 @@ export const projectsEn: ProjectProps[] = [
     lilTags: { 'Centers': '8', 'Employees': '60+', 'Internship': '4 months' },
     techTags: [<AIChip key="ai" />, <MetabaseChip key="mb" />, <InfraChip key="i" />, <N8nChip key="n8n" />],
     link: 'https://physio-7.ch/',
+    githubUrl: 'https://github.com/mateotiedra/physio-7-bi',
     preview: { src: 'videos/physio7.mp4', width: 682, height: 1280, poster: 'videos/posters/physio7.webp' },
     color: '#F29100',
     description: <p>Sole technical profile in a network of 8 physiotherapy centers. Responsible for process automation, business intelligence, AI integration, internal software development, and server infrastructure management. Enabling data-driven decisions at board level through self-hosted analytics tools and AI agents. Continuing to work there freely after the end of the full-time internship.</p>,
@@ -105,6 +108,7 @@ export const projectsEn: ProjectProps[] = [
     lilTags: { 'Developed in': '4 hours' },
     techTags: [<NextjsChip key="nj" />, <TailwindChip key="t" />, <AIChip key="ai" />],
     link: 'https://thaqirenovation.ch/',
+    githubUrl: 'https://github.com/mateotiedra/thaqi-renovation',
     preview: { src: 'videos/thaqi.mp4', width: 614, height: 1280, poster: 'videos/posters/thaqi.webp' },
     color: '#0078b6',
     description: <p>Full website design and development for a Swiss renovation company. Built from scratch including responsive design, SEO optimization, and deployment. First time discovering and leveraging AI coding agents, significantly accelerating the development process.</p>,
@@ -155,6 +159,7 @@ export const projectsEn: ProjectProps[] = [
     id: 'iglow',
     lilTags: { 'Team': 'of 7' },
     techTags: [<FlutterChip key="f" />, <ReactChip key="r" />, <ConceptionChip key="c" />],
+    githubUrl: 'https://github.com/mateotiedra/iglow',
     preview: { src: 'videos/iglow.mp4', width: 720, height: 1280, poster: 'videos/posters/iglow.webp' },
     color: '#dc0028',
     description: <p>Smart jacket improving cyclist visibility at night with light patterns signaling intentions. Built the website and the companion app for customizing patterns.</p>,
@@ -168,6 +173,7 @@ export const projectsEn: ProjectProps[] = [
     id: 'ss8000',
     lilTags: { 'Work time': '8 weeks', 'Budget': 'CHF270', 'Engines': '6', 'Team': 'of 6' },
     techTags: [<ConceptionChip key="c" />, <PythonChip key="p" />, <PyTorchChip key="pt" />, <NumpyChip key="n" />],
+    githubUrl: 'https://github.com/epfl-cs358/2024fa-superscanner8000',
     preview: { src: 'videos/ss8.mp4', width: 200, height: 338, poster: 'videos/posters/ss8.webp' },
     color: '#01a63e',
     description: <p>The <a href="https://github.com/epfl-cs358/2024fa-superscanner8000" target="_blank" rel="noreferrer">SuperScanner8000</a> is a robot that scans a selected object in 3D. It moves to take photos from different angles, which it uses in <a href="https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/" target="_blank" rel="noreferrer">3DGS</a> for 3D model reconstruction. Object detection is done via <a href="https://github.com/Gy920/segment-anything-2-real-time" target="_blank" rel="noreferrer">a variant of Segment Anything 2</a>.</p>,
@@ -208,6 +214,7 @@ export const projectsEn: ProjectProps[] = [
     lilTags: { 'Events': '4', 'Festival-goers': '1200', 'Committee members': '29' },
     techTags: [<ReactChip key="r" />, <TailwindChip key="t" />, <GoogleAdminChip key="g" />],
     link: 'https://artiphys.ch/',
+    githubUrl: 'https://github.com/mateotiedra/artiphys2024',
     preview: { src: 'videos/artiphys.mp4', width: 320, height: 568, poster: 'videos/posters/artiphys.webp' },
     color: '#f9a5ee',
     description: <p>Webmaster for the 2025 edition of <a href="https://www.artiphys.ch/" target="_blank" rel="noreferrer">Artiphys</a>. Redesigned the website and managed entries/ticketing for each event.</p>,
@@ -223,6 +230,7 @@ export const projectsEn: ProjectProps[] = [
     lilTags: { 'Users': '700+', 'Books listed/sold': '6,000+' },
     techTags: [<ConceptionChip key="c" />, <ReactChip key="r" />, <NodejsChip key="n" />, <MuiChip key="m" />],
     link: 'https://www.okalo.ch/',
+    githubUrl: 'https://github.com/mateotiedra/okalo-client',
     preview: { src: 'videos/okalo.mp4', width: 320, height: 568, poster: 'videos/posters/okalo.webp' },
     color: '#0496FF',
     description: <p>Platform used in a dozen+ Geneva colleges for buying and selling second-hand textbooks between students.</p>,
@@ -251,6 +259,7 @@ export const projectsEn: ProjectProps[] = [
     subtitle: 'Shared photodump',
     lilTags: { 'Tested at': 'lümm c', 'Photos shared': '200' },
     link: 'https://morii.lumm.love/',
+    githubUrl: 'https://github.com/mateotiedra/mori-client',
     preview: { src: 'videos/morii.mp4', width: 320, height: 568, poster: 'videos/posters/morii.webp' },
     color: 'white',
     techTags: [<ConceptionChip key="c" />, <GoogleCloudChip key="gc" />, <ReactChip key="r" />, <NodejsChip key="n" />],
@@ -277,6 +286,7 @@ export const projectsEn: ProjectProps[] = [
     id: 'parkeur',
     subtitle: 'Mobile app',
     lilTags: { 'Platform': 'Android', 'Released on': 'Google Play' },
+    githubUrl: 'https://github.com/mateotiedra/Parkeur',
     preview: { src: 'videos/parkeur.mp4', width: 320, height: 650, poster: 'videos/posters/parkeur.webp' },
     color: '#4c63ec',
     techTags: [<ConceptionChip key="c" />, <ReactNativeChip key="rn" />],

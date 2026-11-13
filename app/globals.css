@@ -32,6 +32,14 @@
   --primary-color: white;
 }
 
+/* Lock both scroll roots from the initial HTML, before hydration. */
+html:has([data-loading="true"]),
+html:has([data-loading="true"]) body {
+  overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: none;
+}
+
 .styled-link > a {
   @apply font-bold underline text-primary;
 }

@@ -18,16 +18,6 @@ function Loading({ loading, locale }: { loading: boolean, locale: Locale }) {
   useEffect(() => {
     if (!loading) return
 
-    const previousOverflow = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-    return () => {
-      document.body.style.overflow = previousOverflow
-    }
-  }, [loading])
-
-  useEffect(() => {
-    if (!loading) return
-
     let active = true
     let direction = 1
     let timer = 0
@@ -60,7 +50,8 @@ function Loading({ loading, locale }: { loading: boolean, locale: Locale }) {
 
   return (
     <div
-      className="w-full h-[100vh] absolute centering bg-black pointer-events-none transition-opacity duration-300 z-50"
+      className={`w-full h-[100dvh] fixed inset-0 centering bg-black transition-opacity duration-300 z-50 ${loading ? '' : 'pointer-events-none'}`}
+      data-loading={loading}
       style={{ opacity: loading ? 1 : 0 }}
     >
       <GlitchyTextContainer

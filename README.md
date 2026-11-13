@@ -39,9 +39,9 @@ The asciipaper-hyprland preview uses `public/videos/asciipaper-hyprland.mp4` wit
 
 ## Media startup and playback
 
-The startup overlay remains until the selected projects' still previews, fonts, and video previews from the first two rendered projects have settled. An 8-second deadline prevents a failed or hanging resource from blocking the page indefinitely.
+The startup overlay remains for at least one second and until the selected projects' still previews, fonts, and video previews from the first two rendered projects have settled. An 8-second deadline prevents a failed or hanging resource from blocking the page indefinitely.
 
-The startup overlay uses the page container's width (`100%`), not `100vw`, so it does not create horizontal overflow when the vertical scrollbar appears.
+The overlay is fixed to the viewport and centered even when a reload restores a scrolled position. Both document scroll roots are locked from the initial HTML until loading finishes. Its width is `100%`, not `100vw`, avoiding horizontal overflow; its height tracks the dynamic viewport on mobile.
 
 Videos keep their poster visible until a decoded frame is available. Sources prepare within 1200 px of the viewport, while playback is restricted to videos that actually intersect the viewport in a visible browser tab. Offscreen videos pause without resetting their current time. MP4 assets are stored with front-loaded metadata and no unused audio streams.
 

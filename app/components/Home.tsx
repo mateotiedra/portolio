@@ -14,6 +14,7 @@ import { getInitialLocale, saveLocale, type Locale } from './locale'
 import { projectsFr } from './projects'
 import { LocaleContext } from './LocaleContext'
 
+const STARTUP_MIN_WAIT_MS = 1000
 const STARTUP_MAX_WAIT_MS = 8000
 
 function TitleSection({ glitchyTextDensity }: { glitchyTextDensity: number }) {
@@ -212,6 +213,7 @@ export default function Home() {
   const priorityVideosRef = useRef<ReadonlySet<string>>(new Set())
   const fontsSettled = useRef(false)
   const startupMounted = useRef(false)
+  const startupStartedAt = useRef(0)
   const released = useRef(false)
   const targetGeneration = useRef(0)
   const releaseReason = useRef<'ready' | 'deadline' | null>(null)
@@ -278,7 +280,7 @@ export default function Home() {
           released.current = true
           clearTimeout(deadline.current ?? undefined)
           setLoading(false)
-        }, 150)
+        }, Math.max(150, STARTUP_MIN_WAIT_MS - (performance.now() - startupStartedAt.current)))
       })
     })
   }, [])
@@ -302,6 +304,7 @@ export default function Home() {
 
   useEffect(() => {
     startupMounted.current = true
+    startupStartedAt.current = performance.now()
     deadline.current = window.setTimeout(() => scheduleRelease('deadline'), STARTUP_MAX_WAIT_MS)
 
     const fontReadiness = 'fonts' in document ? document.fonts.ready : Promise.resolve()

@@ -29,9 +29,11 @@ Set `STANDALONE=1` when a standalone Next.js server build is required instead.
 
 The portfolio is available in French and English. On first visit, the browser's preferred language selects French for `fr-*` and English otherwise. The FR/EN buttons at the top of the page override that choice and save it in local storage for future visits. The selection applies to project content and category-filtered routes (`/dev`, `/pro`, `/academic`, `/assoc`, `/cv`). Because the site is statically exported, the initial HTML is English; the browser applies the visitor's selected language after hydration.
 
-Project entries live in `app/components/projects.tsx`, newest first. Keep the French translations in the same order as the English entries. Crab Fit MCP is the latest project, listed in the Development category.
+Project entries live in `app/components/projects.tsx`, newest first. Keep the French translations in the same order as the English entries. asciipaper-hyprland is the latest project, listed in the Development category.
 
 The Crab Fit MCP preview is a screenshot of the Crab Fit homepage, stored at `public/images/crabfit-mcp/screenshot.webp`; personal recently visited events are excluded.
+
+The asciipaper-hyprland preview uses `public/videos/asciipaper-hyprland.mp4` with a matching WebP poster in `public/videos/posters/`. Both are derived from the project's MIT-licensed `docs/media/demo.mp4` (copyright 2026 mateotiedra), center-cropped to 360 × 640 to match the other portrait previews. The text column can shrink around long project names without collapsing the video column.
 
 ## Media startup and playback
 

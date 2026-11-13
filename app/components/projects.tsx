@@ -31,6 +31,19 @@ export type ProjectProps = {
 
 export const projectsEn: ProjectProps[] = [
   {
+    title: 'asciipaper-hyprland',
+    id: 'asciipaper-hyprland',
+    subtitle: 'Interactive ASCII wallpaper',
+    lilTags: { 'Platform': 'Linux / Hyprland', 'Languages': 'C, Python, GLSL', 'License': 'MIT' },
+    techTags: [<PythonChip key="p" />],
+    link: 'https://github.com/mateotiedra/asciipaper-hyprland',
+    preview: { src: 'videos/asciipaper-hyprland.mp4', width: 360, height: 640, poster: 'videos/posters/asciipaper-hyprland.webp' },
+    color: '#cba6c8',
+    description: <p>An animated wallpaper for Hyprland with an ASCII shark, configurable Matrix rain and a pink cursor-following fish with an articulated tail. Built as an add-on around the unchanged <a href="https://github.com/cYoren/asciipaper-engine" target="_blank" rel="noreferrer">ASCII Paper</a> engine, with live effect tuning through a JSON configuration file.</p>,
+    status: 'Open source',
+    categories: ['dev'],
+  },
+  {
     subtitle: 'AI scheduling integration',
     title: 'Crab Fit MCP',
     id: 'crabfit-mcp',
@@ -278,6 +291,13 @@ type ProjectTranslation = Pick<ProjectProps, 'title' | 'description' | 'status'>
   Partial<Pick<ProjectProps, 'subtitle' | 'lilTags' | 'since'>>
 
 const projectTranslationsFr: ProjectTranslation[] = [
+  {
+    title: 'asciipaper-hyprland',
+    subtitle: 'Fond d’écran ASCII interactif',
+    lilTags: { 'Plateforme': 'Linux / Hyprland', 'Langages': 'C, Python, GLSL', 'Licence': 'MIT' },
+    description: <p>Un fond d’écran animé pour Hyprland : un requin en ASCII, une pluie Matrix configurable et un poisson rose qui suit le curseur avec une queue articulée. Cet add-on utilise le moteur <a href="https://github.com/cYoren/asciipaper-engine" target="_blank" rel="noreferrer">ASCII Paper</a> sans le modifier. Les effets se règlent à chaud dans un fichier JSON.</p>,
+    status: 'Open source',
+  },
   {
     subtitle: 'Planification assistée par IA',
     title: 'Crab Fit MCP',

@@ -28,3 +28,6 @@ out/
 
 # TypeScript incremental build cache
 *.tsbuildinfo
+
+# CodeGraph local index
+/.codegraph/

@@ -31,6 +31,8 @@ python3 -B -m http.server 8765 --bind 127.0.0.1 --directory out
 
 Set `STANDALONE=1` when a standalone Next.js server build is required instead.
 
+Netlify builds production from `prod` on Node.js 22, matching the Docker build. Corepack uses the pnpm version pinned in `package.json`.
+
 ## Languages
 
 The portfolio is available in French and English. On first visit, the browser's preferred language selects French for `fr-*` and English otherwise. The FR/EN buttons at the top of the page override that choice and save it in local storage for future visits. The selection applies to project content and category-filtered routes (`/dev`, `/pro`, `/academic`, `/assoc`, `/cv`). Because the site is statically exported, the initial HTML is English; the browser applies the visitor's selected language after hydration.

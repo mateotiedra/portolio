@@ -32,6 +32,19 @@ export type ProjectProps = {
 
 export const projectsEn: ProjectProps[] = [
   {
+    subtitle: 'CEO & Developer',
+    title: 'HyperSimple',
+    id: 'hypersimple',
+    lilTags: { 'Clients': '3', 'Projects': '4', 'Team': 'of 8' },
+    link: 'https://hypersimple.ch/',
+    preview: { src: 'images/hypersimple/preview.webp', width: 720, height: 1280 },
+    color: '#82a4eb',
+    description: <p>HyperSimple offers technology consulting to small businesses and helps them build websites, automate repetitive tasks and use AI where it makes sense. We start by looking at how each client works and what slows them down, then recommend a solution and help put it in place. I coordinate the developers across client projects, run company administration and lead development on selected projects.</p>,
+    status: 'Active',
+    since: 'July 2026',
+    categories: ['dev', 'pro'],
+  },
+  {
     title: 'asciipaper-hyprland',
     id: 'asciipaper-hyprland',
     subtitle: 'Interactive ASCII wallpaper',
@@ -301,6 +314,14 @@ type ProjectTranslation = Pick<ProjectProps, 'title' | 'description' | 'status'>
   Partial<Pick<ProjectProps, 'subtitle' | 'lilTags' | 'since'>>
 
 const projectTranslationsFr: ProjectTranslation[] = [
+  {
+    subtitle: 'CEO et développeur',
+    title: 'HyperSimple',
+    lilTags: { 'Clients': '3', 'Projets': '4', 'Équipe': 'de 8 personnes' },
+    description: <p>HyperSimple propose du conseil en technologie aux PME et les accompagne dans la création de sites web, l’automatisation des tâches répétitives et l’intégration de l’IA quand elle est utile. On part de la façon dont chaque client travaille et de ce qui lui fait perdre du temps, puis on recommande une solution et on aide à la mettre en place. Je coordonne les développeurs sur les mandats clients, gère l’administration de l’entreprise et pilote le développement sur certains projets.</p>,
+    status: 'En activité',
+    since: 'juillet 2026',
+  },
   {
     title: 'asciipaper-hyprland',
     subtitle: 'Fond d’écran ASCII interactif',

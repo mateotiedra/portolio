@@ -2,11 +2,17 @@
 
 Next.js 15 / React 19 portfolio exported as a static site.
 
+## Standalone CV
+
+Open `cv/index.html` directly and edit it for content or `cv/cv.css` for layout. To refresh `cv/Mateo-Tiedra-CV.pdf`, print the HTML to PDF in A4 with browser headers and footers disabled. The CV source is separate from the public portfolio and its `/cv` route.
+
+The screen version uses a dark palette; print keeps the ASCII masthead and uses a light reading area. The portrait, ASCII artwork and [Hypersimple](https://hypersimple.ch/), [Physio 7](https://physio-7.ch/) and [EPFL](https://www.epfl.ch/) logos are local assets, so the document also renders offline.
+
 ## Development
 
 ```bash
-npm ci
-npm run dev
+pnpm install --frozen-lockfile
+pnpm dev
 ```
 
 Open `http://localhost:3000`.
@@ -14,7 +20,7 @@ Open `http://localhost:3000`.
 ## Production build
 
 ```bash
-env -u STANDALONE npm run build
+env -u STANDALONE pnpm build
 ```
 
 The static export is written to `out/`. To exercise that exact output locally:
@@ -29,7 +35,9 @@ Set `STANDALONE=1` when a standalone Next.js server build is required instead.
 
 The portfolio is available in French and English. On first visit, the browser's preferred language selects French for `fr-*` and English otherwise. The FR/EN buttons at the top of the page override that choice and save it in local storage for future visits. The selection applies to project content and category-filtered routes (`/dev`, `/pro`, `/academic`, `/assoc`, `/cv`). Because the site is statically exported, the initial HTML is English; the browser applies the visitor's selected language after hydration.
 
-Project entries live in `app/components/projects.tsx`, newest first. Keep the French translations in the same order as the English entries. asciipaper-hyprland is the latest project, listed in the Development category.
+Project entries live in `app/components/projects.tsx`, newest first. Keep the French translations in the same order as the English entries. HyperSimple appears in Development and Professional, with its team, client and project counts localized.
+
+The HyperSimple preview centers the logo on a 720 × 1280 WebP, matching the portrait ratio of the project media.
 
 Use `link` for a project's website and optional `githubUrl` for its public source repository. Cards show a GitHub icon separately from website/social links, and previews open the website when available, otherwise the repository. Repository links are shared by both languages through the English metadata; only translated text belongs in `projectTranslationsFr`.
 
@@ -52,6 +60,6 @@ The existing grain, glitch and halo composition remain unchanged. A production-b
 ## Verification
 
 ```bash
-./node_modules/.bin/tsc --noEmit
-env -u STANDALONE npm run build
+pnpm exec tsc --noEmit
+env -u STANDALONE pnpm build
 ```

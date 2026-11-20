@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { SiMui, SiReact, SiGooglecloud, SiNodedotjs, SiLua, SiTailwindcss, SiGoogle, SiPython, SiPytorch, SiNumpy, SiFlutter, SiNextdotjs, SiDocker, SiSupabase, SiMetabase } from 'react-icons/si'
 import { TbCircuitSwitchOpen } from 'react-icons/tb'
 import { IoAccessibility, IoCalendar, IoReceipt, IoHeart, IoShieldCheckmark } from 'react-icons/io5'
-import { TbTools, TbRobot, TbServer } from 'react-icons/tb'
+import { TbBolt, TbBriefcase, TbCode, TbForklift, TbLadder, TbListCheck, TbMessages, TbPlugConnected, TbTools, TbRobot, TbServer } from 'react-icons/tb'
 
 import { LocaleContext } from './LocaleContext'
 type TechChipProps = {
@@ -16,8 +16,15 @@ const englishLabels: Record<string, string> = {
   'Gestion staff': 'Staff management',
   'Opérationnel': 'Operations',
   'Gestion sécurité': 'Safety management',
+  'Permis cariste': 'Forklift licence',
+  'Formation au travail en hauteur': 'Working at height training',
   'Comptabilité': 'Accounting',
   'Conception': 'Design',
+  'Développement web': 'Web development',
+  'Intégration IA': 'AI integration',
+  'Pilotage de projets': 'Project management',
+  'Gestion d’entreprise': 'Business management',
+  'Relation client': 'Client relations',
 }
 
 function TechChip({ name, icon, url, color }: TechChipProps) {
@@ -40,6 +47,8 @@ export const MuiChip = () => <TechChip name="Mui" color="#29b6f6" icon={<SiMui s
 export const StaffChip = () => <TechChip name="Gestion staff" color="#85C7F2" icon={<IoAccessibility size={15} color="#85C7F2" />} />
 export const PlanningChip = () => <TechChip name="Opérationnel" color="#A8C686" icon={<IoCalendar size={15} color="#A8C686" />} />
 export const SafetyChip = () => <TechChip name="Gestion sécurité" color="#60b8ed" icon={<IoShieldCheckmark size={15} color="#60b8ed" />} />
+export const ForkliftLicenceChip = () => <TechChip name="Permis cariste" color="#ffe74c" icon={<TbForklift size={15} color="#ffe74c" />} />
+export const WorkingAtHeightChip = () => <TechChip name="Formation au travail en hauteur" color="#a78bfa" icon={<TbLadder size={15} color="#a78bfa" />} />
 export const AccountingChip = () => <TechChip name="Comptabilité" color="#ffe74c" icon={<IoReceipt size={15} color="#ffe74c" />} />
 export const GoogleCloudChip = () => <TechChip name="Google Cloud" color="#1a73e8" icon={<SiGooglecloud size={15} color="#1a73e8" />} url="https://cloud.google.com/storage/" />
 export const NodejsChip = () => <TechChip name="Node.js" color="rgb(44 104 44)" icon={<SiNodedotjs size={15} color="rgb(44 104 44)" />} url="https://nodejs.org/" />
@@ -57,5 +66,12 @@ export const DockerChip = () => <TechChip name="Docker" color="#2496ED" icon={<S
 export const SupabaseChip = () => <TechChip name="Supabase" color="#3ECF8E" icon={<SiSupabase size={15} color="#3ECF8E" />} url="https://supabase.com/" />
 export const MetabaseChip = () => <TechChip name="Metabase" color="#509EE3" icon={<SiMetabase size={15} color="#509EE3" />} url="https://www.metabase.com/" />
 export const AIChip = () => <TechChip name="AI Agents" color="#a78bfa" icon={<TbRobot size={15} color="#a78bfa" />} />
+export const MCPChip = () => <TechChip name="MCP" color="#85C7F2" icon={<TbPlugConnected size={15} color="#85C7F2" />} />
+export const FastMCPChip = () => <TechChip name="FastMCP" color="#A8C686" icon={<TbBolt size={15} color="#A8C686" />} />
+export const WebDevelopmentChip = () => <TechChip name="Développement web" color="#85C7F2" icon={<TbCode size={15} color="#85C7F2" />} />
+export const AIIntegrationChip = () => <TechChip name="Intégration IA" color="#a78bfa" icon={<TbRobot size={15} color="#a78bfa" />} />
+export const ProjectManagementChip = () => <TechChip name="Pilotage de projets" color="#A8C686" icon={<TbListCheck size={15} color="#A8C686" />} />
+export const BusinessManagementChip = () => <TechChip name="Gestion d’entreprise" color="#f59e0b" icon={<TbBriefcase size={15} color="#f59e0b" />} />
+export const ClientRelationsChip = () => <TechChip name="Relation client" color="#f9a5ee" icon={<TbMessages size={15} color="#f9a5ee" />} />
 export const InfraChip = () => <TechChip name="Infrastructure" color="#f59e0b" icon={<TbServer size={15} color="#f59e0b" />} />
 export const N8nChip = () => <TechChip name="n8n" color="#ea4b71" icon={<TbCircuitSwitchOpen size={15} color="#ea4b71" />} url="https://n8n.io/" />

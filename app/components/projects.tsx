@@ -1,8 +1,10 @@
 import React from 'react'
 import {
-  AccountingChip, AIChip, ConceptionChip, DockerChip, FlutterChip, GoogleAdminChip, GoogleCloudChip,
-  InfraChip, Love2DChip, LuaChip, MetabaseChip, MuiChip, N8nChip, NextjsChip, NodejsChip, NumpyChip, PlanningChip,
-  PythonChip, PyTorchChip, ReactChip, ReactNativeChip, SafetyChip, StaffChip, SupabaseChip, TailwindChip
+  AccountingChip, AIChip, AIIntegrationChip, BusinessManagementChip, ClientRelationsChip, ConceptionChip,
+  DockerChip, FastMCPChip, FlutterChip, ForkliftLicenceChip, GoogleAdminChip, GoogleCloudChip,
+  InfraChip, Love2DChip, LuaChip, MCPChip, MetabaseChip, MuiChip, N8nChip, NextjsChip, NodejsChip, NumpyChip, PlanningChip,
+  ProjectManagementChip, PythonChip, PyTorchChip, ReactChip, ReactNativeChip, SafetyChip, StaffChip,
+  SupabaseChip, TailwindChip, WebDevelopmentChip, WorkingAtHeightChip
 } from './TechChip'
 
 export type ProjectPreview = {
@@ -36,6 +38,10 @@ export const projectsEn: ProjectProps[] = [
     title: 'HyperSimple',
     id: 'hypersimple',
     lilTags: { 'Clients': '3', 'Projects': '4', 'Team': 'of 8' },
+    techTags: [
+      <WebDevelopmentChip key="web" />, <AIIntegrationChip key="ai" />,
+      <ProjectManagementChip key="projects" />, <BusinessManagementChip key="business" />, <ClientRelationsChip key="clients" />,
+    ],
     link: 'https://hypersimple.ch/',
     preview: { src: 'images/hypersimple/preview.webp', width: 720, height: 1280 },
     color: '#82a4eb',
@@ -61,13 +67,30 @@ export const projectsEn: ProjectProps[] = [
     subtitle: 'AI scheduling integration',
     title: 'Crab Fit MCP',
     id: 'crabfit-mcp',
-    techTags: [<PythonChip key="p" />, <AIChip key="ai" />],
+    techTags: [<PythonChip key="p" />, <MCPChip key="mcp" />, <FastMCPChip key="fastmcp" />, <AIChip key="ai" />],
     githubUrl: 'https://github.com/mateotiedra/crabfit-mcp',
     preview: { src: 'images/crabfit-mcp/screenshot.webp', width: 787, height: 1398 },
     color: '#f97316',
     description: <p>Local Model Context Protocol server connecting AI assistants to <a href="https://crab.fit/" target="_blank" rel="noreferrer">Crab Fit</a>. Built with Python and FastMCP to create scheduling polls, read time slots, and manage participant availability directly through the Crab Fit API. Saves timezone preferences across conversations, with no browser automation or API key required.</p>,
     status: 'Available on GitHub',
     categories: ['dev'],
+  },
+  {
+    subtitle: 'Structures Manager',
+    title: 'Festival Balélec',
+    id: 'balelec',
+    lilTags: { 'Stages': '5', 'Concerts & shows': '20+', 'Booths': '30+', 'Volunteers': '500+', 'Visitors in one evening': "15'000" },
+    techTags: [
+      <StaffChip key="s" />, <PlanningChip key="p" />, <SafetyChip key="safety" />,
+      <ForkliftLicenceChip key="forklift" />, <WorkingAtHeightChip key="height" />,
+    ],
+    link: 'https://www.balelec.ch/',
+    preview: { src: 'images/balelec/preview.webp', width: 720, height: 1280 },
+    color: '#a855f7',
+    description: <p>Balélec is a student music festival at EPFL. The role covers planning, installation and dismantling of festival structures, plus coordinating crews and contractors to keep the work safe and on schedule.</p>,
+    status: 'Active',
+    since: 'October 2026',
+    categories: ['assoc'],
   },
   {
     subtitle: 'Setup, teardown & safety at',
@@ -334,6 +357,14 @@ const projectTranslationsFr: ProjectTranslation[] = [
     title: 'Crab Fit MCP',
     description: <p>Serveur local Model Context Protocol reliant les assistants IA à <a href="https://crab.fit/" target="_blank" rel="noreferrer">Crab Fit</a>. Développé en Python avec FastMCP pour créer des sondages de planification, consulter les créneaux et gérer les disponibilités des participants directement via l&apos;API Crab Fit. Mémorise le fuseau horaire entre les conversations, sans automatisation de navigateur ni clé API.</p>,
     status: 'Disponible sur GitHub',
+  },
+  {
+    subtitle: 'Responsable des structures',
+    title: 'Festival Balélec',
+    lilTags: { 'Scènes': '5', 'Concerts et spectacles': '20+', 'Stands': '30+', 'Bénévoles': '500+', 'Public en une soirée': "15'000" },
+    description: <p>Balélec est un festival de musique étudiant à l’EPFL. Le poste couvre la planification, le montage et le démontage des structures, ainsi que la coordination des équipes et des prestataires pour assurer la sécurité des travaux et le respect des délais.</p>,
+    status: 'En activité',
+    since: 'octobre 2026',
   },
   {
     subtitle: 'Montage, démontage et sécurité pour',

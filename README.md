@@ -43,6 +43,8 @@ The HyperSimple preview centers the logo on a 720 × 1280 WebP, matching the por
 
 Use `link` for a project's website and optional `githubUrl` for its public source repository. Cards show a GitHub icon separately from website/social links, and previews open the website when available, otherwise the repository. Repository links are shared by both languages through the English metadata; only translated text belongs in `projectTranslationsFr`.
 
+The Hypermail MCP card appears in Development and links to the server section of the Hypermail website and to its GitHub repository. Its 720 × 1280 WebP (`public/images/hypermail-mcp/preview.webp`) illustrates how multiple mail providers connect to one MCP client.
+
 The Crab Fit MCP preview is a screenshot of the Crab Fit homepage, stored at `public/images/crabfit-mcp/screenshot.webp`; personal recently visited events are excluded.
 The card shows Python, MCP, FastMCP and AI agents as pills.
 

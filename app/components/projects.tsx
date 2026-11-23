@@ -51,6 +51,19 @@ export const projectsEn: ProjectProps[] = [
     categories: ['dev', 'pro'],
   },
   {
+    title: 'Hypermail MCP',
+    id: 'hypermail-mcp',
+    subtitle: 'Email tools for AI agents',
+    techTags: [<NodejsChip key="node" />, <MCPChip key="mcp" />, <DockerChip key="docker" />],
+    link: 'https://hypermail.hypersimple.ch/#hypermail-mcp',
+    githubUrl: 'https://github.com/hypersimple-ch/hypermail-mcp',
+    preview: { src: 'images/hypermail-mcp/preview.webp', width: 720, height: 1280 },
+    color: '#79c6a1',
+    description: <p>Open-source MCP server that connects AI assistants to Gmail, Outlook, Microsoft 365 and IMAP mailboxes through one interface. Agents can search across accounts, save drafts for review and organize messages. The server runs locally or on your own infrastructure.</p>,
+    status: 'Open source',
+    categories: ['dev'],
+  },
+  {
     title: 'asciipaper-hyprland',
     id: 'asciipaper-hyprland',
     subtitle: 'Interactive ASCII wallpaper',
@@ -344,6 +357,12 @@ const projectTranslationsFr: ProjectTranslation[] = [
     description: <p>HyperSimple propose du conseil en technologie aux PME et les accompagne dans la création de sites web, l’automatisation des tâches répétitives et l’intégration de l’IA quand elle est utile. On part de la façon dont chaque client travaille et de ce qui lui fait perdre du temps, puis on recommande une solution et on aide à la mettre en place. Je coordonne les développeurs sur les mandats clients, gère l’administration de l’entreprise et pilote le développement sur certains projets.</p>,
     status: 'En activité',
     since: 'juillet 2026',
+  },
+  {
+    title: 'Hypermail MCP',
+    subtitle: 'Messagerie pour assistants IA',
+    description: <p>Serveur MCP open source qui relie les assistants IA aux boîtes Gmail, Outlook, Microsoft 365 et IMAP via une seule interface. Les assistants peuvent chercher dans plusieurs comptes, enregistrer des brouillons à relire et classer les messages. Le serveur tourne en local ou sur votre propre infrastructure.</p>,
+    status: 'Open source',
   },
   {
     title: 'asciipaper-hyprland',

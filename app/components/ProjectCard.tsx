@@ -388,7 +388,7 @@ function ProjectCard({
           ))}
         </div>
         <div className="border-[1px] border-white rounded-xl px-5 py-3 flex flex-row justify-between items-center gap-3 mt-6">
-          <p>{locale === 'fr' ? 'Statut' : 'Status'} : <span className="text-white">{status}</span>{!!since && <> {locale === 'fr' ? 'depuis' : 'since'} <span className="text-white">{since}</span></>}</p>
+          <p><span className="text-white">{status}</span>{!!since && <> {locale === 'fr' ? 'depuis' : 'since'} <span className="text-white">{since}</span></>}</p>
           <div className="flex flex-row gap-2 items-center">
             {instaUrl && <a href={instaUrl}><RiInstagramFill color="white" size={28} /></a>}
             {tiktokUrl && <a href={tiktokUrl} target="_blank" rel="noreferrer" aria-label={`${title} ${locale === 'fr' ? 'sur' : 'on'} TikTok`}><RiTiktokFill color="white" size={28} /></a>}

@@ -4,7 +4,7 @@ import {
   DockerChip, FastMCPChip, FlutterChip, ForkliftLicenceChip, GoogleAdminChip, GoogleCloudChip,
   InfraChip, Love2DChip, LuaChip, MCPChip, MetabaseChip, MuiChip, N8nChip, NextjsChip, NodejsChip, NumpyChip, PlanningChip,
   ProjectManagementChip, PythonChip, PyTorchChip, ReactChip, ReactNativeChip, SafetyChip, StaffChip,
-  SupabaseChip, TailwindChip, WebDevelopmentChip, WorkingAtHeightChip
+  SupabaseChip, TailwindChip, WorkingAtHeightChip
 } from './TechChip'
 
 export type ProjectPreview = {
@@ -39,7 +39,7 @@ export const projectsEn: ProjectProps[] = [
     id: 'hypersimple',
     lilTags: { 'Clients': '3', 'Projects': '4', 'Team': 'of 8' },
     techTags: [
-      <WebDevelopmentChip key="web" />, <AIIntegrationChip key="ai" />,
+      <AIIntegrationChip key="ai" />,
       <ProjectManagementChip key="projects" />, <BusinessManagementChip key="business" />, <ClientRelationsChip key="clients" />,
     ],
     link: 'https://hypersimple.ch/',

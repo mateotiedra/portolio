@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { SiMui, SiReact, SiGooglecloud, SiNodedotjs, SiLua, SiTailwindcss, SiGoogle, SiPython, SiPytorch, SiNumpy, SiFlutter, SiNextdotjs, SiDocker, SiSupabase, SiMetabase } from 'react-icons/si'
 import { TbCircuitSwitchOpen } from 'react-icons/tb'
 import { IoAccessibility, IoCalendar, IoReceipt, IoHeart, IoShieldCheckmark } from 'react-icons/io5'
-import { TbBolt, TbBriefcase, TbCode, TbForklift, TbLadder, TbListCheck, TbMessages, TbPlugConnected, TbTools, TbRobot, TbServer } from 'react-icons/tb'
+import { TbBolt, TbBriefcase, TbForklift, TbLadder, TbListCheck, TbMessages, TbPlugConnected, TbTools, TbRobot, TbServer } from 'react-icons/tb'
 
 import { LocaleContext } from './LocaleContext'
 type TechChipProps = {
@@ -68,7 +68,6 @@ export const MetabaseChip = () => <TechChip name="Metabase" color="#509EE3" icon
 export const AIChip = () => <TechChip name="AI Agents" color="#a78bfa" icon={<TbRobot size={15} color="#a78bfa" />} />
 export const MCPChip = () => <TechChip name="MCP" color="#85C7F2" icon={<TbPlugConnected size={15} color="#85C7F2" />} />
 export const FastMCPChip = () => <TechChip name="FastMCP" color="#A8C686" icon={<TbBolt size={15} color="#A8C686" />} />
-export const WebDevelopmentChip = () => <TechChip name="Développement web" color="#85C7F2" icon={<TbCode size={15} color="#85C7F2" />} />
 export const AIIntegrationChip = () => <TechChip name="Intégration IA" color="#a78bfa" icon={<TbRobot size={15} color="#a78bfa" />} />
 export const ProjectManagementChip = () => <TechChip name="Pilotage de projets" color="#A8C686" icon={<TbListCheck size={15} color="#A8C686" />} />
 export const BusinessManagementChip = () => <TechChip name="Gestion d’entreprise" color="#f59e0b" icon={<TbBriefcase size={15} color="#f59e0b" />} />

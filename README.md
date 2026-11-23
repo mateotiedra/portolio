@@ -37,7 +37,7 @@ Netlify builds production from `prod` on Node.js 22, matching the Docker build. 
 
 The portfolio is available in French and English. On first visit, the browser's preferred language selects French for `fr-*` and English otherwise. The FR/EN buttons at the top of the page override that choice and save it in local storage for future visits. The selection applies to project content and category-filtered routes (`/dev`, `/pro`, `/academic`, `/assoc`, `/cv`). Because the site is statically exported, the initial HTML is English; the browser applies the visitor's selected language after hydration.
 
-Project entries live in `app/components/projects.tsx`, newest first. Keep the French translations in the same order as the English entries. HyperSimple appears in Development and Professional, with localized stats and pills for web development, AI integration, project management, business management and client relations.
+Project entries live in `app/components/projects.tsx`, newest first. Keep the French translations in the same order as the English entries. HyperSimple appears in Development and Professional, with localized stats and pills for AI integration, project management, business management and client relations.
 
 The HyperSimple preview centers the logo on a 720 × 1280 WebP, matching the portrait ratio of the project media.
 

@@ -268,9 +268,8 @@ export const projectsEn: ProjectProps[] = [
     preview: { src: 'videos/artiphys.mp4', width: 320, height: 568, poster: 'videos/posters/artiphys.webp' },
     color: '#f9a5ee',
     description: <p>Webmaster for the 2025 edition of <a href="https://www.artiphys.ch/" target="_blank" rel="noreferrer">Artiphys</a>. Redesigned the website and managed entries/ticketing for each event.</p>,
-    status: 'Committee Member',
+    status: 'Committee member from June 2024 to June 2025',
     instaUrl: 'https://www.instagram.com/artiphysfestival/',
-    since: 'June 2024',
     categories: ['assoc', 'dev'],
   },
   {
@@ -471,8 +470,7 @@ const projectTranslationsFr: ProjectTranslation[] = [
     subtitle: 'Webmaster chez',
     lilTags: { 'Événements': '4', 'Festivaliers': '1 200', 'Membres du comité': '29' },
     description: <p>Webmaster de l&apos;édition 2025 d&apos;<a href="https://www.artiphys.ch/" target="_blank" rel="noreferrer">Artiphys</a>. Refonte du site web et gestion des inscriptions et de la billetterie de chaque événement.</p>,
-    status: 'Membre du comité',
-    since: 'Juin 2024',
+    status: 'Membre du comité de juin 2024 à juin 2025',
   },
   {
     title: 'Okalo.ch',
